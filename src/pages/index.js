@@ -1,9 +1,14 @@
 import Head from 'next/head';
 import styles from './Home.module.scss';
+import ButtonText from '@/components/ButtonText';
 
 
 
 export default function Home() {
+  // VARIABLES ----------------
+  // CONDITIONS ---------------
+  // FUNCTIONS ----------------
+  // RETURN -------------------
   return (
     <>
       <Head>
@@ -15,6 +20,7 @@ export default function Home() {
       <main>
         <div className={styles.HomePage}>
           <h1 className={styles.title}>Ciao homepage</h1>
+          <ButtonText />
         </div>
       </main>
     </>
