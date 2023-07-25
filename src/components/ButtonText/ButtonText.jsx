@@ -1,13 +1,22 @@
 import styles from './ButtonText.module.scss'
 
-const ButtonText = () => {
+const ButtonText = ({
+  text = "Button",
+  isActive = false,
+  onClickEv = () => { console.log("Default button event.") }
+}) => {
   // VARIABLES ----------------
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
   // RETURN -------------------
   return (
-    <div className={styles.ButtonText}>
-      ButtonText
+    <div
+      onClick={() => onClickEv()}
+      className={`
+        ${styles.ButtonText} 
+        ${isActive ? styles.ButtonText__active : styles.ButtonText__notActive}`}
+    >
+      {text}
     </div>
   );
 }
