@@ -1,0 +1,7 @@
+.Button {
+  background-color: green;
+
+  &.IsActive {
+    background-color: red;
+  }
+}
