@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from './Home.module.scss';
 import ButtonText from '@/components/ButtonText';
+import Link from 'next/link';
 
 
 
@@ -21,6 +22,7 @@ export default function Home() {
         <div className={styles.HomePage}>
           <h1 className={styles.title}>Ciao homepage</h1>
           <ButtonText />
+          <Link href="/Login">Login</Link>
         </div>
       </main>
     </>

@@ -1,0 +1,28 @@
+
+
+.LoginForm{
+  display: flex;
+  flex-direction: column;
+
+
+  .label{
+
+    .labelTitle{
+      
+    }
+
+  }
+
+  .forgotPassword{
+    margin-top: 20px;
+
+    .link{
+      color: $color-primary;
+      text-decoration: none;
+    }
+  }
+
+  .buttonLogin{
+    
+  }
+}

@@ -11,3 +11,16 @@ h5,
 h6 {
   margin: 0;
 }
+
+$input-border-radius : 10px;
+
+input{
+  padding: 19px 20px;
+  width: calc(100% - (22px * 2));
+  border-radius: $input-border-radius;
+  border: 2px solid $color-medium;
+  outline: none;
+  &:focus{
+    border: 2px solid $color-primary;
+  }
+}
