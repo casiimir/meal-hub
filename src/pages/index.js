@@ -18,8 +18,9 @@ export default function Home() {
       </Head>
 
       {/* <Button text={"lol"} icon={<LuAlarmCheck />} /> */}
-      <Button text={"lol"} isActive={true} />
-      <Button text={"lol"} />
+      <Button text={"Indian"} isNotActive={true} />
+      <Button text={"All"} />
+      <Button text={"All"} icon={<LuAlarmCheck />} />
     </>
   );
 }
