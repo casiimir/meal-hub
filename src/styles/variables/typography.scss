@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,600&display=swap");
+
+$_primaryFont: "Poppins", sans-serif;
+
+//
+$font-bold: 600;
+$font-regular: 400;
+// Mobile First
+// HEADING
+$heading-1: 30px;
+$heading-2Des: 20px;
+
+$heading2: 20px;
+$heading2Des: 11px;
+
+// INTERACTIONS
+$text-input: 12px;
+$text-input-Label: 14px;
+$text-input-Option: 11px;
+
+// LABELS
+$text-label-title: 14px;
+$text-label: 11px;
+$text-label-cta: 11px;
+
+// CATEGORY
+$text-title-category: 16px;
+
+// CARD
+$text-card-title: 14px;
+$text-card-description: 11px;
+$text-card-ingredient: 16px;
+$text-card-ingredient-measure: 11px;
+
+// BUTTON
+$text-button-cta: 16px;
+
+// TABLET AND DESK
+@media screen and (min-width: 641px) and (max-width: 1281px) {
+  // HEADING
+
+  $heading-1: 36px;
+  $heading-2Des: 28px;
+
+  $heading2: 30px;
+  $heading2Des: 20px;
+
+  // INTERACTIONS
+  $text-input: 12px;
+  $text-input-Label: 14px;
+  $text-input-Option: 12px;
+
+  // CATEGORY
+  $text-title-category: 20px;
+
+  // CARD
+  $text-card-title: 16px;
+  $text-card-description: 11px;
+
+  // BUTTON
+  $text-button-cta: 18px;
+}
