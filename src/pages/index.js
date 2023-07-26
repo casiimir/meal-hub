@@ -1,11 +1,20 @@
+import Navbar from "@/components/Navbar";
+import SearchBar from "@/components/SearchBar";
 import Head from "next/head";
-import styles from "./Home.module.scss";
-import ButtonText from "@/components/ButtonText";
+
+import styles from './Home.module.scss';
 import Button from "@/components/Button";
-import { LuAlarmCheck } from "react-icons/lu";
+import { LuMenu, LuUser } from "react-icons/lu";
+import CardHeroSwiper from "@/components/CardHeroSwiper";
+import CategoriesSwiper from "@/components/CategoriesSwiper";
+import { useState } from "react";
+import SectionPage from "@/components/SectionPage";
+
+
 export default function Home() {
   // VARIABLES ----------------
   // CONDITIONS ---------------
+  const [pageTitle, setPageTitle] = useState("Welcome!");
   // FUNCTIONS ----------------
   // RETURN -------------------
   return (
@@ -16,11 +25,56 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div className={styles.HomePage}>
+        <main>
+          {/* ------------ NAVBAR ------------ */}
+          <Navbar
+            leftButton={
+              <Button
+                icon={() => <LuMenu size={24} />}
+                type="text"
+                color="dark"
+              />
+            }
+            pageTitle={pageTitle}
+            rightButton={
+              <Button
+                icon={() => <LuUser size={24} />}
+                type="text"
+                color="dark"
+              />
+            }
+          />
+          {/* ----------- HEADER ------------- */}
+          <div className="page-header">
+            <h1>
+              {pageTitle}
+            </h1>
+            <p>
+              Login to unlock all features!
+            </p>
+          </div>
+          {/* ----------------------- */}
+          <div className={`${styles.section} ${styles.section_padding}`}>
+            <SearchBar />
+          </div>
+          {/* ----------------------- */}
+          <div className={styles.section}>
+            <CardHeroSwiper />
+          </div>
+          {/* ----------------------- */}
+          <div className={styles.section}>
+            <CategoriesSwiper />
+          </div>
+          {/* ----------------------- */}
+          <div className={styles.section}>
+            <SectionPage
 
-      {/* <Button text={"lol"} icon={<LuAlarmCheck />} /> */}
-      <Button text={"Indian"} isNotActive={true} />
-      <Button text={"All"} />
-      <Button text={"All"} icon={<LuAlarmCheck />} />
+            />
+          </div>
+        </main>
+      </div>
+
     </>
   );
 }

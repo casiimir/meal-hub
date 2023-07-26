@@ -1,0 +1,21 @@
+
+
+// BUTTON -----------
+%button__font {
+  font-family: $fontPrimary;
+  font-size: $paragraph;
+}
+
+//CARD ------------  //TODO : utilizzarle
+%card__title {
+  font-family: $fontPrimary;
+  font-size: $heading2;
+}
+%card__subtitle {
+  font-family: $fontPrimary;
+  font-size: $heading4;
+}
+%card__content {
+  font-family: $fontPrimary;
+  font-size: $paragraph;
+}
