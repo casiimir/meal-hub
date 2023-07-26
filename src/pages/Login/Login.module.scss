@@ -1,0 +1,29 @@
+$page_padding : 30px;
+$header_margin: 60px;
+
+.Login{
+  margin-top: $header_margin;
+  padding: $page_padding;
+
+
+  .pageHeader{
+    display: flex;
+    flex-direction: column;
+
+    .pageTitle{
+
+    }
+
+    .pageSubtitle{
+
+    }
+  }
+
+
+  .pageContent{
+    display: flex;
+    flex-direction: column;
+    
+  }
+ 
+}
