@@ -1,9 +1,8 @@
-import Head from 'next/head';
-import styles from './Home.module.scss';
-import ButtonText from '@/components/ButtonText';
-
-
-
+import Head from "next/head";
+import styles from "./Home.module.scss";
+import ButtonText from "@/components/ButtonText";
+import Button from "@/components/Button";
+import { LuAlarmCheck } from "react-icons/lu";
 export default function Home() {
   // VARIABLES ----------------
   // CONDITIONS ---------------
@@ -17,12 +16,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div className={styles.HomePage}>
-          <h1 className={styles.title}>Ciao homepage</h1>
-          <ButtonText />
-        </div>
-      </main>
+
+      {/* <Button text={"lol"} icon={<LuAlarmCheck />} /> */}
+      <Button text={"lol"} isActive={true} />
+      <Button text={"lol"} />
     </>
-  )
+  );
 }

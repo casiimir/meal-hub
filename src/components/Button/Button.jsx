@@ -1,15 +1,23 @@
-import styles from './Button.module.scss'
+import styles from "./Button.module.scss";
 
-const Button = () => {
+const Button = ({
+  isRound = false,
+  text = "",
+  icon = null,
+  isActive = false,
+  shadow = false,
+  iconLeftSide = false,
+}) => {
   // VARIABLES ----------------
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
   // RETURN -------------------
   return (
-    <div className={styles.DefaultComponent}>
-        
-    </div>
+    <button className={`${styles.Button} ${isActive && styles.IsActive}`}>
+      {icon && <span>{icon}</span>}
+      {text && <span className={styles.ButtonText}>{text}</span>}
+    </button>
   );
-}
+};
 
 export default Button;
