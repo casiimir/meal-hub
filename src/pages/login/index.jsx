@@ -67,10 +67,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="Email"
-
-            
-              />
+                placeholder="Email"/>
             </div>
             <div>
               <label htmlFor="password">Enter Password</label>
@@ -93,10 +90,11 @@ const Login = () => {
               shape="light"
               direction="right"
               submit={true}
-              style={{color: 'red', marginTop: 10, padding: 10}}
-            />
+              style={{color: 'red', marginTop: 10, padding: 10}}/>
             </div>
-         <p className={styles.paragraphSignIn}><span>Or Sign in With</span></p>
+            <div className={styles.paragraphContainer}>
+            <p className={styles.paragraphSignIn}><span>Or Sign in With</span></p>
+            </div>
           </form>
 
           <div className={styles.socialButton} >
