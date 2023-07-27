@@ -7,14 +7,10 @@ $paragraph: 16px;
 $paragraphSmall: 14px;
 $paragraphExtraSmall: 12px;
 
-<<<<<<<<< Temporary merge branch 1
+$fontPrimary: "Poppins", sans-serif;
 // WEIGTH
 $font-bold: 600;
 $font-regular: 400;
-
-$_primaryFont: "Poppins", sans-serif;
-// MOBILE
-//
 
 // Mobile First
 // HEADING
@@ -46,30 +42,25 @@ $text-card-ingredient-measure: 11px;
 // BUTTON
 $text-button-cta: 16px;
 
-// TABLET AND DESK
-@media screen and (min-width: 641px) and (max-width: 1281px) {
-  // HEADING
+// // TABLET AND DESK
 
-  $heading-1: 36px;
-  $heading-2Des: 28px;
+$heading-1-DESK: 36px;
+$heading-2Des-DESK: 28px;
 
-  $heading2: 30px;
-  $heading2Des: 20px;
+$heading2-DESK: 30px;
+$heading2Des-DESK: 20px;
 
-  // INTERACTIONS
-  $text-input: 12px;
-  $text-input-Label: 14px;
-  $text-input-Option: 12px;
+// INTERACTIONS
+$text-input-DESK: 12px;
+$text-input-Label-DESK: 14px;
+$text-input-Option-DESK: 12px;
 
-  // CATEGORY
-  $text-title-category: 20px;
+// CATEGORY
+$text-title-category-DESK: 20px;
 
-  // CARD
-  $text-card-title: 16px;
-  $text-card-description: 11px;
+// CARD
+$text-card-title-DESK: 16px;
+$text-card-description-DESK: 11px;
 
 // BUTTON
 $text-button-cta-DESK: 18px;
-=========
-$fontPrimary: "Poppins", sans-serif;
->>>>>>>>> Temporary merge branch 2
