@@ -1,0 +1,30 @@
+.CardGrid{
+
+  border-radius: $border-radius-default;
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  cursor: pointer;
+  
+  .CardGrid__gradient{
+    padding: $page-padding;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: linear-gradient(to bottom, rgba(255,0,0,0), #000);
+    border-radius: $border-radius-default;
+    height: 180px;
+  }
+
+  .header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .title{
+    color: $text-color
+  }
+}

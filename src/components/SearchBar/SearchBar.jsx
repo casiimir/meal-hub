@@ -29,7 +29,7 @@ const SearchBar = () => {
         {
           !canSubmit ?
             <Button
-              size="md"
+              size="xs"
               type="text"
               submit={true}
               color={isOnFocus ? "primary" : "medium"}
@@ -37,7 +37,7 @@ const SearchBar = () => {
             />
             :
             <Button
-              size="md"
+              size="xs"
               type="fill"
               color="primary"
               submit={true}

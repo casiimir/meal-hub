@@ -133,6 +133,10 @@
   }
 
   // Sizes -----------------
+  
+  &.xxs{
+    @extend %button__xxs;
+  }
   &.xs{
     @extend %button__xs;
   }

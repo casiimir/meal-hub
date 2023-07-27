@@ -8,14 +8,19 @@ import Badge from '../Badge';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
+import { useRouter } from 'next/router';
 
 
 
 
 const CategoriesSwiper = () => {
   // VARIABLES ----------------
+  const router = useRouter();
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
+  const handleOpenSearchCategory = (idCategory) => {
+    router.push("/search/c-" + idCategory);
+  }
   // RETURN -------------------
   return (
     <Swiper
@@ -36,7 +41,10 @@ const CategoriesSwiper = () => {
               key={index + "CategoriesSwiper"}
               className={`${styles.swiperSlide}`}
             >
-              <Badge text={category.strCategory} />
+              <Badge
+                text={category.strCategory}
+                onClick={() => handleOpenSearchCategory(category.strCategory)}
+              />
             </SwiperSlide>
           )
         })

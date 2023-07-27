@@ -1,0 +1,15 @@
+.Search{
+
+  .search__container{
+    padding: $page-padding;
+  }
+
+  .Search__grid{
+    padding: $page-padding;
+    display: grid;
+    align-items: center;
+    justify-content: space-around;
+    grid-template-columns: calc(50% - $page-padding) calc(50% - $page-padding) ;
+    gap: $gap;
+  }
+}
