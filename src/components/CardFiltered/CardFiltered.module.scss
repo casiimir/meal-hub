@@ -6,7 +6,7 @@
 
 .CardFiltered {
   width: 285px;
-  height: 137px;
+  height: 157px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,8 @@
 
   .card {
     background-color: $color-primary-contrast;
-    width: 100%;
+    width: 275px;
+    height: 90px;
     border-radius: 10px;
     display: flex;
     padding: 30px 15px 15px;
@@ -51,7 +52,7 @@
     &_category {
       font-size: $paragraphSmall;
       color: $color-primary;
-      padding-bottom: 20px;
+      padding-bottom: 10px;
     }
     &_area {
       font-size: $paragraphExtraSmall;
@@ -73,10 +74,8 @@
   .image {
     width: 80px;
     height: 127px;
-
     position: absolute;
     top: 0;
-
     right: -10px;
     overflow: hidden;
 
@@ -100,36 +99,40 @@
 @media screen and (min-width: 641px) and (max-width: 1496px) {
   .CardFiltered {
     width: 354px;
-    height: 175px;
+    height: 195px;
 
     .card {
-      height: 150px;
-
-      padding: 40px 30px 25px;
+      width: 100%;
+      height: 130px;
     }
+
     .text {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 180px;
+      width: 150px;
 
       line-height: 1.1;
 
       &_wrapper {
-        width: 180px;
+        width: 150px;
+        display: flex;
       }
       &_title {
-        width: 180px;
-        font-size: 18px;
+        font-size: $heading3;
+        font-weight: $font-bold;
+
+        width: 165px;
+        white-space: nowrap;
       }
 
       &_category {
-        font-size: 14px;
-
-        padding-bottom: 30px;
+        font-size: $paragraph;
+        color: $color-primary;
+        padding-bottom: 40px;
       }
       &_area {
-        font-size: 14px;
+        font-size: $paragraph;
       }
 
       p {
@@ -137,43 +140,35 @@
       }
     }
     .buttonSave {
-      top: calc(115px - 33px);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
     }
 
     .image {
       width: 120px;
-      height: 120px;
+      height: 195px;
+      display: flex;
 
-      .image {
-        width: 80px;
-        height: 127px;
-
-        position: absolute;
-        top: 0;
-
-        right: -10px;
-        overflow: hidden;
-
-        img {
-          object-fit: cover;
-          object-position: center;
-          width: 80px;
-          width: 80px;
-          height: auto;
-
-          border-radius: 50%;
-        }
-      }
+      top: -20px;
 
       right: -25px;
+      overflow: hidden;
 
       img {
-        width: 120px;
+        object-fit: cover;
+        object-position: center;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
       }
     }
   }
 
-  .FilteredCard:hover {
+  .CardFiltered:hover {
     scale: 1.1;
   }
 }
