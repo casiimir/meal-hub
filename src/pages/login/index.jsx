@@ -3,7 +3,7 @@ import Head from "next/head";
 import styles from "./login.module.scss";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
-import { LuMenu, LuUser, LuArrowRight, LuSettings2} from "react-icons/lu";
+import { LuMenu, LuUser, LuArrowRight, LuFacebook, LuChrome} from "react-icons/lu";
 
 
 const Login = () => {
@@ -84,7 +84,7 @@ const Login = () => {
                 placeholder="Enter Password"
               />
             </div>
-            <p className="">Forgot Password?</p>
+            <p>Forgot Password?</p>
           <div className={styles.buttonSubmit}>
            <Button 
               icon={() => <LuArrowRight size={24} />}
@@ -96,12 +96,12 @@ const Login = () => {
               style={{color: 'red', marginTop: 10, padding: 10}}
             />
             </div>
-         <p className={styles.paragraph}> Or Sign in With</p>
+         <p className={styles.paragraphSignIn}><span>Or Sign in With</span></p>
           </form>
 
           <div className={styles.socialButton} >
-          <Button style={{margin: 20 }} size="lg" icon={(size) => <LuSettings2 size={size} />} />
-          <Button size="lg" icon={(size) => <LuSettings2 size={size} />} />
+          <Button size="lg" icon={(size) => <LuFacebook size={size} />} />
+          <Button size="lg" icon={(size) => <LuChrome size={size} />} />
           </div>
           <p className={styles.paragraph}>Don’t have an account?<a className={styles.link} href="sign Up"><span>Sign up</span></a></p>
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
