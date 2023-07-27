@@ -56,7 +56,6 @@ const Search = (props) => {
           {/* ----------- SEARCH BAR ------------- */}
           <div className={styles.search__container}>
             <SearchBar />
-
           </div>
 
           {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
@@ -82,10 +81,9 @@ export default Search;
 
 export async function getServerSideProps(context) {
   // VARIABLES ----------------------------
-  const resolvedUrl = context.resolvedUrl;
   const query = context.query;
-
   let dbResp;
+
 
   // FUNCTIONS ----------------------------
   // Resolve query -----------

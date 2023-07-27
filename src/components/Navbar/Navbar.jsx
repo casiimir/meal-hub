@@ -23,20 +23,22 @@ const Navbar = (
   }, [])
   // RETURN -------------------
   return (
-    <div className={styles.Navbar}>
-      <div className={styles.sx}>
-        {leftButton}
-      </div>
-      <div className={styles.pageTitle}>
-        {
-          showPageTitle ? pageTitle : null
-        }
+    <>
+      <div className={styles.Navbar}>
+        <div className={styles.sx}>
+          {leftButton}
+        </div>
+        <div className={styles.pageTitle}>
+          {
+            showPageTitle ? pageTitle : null
+          }
 
+        </div>
+        <div className={styles.dx}>
+          {rightButton}
+        </div>
       </div>
-      <div className={styles.dx}>
-        {rightButton}
-      </div>
-    </div>
+    </>
   );
 }
 

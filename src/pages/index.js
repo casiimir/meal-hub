@@ -9,6 +9,7 @@ import CardHeroSwiper from "@/components/CardHeroSwiper";
 import CategoriesSwiper from "@/components/CategoriesSwiper";
 import { useState } from "react";
 import SectionPage from "@/components/SectionPage";
+import Menu from "@/components/menu";
 
 
 export default function Home() {
@@ -16,7 +17,12 @@ export default function Home() {
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState("Welcome!");
   const [pageSubtitle, setPageSubtitle] = useState("Sottotitolo pagina");
+  const [isMenuOpen, setMenuOpen] = useState(false);
   // FUNCTIONS ----------------
+  const hendleMenuButton = () => {
+    console.log("hendleMenuButton");
+    setMenuOpen(!isMenuOpen);
+  }
   // RETURN -------------------
   return (
     <>
@@ -35,6 +41,7 @@ export default function Home() {
                 icon={() => <LuMenu size={24} />}
                 type="text"
                 color="dark"
+                onClick={() => hendleMenuButton()}
               />
             }
             pageTitle={pageTitle}
@@ -80,6 +87,12 @@ export default function Home() {
         </main>
       </div>
 
+
+      {/* --------- MODALS & EXTRAS -------- */}
+      <Menu
+        isMenuOpen={isMenuOpen}
+        setMenuOpen={setMenuOpen}
+      />
     </>
   );
 }
