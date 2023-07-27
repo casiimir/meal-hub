@@ -1,13 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,600&display=swap");
-
-// WEIGTH
-$font-bold: 600;
-$font-regular: 400;
+$heading1: 26px;
+$heading2: 22px;
+$heading3: 20px;
+$heading4: 18px;
+$heading5: 16px;
+$paragraph: 16px;
+$paragraphSmall: 14px;
+$paragraphExtraSmall: 12px;
 
 $_primaryFont: "Poppins", sans-serif;
-// MOBILE
-//
 
+//
+$font-bold: 600;
+$font-regular: 400;
 // Mobile First
 // HEADING
 $heading-1: 30px;
@@ -38,25 +42,28 @@ $text-card-ingredient-measure: 11px;
 // BUTTON
 $text-button-cta: 16px;
 
-// // TABLET AND DESK
+// TABLET AND DESK
+@media screen and (min-width: 641px) and (max-width: 1281px) {
+  // HEADING
 
-$heading-1-DESK: 36px;
-$heading-2Des-DESK: 28px;
+  $heading-1: 36px;
+  $heading-2Des: 28px;
 
-$heading2-DESK: 30px;
-$heading2Des-DESK: 20px;
+  $heading2: 30px;
+  $heading2Des: 20px;
 
-// INTERACTIONS
-$text-input-DESK: 12px;
-$text-input-Label-DESK: 14px;
-$text-input-Option-DESK: 12px;
+  // INTERACTIONS
+  $text-input: 12px;
+  $text-input-Label: 14px;
+  $text-input-Option: 12px;
 
-// CATEGORY
-$text-title-category-DESK: 20px;
+  // CATEGORY
+  $text-title-category: 20px;
 
-// CARD
-$text-card-title-DESK: 16px;
-$text-card-description-DESK: 11px;
+  // CARD
+  $text-card-title: 16px;
+  $text-card-description: 11px;
 
-// BUTTON
-$text-button-cta-DESK: 18px;
+  // BUTTON
+  $text-button-cta: 18px;
+}

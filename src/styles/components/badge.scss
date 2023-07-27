@@ -1,0 +1,57 @@
+// Defaull config --------------
+%badge{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:10px;
+  cursor: pointer;
+  transition: color $animationSpeed $animationType, 
+  background-color $animationSpeed $animationType,
+  box-shadow $animationSpeed $animationType;
+  padding: 5px 18px 5px 18px;
+}
+
+// Sizes -----------------------
+@mixin badge__sm($isRound : "false") {
+  @if($isRound == "true"){
+    width: 45px;
+    height: 45px;
+    padding: 12px;
+  }@else {
+    padding: 5px 16px 5px 16px;
+  }
+  .text{
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+@mixin badge__md($isRound : "false") {
+  @if($isRound == "true"){
+    width: 55px;
+    height: 55px;
+     padding: 12px;
+  }@else {
+    padding: 5px 18px 5px 18px;
+  }
+  
+  .text{
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+@mixin badge__lg($isRound : "false") {
+  @if($isRound == "true"){
+    width: 65px;
+    height: 65px;
+     padding: 12px;
+  }@else {
+    padding: 5px 22px 5px 22px;
+  }
+  
+  .text{
+    font-size: 22px;
+    font-weight: 500;
+  }
+}
+
+

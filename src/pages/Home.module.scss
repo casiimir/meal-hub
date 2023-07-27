@@ -1,7 +1,12 @@
-
 .HomePage{ 
   width: 100vw;
-  height: 100vh;
-  background-color: aquamarine;
+  height: 200vh;
+  .section{
+    margin-bottom: $page-section-gap;
 
+    &.section_padding{
+      padding-left: $page-padding;
+      padding-right: $page-padding;
+    }
+  }
 }

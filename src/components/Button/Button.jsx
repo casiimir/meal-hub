@@ -1,24 +1,59 @@
-import styles from "./Button.module.scss";
+import { cFontSize } from '@/styles/constants/cFontSizes';
+import styles from './Button.module.scss';
+import { IoChevronForward } from "react-icons/io5";
 
-const Button = ({
-  isRound = false,
-  text = "",
-  icon = null,
-  isNotActive = false,
-  shadow = false,
-  iconLeftSide = false,
-  border = false,
-}) => {
-  // VARIABLES ----------------
-  // CONDITIONS ---------------
-  // FUNCTIONS ----------------
-  // RETURN -------------------
+/**
+ * 
+ * @param {*} size "xl" | "lg" | "md" | "sm" | "xs" - (default -> "sm")
+ * @param {*} text string - (default -> "")
+ * @param {*} shape "round" | "default" | "light" | "square" - (default -> "default")
+ * @param {*} submit boolean - (default -> false) If true it will act like a submit button for Form component
+ * @param {*} icon ReactComponent - (default -> IoChevronForward)
+ * @param {*} direction "left" | "right" - (default - "right") - Is the icon position.
+ * @param {*} color "primary" | "secondary" | "tertiary" | "success" | "warning" | "danger" | "dark" | "medium" | "light" - (default - "primary") 
+ * @param {*} type "fill" | "outline" | "underline" | "text" - (default - "fill") 
+ * @param {*} onClick callback - (default -> console.log("Click"))
+ * @returns 
+ */
+
+const Button = (
+  {
+    size = "sm",
+    text = "",
+    shape = "light",
+    submit = false,
+    icon = (iconSize) => { return <IoChevronForward size={iconSize} /> },
+    direction = "left",
+    color = "primary",
+    type = "fill",
+    onClick = () => { console.log("Click") },
+  }
+) => {
+  // VARIABLES ----------------------
+  // CONDITIONS ---------------------
+  // FUNCTIONS ----------------------
+  // RETURN -------------------------
   return (
-    <button className={`${styles.Button} ${isNotActive && styles.IsNotActive}`}>
-      {icon && <span>{icon}</span>}
-      {text && <span className={styles.ButtonText}>{text}</span>}
+    <button
+      onClick={onClick}
+      type={submit ? "submit" : "button"}
+      className={`
+        ${styles.Button} 
+        ${styles[size]}
+        ${styles[type !== "underline" && type !== "text" ? shape : "square"]}
+        ${styles[direction]}
+        ${styles[type + "_" + color]}
+      `}>
+      {icon ? icon(cFontSize[size]) : null}
+      {text ?
+        <span className={styles.text}>
+          {text}
+        </span>
+        :
+        null
+      }
     </button>
   );
-};
+}
 
 export default Button;
