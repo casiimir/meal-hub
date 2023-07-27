@@ -2,14 +2,13 @@ import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import Head from "next/head";
 
-import styles from './Home.module.scss';
+import styles from "./Home.module.scss";
 import Button from "@/components/Button";
 import { LuMenu, LuUser } from "react-icons/lu";
 import CardHeroSwiper from "@/components/CardHeroSwiper";
 import CategoriesSwiper from "@/components/CategoriesSwiper";
 import { useState } from "react";
 import SectionPage from "@/components/SectionPage";
-
 
 export default function Home() {
   // VARIABLES ----------------
@@ -48,14 +47,9 @@ export default function Home() {
           />
           {/* ----------- HEADER ------------- */}
           <div className="page-header">
-            <h1>
-              {pageTitle}
-            </h1>
-            <p>
-              {pageSubtitle}
-            </p>
+            <h1>{pageTitle}</h1>
+            <p>{pageSubtitle}</p>
           </div>
-
 
           {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
           <div className={`${styles.section} ${styles.section_padding}`}>
@@ -71,15 +65,12 @@ export default function Home() {
           </div>
           {/* ----------------------- */}
           <div className={styles.section}>
-            <SectionPage
-
-            />
+            <SectionPage />
           </div>
 
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
         </main>
       </div>
-
     </>
   );
 }
