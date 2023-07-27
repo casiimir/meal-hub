@@ -1,0 +1,10 @@
+@mixin outlineContainer($bgColor, $txtColor){
+  @include border($bgColor);
+  border-radius: $border-radius;
+  color: $txtColor;
+}
+@mixin fillContainer($bgColor, $txtColor){
+  border-radius: $border-radius;
+  background-color: $bgColor;
+  color: $txtColor;
+}

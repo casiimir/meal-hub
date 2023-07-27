@@ -1,0 +1,33 @@
+.Navbar{
+  position: fixed;
+  top: 0;
+  // width: calc(100% - ($page-padding * 2));
+  // height: calc($navbar-height - ($page-padding * 2));
+  width: 100%;
+  height: $navbar-height;
+  z-index: 999;
+  background-color: $color-light;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  align-items: center;
+  justify-content: space-between;
+
+  .sx{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+ 
+  .pageTitle{
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+ 
+  .dx{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

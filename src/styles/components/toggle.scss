@@ -1,0 +1,22 @@
+%toggle{
+  width: 66px;
+  height: 28px;
+  cursor: pointer;
+  border-radius: $border-radius-round;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px;
+  position: relative;
+}
+
+// Sizes -----------------------
+%toggle__sm{
+
+}
+%toggle__md{
+
+}
+%toggle__lg{
+
+}

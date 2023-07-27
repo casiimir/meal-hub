@@ -1,5 +1,5 @@
-.Button{
-  @extend %button;
+.Badge{
+  @extend %badge;
 
   // TYPES ------------------
   //-- Fill 
@@ -133,20 +133,26 @@
   }
 
   // Sizes -----------------
-  &.xs{
-    @extend %button__xs;
-  }
+
   &.sm{
-    @extend %button__sm;
+    &.isRound {
+      @include badge__sm("true");
+    }
+    &.isNotRound{
+      @include badge__sm("false");
+    }
   }
   &.md{
-    @extend %button__md;
+    &.isRound {
+      @include badge__md("true");
+    }
+    @include badge__md;
   }
   &.lg{
-    @extend %button__lg;
-  }
-  &.xl{
-    @extend %button__xl;
+    &.isRound {
+      @include badge__lg("true");
+    }
+    @include badge__lg;
   }
 
   // Shapes ----------------
