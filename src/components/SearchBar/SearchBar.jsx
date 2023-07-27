@@ -51,7 +51,7 @@ const SearchBar = () => {
         onBlur={() => setIsOnFocus(false)}
         onChange={(e) => setSearchString(e.target.value)}
         type='text'
-        placeholder='Search recipe by name'
+        placeholder='Search'
         className={styles.SearchBar}
         required
       />

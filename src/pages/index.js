@@ -10,10 +10,12 @@ import CategoriesSwiper from "@/components/CategoriesSwiper";
 import { useState } from "react";
 import SectionPage from "@/components/SectionPage";
 import Menu from "@/components/menu";
+import { useRouter } from "next/router";
 
 
 export default function Home() {
   // VARIABLES ----------------
+  const router = useRouter();
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState("Welcome!");
   const [pageSubtitle, setPageSubtitle] = useState("Sottotitolo pagina");
@@ -50,6 +52,7 @@ export default function Home() {
                 icon={() => <LuUser size={24} />}
                 type="text"
                 color="dark"
+                onClick={() => router.push("/profile")}
               />
             }
           />
