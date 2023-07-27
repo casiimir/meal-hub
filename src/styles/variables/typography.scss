@@ -7,11 +7,15 @@ $paragraph: 16px;
 $paragraphSmall: 14px;
 $paragraphExtraSmall: 12px;
 
-$_primaryFont: "Poppins", sans-serif;
-
-//
+<<<<<<<<< Temporary merge branch 1
+// WEIGTH
 $font-bold: 600;
 $font-regular: 400;
+
+$_primaryFont: "Poppins", sans-serif;
+// MOBILE
+//
+
 // Mobile First
 // HEADING
 $heading-1: 30px;
@@ -64,6 +68,8 @@ $text-button-cta: 16px;
   $text-card-title: 16px;
   $text-card-description: 11px;
 
-  // BUTTON
-  $text-button-cta: 18px;
-}
+// BUTTON
+$text-button-cta-DESK: 18px;
+=========
+$fontPrimary: "Poppins", sans-serif;
+>>>>>>>>> Temporary merge branch 2
