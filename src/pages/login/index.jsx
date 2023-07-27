@@ -3,7 +3,8 @@ import Head from "next/head";
 import styles from "./login.module.scss";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
-import { LuMenu, LuUser, LuArrowRight } from "react-icons/lu";
+import { LuMenu, LuUser, LuArrowRight, LuSettings2} from "react-icons/lu";
+
 
 const Login = () => {
   // VARIABLES ----------------
@@ -54,21 +55,27 @@ const Login = () => {
           </div>
           {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
 
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} 
+           className={styles.container}
+          >
             <div>
               <label htmlFor="email"> Email </label>
               <input
+              className={styles.loginForm}
                 type="email"
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Email"
+
+            
               />
             </div>
             <div>
               <label htmlFor="password">Enter Password</label>
               <input
+              className={styles.loginForm}
                 type="password"
                 name="password"
                 value={password}
@@ -77,15 +84,26 @@ const Login = () => {
                 placeholder="Enter Password"
               />
             </div>
-            <Button
+            <p className="">Forgot Password?</p>
+          <div className={styles.buttonSubmit}>
+           <Button 
               icon={() => <LuArrowRight size={24} />}
               size="sm"
               text="Sign in"
               shape="light"
               direction="right"
-              submit={false}
+              submit={true}
+              style={{color: 'red', marginTop: 10, padding: 10}}
             />
+            </div>
+         <p className={styles.paragraph}> Or Sign in With</p>
           </form>
+
+          <div className={styles.socialButton} >
+          <Button style={{margin: 20 }} size="lg" icon={(size) => <LuSettings2 size={size} />} />
+          <Button size="lg" icon={(size) => <LuSettings2 size={size} />} />
+          </div>
+          <p className={styles.paragraph}>Don’t have an account?<a className={styles.link} href="sign Up"><span>Sign up</span></a></p>
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
         </main>
       </div>

@@ -1,0 +1,82 @@
+.container{
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap : 20px;
+   padding-left: 30px;
+   
+   
+
+.loginForm{
+    padding: 19px 20px 19px 70px;
+    width: calc(75% - (20px * 2));
+    align-items: center;
+    border-radius: $border-radius-default;
+    border: 2px solid $color-medium;
+    color: $color-primary;
+    outline: none;
+    font-size: 16px;
+    &:focus{
+      border: 2px solid $color-primary;
+      
+    }
+
+}
+
+.buttonSubmit{
+    margin-right: 30px;
+ }
+
+.lebel{
+    $fontPrimary: "Poppins", sans-serif;
+}
+
+.buttonSign{
+    margin-right: 30px;
+}
+
+
+}
+
+.buttonForm{
+    padding: 19px 20px 19px 70px;
+    width: calc(75% - (20px * 2));
+    align-items: center;
+    border-radius: $border-radius-default;
+    border: 2px solid $color-medium;
+    color: $color-primary;
+    outline: none;
+    font-size: 16px;
+    &:focus{
+      border: 2px solid $color-primary;
+      
+    }
+    .buttonSign{
+        margin-right: 30px;
+    }
+}
+.socialButton{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 5px;
+    gap: 30px;
+
+}
+
+.paragraph{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.link{
+        text-decoration: none;
+        color: rgb(187, 160, 51);
+       
+}
+
+
+
+
