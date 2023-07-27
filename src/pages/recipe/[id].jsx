@@ -70,8 +70,8 @@ const recipe = () => {
             </section>
             <section className={styles.Ingredients}>
               <h4 className={styles.title}>Ingredients</h4>
-              {ingredients.map((ingredients) => (
-                <div className={styles.container}>
+              {ingredients.map((ingredients, index) => (
+                <div className={styles.container} key={index + ingredients}>
                   <div className={styles.img}>
                     <img
                       src={`https://www.themealdb.com/images/ingredients/${ingredients}.png`}
@@ -80,12 +80,12 @@ const recipe = () => {
                   <div className={styles.IngrContainer}>
                     <h3 className={styles.TitleIngr}>{ingredients}</h3>
                   </div>
+                  <p className={styles.Measure}>{measure[index]}</p>
+                  {/* {measure.map((measure) => (
+                  ))} */}
 
                   <p className={styles.Measure}></p>
                 </div>
-              ))}
-              {measure.map((measure) => (
-                <p className={styles.Measure}>{measure}</p>
               ))}
             </section>
           </div>
