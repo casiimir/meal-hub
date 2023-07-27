@@ -1,20 +1,14 @@
-import Navbar from "@/components/Navbar";
-import SearchBar from "@/components/SearchBar";
-import Head from "next/head";
+import { useState } from 'react';
+import Head from 'next/head';
+import styles from './DefaultPage.module.scss';
+import Navbar from '@/components/Navbar';
+import Button from '@/components/Button';
+import { LuMenu, LuUser } from 'react-icons/lu';
 
-import styles from './Home.module.scss';
-import Button from "@/components/Button";
-import { LuMenu, LuUser } from "react-icons/lu";
-import CardHeroSwiper from "@/components/CardHeroSwiper";
-import CategoriesSwiper from "@/components/CategoriesSwiper";
-import { useState } from "react";
-import SectionPage from "@/components/SectionPage";
-
-
-export default function Home() {
+const DefaultPage = () => {
   // VARIABLES ----------------
   // CONDITIONS ---------------
-  const [pageTitle, setPageTitle] = useState("Welcome!");
+  const [pageTitle, setPageTitle] = useState("Titolo pagina");
   const [pageSubtitle, setPageSubtitle] = useState("Sottotitolo pagina");
   // FUNCTIONS ----------------
   // RETURN -------------------
@@ -56,30 +50,15 @@ export default function Home() {
             </p>
           </div>
 
-
           {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-          <div className={`${styles.section} ${styles.section_padding}`}>
-            <SearchBar />
-          </div>
-          {/* ----------------------- */}
-          <div className={styles.section}>
-            <CardHeroSwiper />
-          </div>
-          {/* ----------------------- */}
-          <div className={styles.section}>
-            <CategoriesSwiper />
-          </div>
-          {/* ----------------------- */}
-          <div className={styles.section}>
-            <SectionPage
 
-            />
-          </div>
+          {/* Page components (eliminare solo questo commento) */}
 
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
         </main>
       </div>
-
     </>
   );
 }
+
+export default DefaultPage;
