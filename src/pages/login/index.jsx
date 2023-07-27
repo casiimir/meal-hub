@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
 import { LuMenu, LuUser, LuArrowRight } from "react-icons/lu";
 
-const login = () => {
+const Login = () => {
   // VARIABLES ----------------
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState("Login");
@@ -93,4 +93,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
