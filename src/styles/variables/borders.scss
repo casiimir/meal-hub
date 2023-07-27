@@ -1,0 +1,15 @@
+// BUTTONS ------------------------- 
+$border-radius-round : 999px;
+$border-radius-default : 14px;
+$border-radius-light : 10px;
+$border-radius-square : 0px;
+
+
+//----------------------
+$border-width : 2px;
+
+
+// MIXIN ---------------------------
+@mixin border($borderColor: $color-primary) {
+  border: 2px solid $borderColor;
+}

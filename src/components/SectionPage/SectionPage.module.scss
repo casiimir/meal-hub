@@ -1,0 +1,13 @@
+.SectionPage{
+  
+  .header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: $page-padding;
+  }
+  .content{
+    padding: $page-padding;
+  }
+}

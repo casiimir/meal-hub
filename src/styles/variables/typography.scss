@@ -1,62 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,600&display=swap");
+$heading1: 26px;
+$heading2: 22px;
+$heading3: 20px;
+$heading4: 18px;
+$heading5: 16px;
+$paragraph: 16px;
+$paragraphSmall: 14px;
+$paragraphExtraSmall: 12px;
 
-// WEIGTH
-$font-bold: 600;
-$font-regular: 400;
-
-$_primaryFont: "Poppins", sans-serif;
-// MOBILE
-//
-
-// Mobile First
-// HEADING
-$heading-1: 30px;
-$heading-2Des: 20px;
-
-$heading2: 20px;
-$heading2Des: 11px;
-
-// INTERACTIONS
-$text-input: 12px;
-$text-input-Label: 14px;
-$text-input-Option: 11px;
-
-// LABELS
-$text-label-title: 14px;
-$text-label: 11px;
-$text-label-cta: 11px;
-
-// CATEGORY
-$text-title-category: 16px;
-
-// CARD
-$text-card-title: 14px;
-$text-card-description: 11px;
-$text-card-ingredient: 16px;
-$text-card-ingredient-measure: 11px;
-
-// BUTTON
-$text-button-cta: 16px;
-
-// // TABLET AND DESK
-
-$heading-1-DESK: 36px;
-$heading-2Des-DESK: 28px;
-
-$heading2-DESK: 30px;
-$heading2Des-DESK: 20px;
-
-// INTERACTIONS
-$text-input-DESK: 12px;
-$text-input-Label-DESK: 14px;
-$text-input-Option-DESK: 12px;
-
-// CATEGORY
-$text-title-category-DESK: 20px;
-
-// CARD
-$text-card-title-DESK: 16px;
-$text-card-description-DESK: 11px;
-
-// BUTTON
-$text-button-cta-DESK: 18px;
+$fontPrimary: "Poppins", sans-serif;
