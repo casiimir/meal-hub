@@ -30,15 +30,18 @@
   }
 }
 .iframe {
-  border: 1px solid red;
+  border-radius: $border-radius-default;
+  width: 100%;
 }
-.Container {
-  width: 500px;
-  height: 500px;
-  border: 1px solid red;
+.container {
+  position: relative;
+  width: 315px;
+  height: 201px;
 
-  .Button {
+  .button {
     position: absolute;
-    top: 0;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
   }
 }
