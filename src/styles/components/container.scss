@@ -35,12 +35,12 @@
   }@else if ($type == "text"){
     color : $color;
     border-radius: 0;
-    @if($hover == "true"){
-      &:hover{
-        box-shadow: 0 2px 0 0 
-        $color;
-        border-radius: 0;
-      }
-    }
+    // @if($hover == "true"){
+    //   &:hover{
+    //     box-shadow: 0 2px 0 0 
+    //     $color;
+    //     border-radius: 0;
+    //   }
+    // }
   }
 }

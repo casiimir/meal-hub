@@ -1,6 +1,7 @@
 .HomePage{ 
   width: 100vw;
   height: 200vh;
+  overflow: hidden;
   .section{
     margin-bottom: $page-section-gap;
 
