@@ -29,3 +29,16 @@
     }
   }
 }
+.iframe {
+  border: 1px solid red;
+}
+.Container {
+  width: 500px;
+  height: 500px;
+  border: 1px solid red;
+
+  .Button {
+    position: absolute;
+    top: 0;
+  }
+}

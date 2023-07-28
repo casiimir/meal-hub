@@ -5,38 +5,54 @@ import { LuBookmarkPlus } from "react-icons/lu";
 
 const CardVideo = () => {
   // VARIABLES ----------------
+  const styles = {
+    borderRadius: "10px",
+  };
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
   const handleSaveThisContent = () => {
     console.log("handleSaveThisContent : ", meals.idMeal);
   };
-  const onHandleClick = () => {
-    console.log("2q2e2q");
-  };
+
   // RETURN -------------------
   return (
     <>
       {meals.map((meal) => (
-        <div onClick={onHandleClick}
-          key={meal.idMeal}
-          className={styles.CardHero}
-          style={{ backgroundImage: `url(${meal.strMealThumb})` }}
-        >
-          <div className={styles.CardHero__gradient}>
-            <div className={styles.header}>
-              <Button
-                shape="round"
-                size="xs"
-                icon={(size) => <LuBookmarkPlus size={size} />}
-                onClick={() => handleSaveThisContent()}
-              />
+        <>
+          {/* <div
+            onClick={onHandleClick}
+            key={meal.idMeal}
+            className={styles.CardHero}
+            style={{ backgroundImage: `url(${meal.strMealThumb})` }}
+            >
+            <div className={styles.CardHero__gradient}>
+              </div>
+              <div className={styles.content}>
+                <h3 className={styles.card__title}>{meal.strMeal}</h3>
+                <p className={styles.card__subtitle}>{meal.strCategory}</p>
+              </div>
             </div>
-            <div className={styles.content}>
-              <h3 className={styles.card__title}>{meal.strMeal}</h3>
-              <p className={styles.card__subtitle}>{meal.strCategory}</p>
-            </div>
+          </div> */}
+          <div className={styles.Container}>
+            <Button
+              shape="round"
+              size="xs"
+              icon={(size) => <LuBookmarkPlus size={size} />}
+              onClick={() => handleSaveThisContent()}
+            />
+            <iframe
+              className={styles.iframe}
+              width="315"
+              height="201"
+              src={meal.strYoutube.replaceAll("watch?v=", "embed/")}
+              title={meal.strMeal}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              style={styles}
+            ></iframe>
           </div>
-        </div>
+        </>
       ))}
     </>
   );
@@ -56,6 +72,7 @@ const meals = [
     strMealThumb:
       "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg",
     strTags: "Pasta,Curry",
+
     strYoutube: "https://www.youtube.com/watch?v=1IszT_guI08",
     strIngredient1: "penne rigate",
     strIngredient2: "olive oil",

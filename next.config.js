@@ -13,6 +13,7 @@ const nextConfig = {
       @import "./src/styles/variables/containerSpaces.scss";
       @import "./src/styles/variables/typography.scss";
       @import "./src/styles/variables/animations.scss";
+      @import "./src/styles/variables/gaps.scss";
       @import "./src/styles/helpers/functions.scss";
       @import "./src/styles/helpers/mixins.scss";
       @import "./src/styles/helpers/devices.scss";

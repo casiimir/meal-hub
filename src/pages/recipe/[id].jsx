@@ -43,55 +43,51 @@ const recipe = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.Recipe}>
-        <main>
-          {/* ------------ NAVBAR ------------ */}
-          <Navbar
-            leftButton={
-              <Button
-                icon={() => <LuArrowLeft size={24} />}
-                type="text"
-                color="dark"
-              />
-            }
-            pageTitle={""}
-            rightButton={null}
-          />
-        </main>
 
-        {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-        {meals.map((recipe) => (
-          <div className={styles.Recipe} key={recipe.idMeal}>
-            <CardVideo />
+      <main>
+        {/* ------------ NAVBAR ------------ */}
+        <Navbar
+          leftButton={
+            <Button
+              icon={() => <LuArrowLeft size={24} />}
+              type="text"
+              color="dark"
+            />
+          }
+          pageTitle={""}
+          rightButton={null}
+        />
+      </main>
 
-            <section className={styles.Instructions}>
-              <h4 className={styles.Title}>Instruction</h4>
-              <p className={styles.Desc}>{recipe.strInstructions}</p>
-            </section>
-            <section className={styles.Ingredients}>
-              <h4 className={styles.title}>Ingredients</h4>
-              {ingredients.map((ingredients, index) => (
-                <div className={styles.container} key={index + ingredients}>
-                  <div className={styles.img}>
-                    <img
-                      src={`https://www.themealdb.com/images/ingredients/${ingredients}.png`}
-                    />
-                  </div>
-                  <div className={styles.IngrContainer}>
-                    <h3 className={styles.TitleIngr}>{ingredients}</h3>
-                  </div>
-                  <p className={styles.Measure}>{measure[index]}</p>
-                  {/* {measure.map((measure) => (
-                  ))} */}
+      {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
 
-                  <p className={styles.Measure}></p>
+      {meals.map((recipe) => (
+        <div className={styles.Recipe} key={recipe.idMeal}>
+          <CardVideo />
+
+          <section className={styles.Instructions}>
+            <h4 className={styles.TitleInstr}>Instruction</h4>
+            <p className={styles.Desc}>{recipe.strInstructions}</p>
+          </section>
+          <section className={styles.Ingredients}>
+            <h4 className={styles.TitleIngr}>Ingredients</h4>
+            {ingredients.map((ingredients, index) => (
+              <div className={styles.container} key={index + ingredients}>
+                <div className={styles.img}>
+                  <img
+                    src={`https://www.themealdb.com/images/ingredients/${ingredients}.png`}
+                  />
                 </div>
-              ))}
-            </section>
-          </div>
-        ))}
-        {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-      </div>
+                <div className={styles.IngrContainer}>
+                  <h3 className={styles.IngrText}>{ingredients}</h3>
+                </div>
+                <p className={styles.Measure}>{measure[index]}</p>
+              </div>
+            ))}
+          </section>
+        </div>
+      ))}
+      {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
     </>
   );
 };

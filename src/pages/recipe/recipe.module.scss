@@ -1,15 +1,20 @@
 .Recipe {
   padding: $page-padding;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
 
   .Instructions {
-    width: 315px;
-
+    width: 297px;
     background-color: $color-step-900;
     padding: 15px;
     border-radius: 12px;
   }
-  .Title {
+  .TitleInstr {
     font-weight: $font-bold;
+    font-weight: 500;
   }
   .Desc {
     font-weight: $font-regular;
@@ -19,28 +24,43 @@
   .Ingredients {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    .TitleIngr {
+      font-weight: $font-bold;
+
+      padding-left: 17px;
+      font-size: $text-card-title;
+    }
     .container {
       display: flex;
       align-items: center;
+      width: 100%;
       justify-content: space-between;
       padding: 10px;
-      border: 1px solid red;
-      width: 300px;
+
+      width: 287px;
+      border-radius: 12px;
       height: fit-content;
       background-color: $color-step-900;
       .Measure {
         display: flex;
-        flex-direction: column;
-        width: fit-content;
+        margin-right: 5px;
+        width: -moz-fit-content;
+        width: 149px;
+        color: $color-step-600;
+        justify-content: flex-end;
+        flex-direction: row;
+
+        text-align: end;
         font-size: $text-card-title;
       }
       .IngrContainer {
-        border: 1px solid red;
-        display: flex;
-
-        justify-content: start;
-        .TitleIngr {
-          border: 1px solid blue;
+        // border: 1px solid red;
+        width: 100%;
+        .IngrText {
+          margin-left: 12px;
+          width: fit-content;
+          font-weight: 500;
           font-size: $text-card-ingredient;
         }
       }
@@ -52,9 +72,8 @@
         background-color: white;
       }
       .img img {
-        width: 100%;
-        height: 100%;
-        border: 1px solid red;
+        width: 40px;
+        height: 40px;
       }
     }
   }
