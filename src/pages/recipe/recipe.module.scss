@@ -7,14 +7,13 @@
   gap: $gap;
 
   .Instructions {
-    width: 297px;
+    width: 287px;
     background-color: $color-step-900;
     padding: 15px;
     border-radius: 12px;
   }
   .TitleInstr {
     font-weight: $font-bold;
-    font-weight: 500;
   }
   .Desc {
     font-weight: $font-regular;
@@ -28,7 +27,7 @@
     .TitleIngr {
       font-weight: $font-bold;
 
-      padding-left: 17px;
+      padding-left: 16px;
       font-size: $text-card-title;
     }
     .container {
@@ -38,7 +37,7 @@
       justify-content: space-between;
       padding: 10px;
 
-      width: 287px;
+      width: 297px;
       border-radius: 12px;
       height: fit-content;
       background-color: $color-step-900;
