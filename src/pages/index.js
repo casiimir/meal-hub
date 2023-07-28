@@ -13,21 +13,17 @@ import SectionPage from "@/components/SectionPage";
 import Menu from "@/components/menu";
 import { useRouter } from "next/router";
 
-export default function Home({ categories, area, lambRecepies }) {
-  console.log(lambRecepies.meals);
-  // console.log(breakfast[12]);
-  // console.log(categories);
+export default function Home({ area, lambRecepies }) {
   const sections = [
-    { title: "Italian Recepies", exploreto: "/a-italian", category: { area } },
+    {
+      title: "Italian Recepies",
+      exploreto: "/a-italian",
+      category: area,
+    },
     {
       title: "Recepies with Lamb",
       exploreto: "/i-lamb",
-      category: { lambRecepies },
-    },
-    {
-      title: "Recepies for Breakfast",
-      exploreto: "/c-breakfast",
-      category: "Breakfast",
+      category: lambRecepies,
     },
   ];
 
@@ -94,8 +90,8 @@ export default function Home({ categories, area, lambRecepies }) {
           </div>
           {/* ----------------------- */}
           {sections.map((sect, index) => (
-            <div className={styles.section}>
-              <SectionPage sections={sect} dat={lambRecepies} />
+            <div className={styles.section} key={index + "homeSection"}>
+              <SectionPage sections={sect} />
             </div>
           ))}
 
@@ -110,9 +106,10 @@ export default function Home({ categories, area, lambRecepies }) {
 }
 
 export async function getServerSideProps() {
-  const categories = await getData.categories();
   const area = await getData.area("Italian");
   const lambRecepies = await getData.ingridient("lamb");
 
-  return { props: { categories, area, lambRecepies } };
+  return {
+    props: { area: area.meals, lambRecepies: lambRecepies.meals },
+  };
 }

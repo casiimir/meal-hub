@@ -8,7 +8,6 @@ import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 
 const CardFilteredSwiper = ({ obj }) => {
-  console.log(obj);
   return (
     <Swiper
       modules={[Autoplay]}
@@ -19,16 +18,18 @@ const CardFilteredSwiper = ({ obj }) => {
         delay: 1500,
         disableOnInteraction: false,
       }}
-      className={`${styles.CardFilteredSwiper}`}>
-      {/* {obj?.map((o, index) => {
+      className={`${styles.CardFilteredSwiper}`}
+    >
+      {obj?.map((o, index) => {
         return (
           <SwiperSlide
             key={index + "CardFilteredSwiper"}
-            className={`${styles.swiperSlide}`}>
-            <CardFiltered obj={o} />
+            className={`${styles.swiperSlide}`}
+          >
+            {/* <CardFiltered obj={o} /> */}
           </SwiperSlide>
         );
-      })} */}
+      })}
     </Swiper>
   );
 };
