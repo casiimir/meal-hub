@@ -4,7 +4,7 @@
   bottom: 0;
   right: 0;
   height: 0vh;
-  transform: translateX(50px);
+  transform: translateY(50px);
   background-color: $text-color;
   transition: all 0.25s ease-in-out;
   padding: 16px;
@@ -13,11 +13,11 @@
   &.isOpen {
     width: calc(100vw - 16px * 2);
     height: calc(70vh - 16px * 2);
-    transform: translateX(0px);
+    transform: translateY(0px);
   }
   &.isClosed {
-    width: 0vw;
-    height: 100vh;
+    width: 100vw;
+    height: 0vh;
   }
   .header {
     display: flex;

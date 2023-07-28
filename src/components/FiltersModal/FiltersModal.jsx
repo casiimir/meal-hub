@@ -14,7 +14,7 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
   const router = useRouter();
   // CONDITIONS ---------------
   const [query, setQuery] = useState("");
-  const [classMenu, setClassMenu] = useState("isOpen"); //"isOpen" | "isClosed"
+  const [classMenu, setClassMenu] = useState("isClosed"); //"isOpen" | "isClosed"
 
   const [allCategories, setAllCategories] = useState();
   const [allNations, setAllNations] = useState();
@@ -58,7 +58,12 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
     >
       <div className={styles.header}>
         <h3>Filter Search</h3>
-        <Button type="outline" size="sm" icon={(size) => <LuX size={size} />} />
+        <Button
+          onClick={() => setIsOpen(false)}
+          type="outline"
+          size="sm"
+          icon={(size) => <LuX size={size} />}
+        />
       </div>
       <div className={styles.FiltersModal__content}>
         <div className={styles.section}>

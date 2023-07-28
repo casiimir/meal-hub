@@ -17,7 +17,7 @@ const SearchBar = () => {
   const [dataSearched, setDataSearched] = useState();
   const [dataToShow, setDataToShow] = useState();
 
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // FUNCTIONS ----------------
   useEffect(() => {
     if (searchString.length !== 0) {
@@ -81,7 +81,11 @@ const SearchBar = () => {
             className={styles.SearchBar}
             required
           />
-          <Button size="lg" icon={(size) => <LuSettings2 size={size} />} />
+          <Button
+            onClick={() => setIsModalOpen(!isModalOpen)}
+            size="lg"
+            icon={(size) => <LuSettings2 size={size} />}
+          />
         </form>
         <div
           className={
