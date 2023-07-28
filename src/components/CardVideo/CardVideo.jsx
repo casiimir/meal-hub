@@ -33,7 +33,7 @@ const CardVideo = () => {
               </div>
             </div>
           </div> */}
-          <div className={styles.Container}>
+          <div className={styles.Container} key={meals.idMeal}>
             <Button
               shape="round"
               size="xs"
