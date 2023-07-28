@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import Head from "next/head";
+import { getData } from "@/utils/dbManager";
 
 import styles from "./Home.module.scss";
 import Button from "@/components/Button";
@@ -12,8 +13,21 @@ import SectionPage from "@/components/SectionPage";
 import Menu from "@/components/menu";
 import { useRouter } from "next/router";
 
-export default function Home() {
+export default function Home({ categories, area, lambRecepies }) {
+  console.log(lambRecepies);
+  // console.log(breakfast[12]);
+  // console.log(categories);
+  const sections = [
+    { title: "Italian Recepies", exploreto: "/a-italian", category: "Italian" },
+    { title: "Recepies with Lamb", exploreto: "/i-lamb", category: "Lamb" },
+    {
+      title: "Recepies for Breakfast",
+      exploreto: "/c-breakfast",
+      category: "Breakfast",
+    },
+  ];
   // VARIABLES ----------------
+
   const router = useRouter();
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState("Welcome!");
@@ -23,7 +37,7 @@ export default function Home() {
   const hendleMenuButton = () => {
     console.log("hendleMenuButton");
     setMenuOpen(!isMenuOpen);
-  }
+  };
   // RETURN -------------------
   return (
     <>
@@ -71,23 +85,29 @@ export default function Home() {
           </div>
           {/* ----------------------- */}
           <div className={styles.section}>
-            <CategoriesSwiper />
+            <CategoriesSwiper categories={categories} />
           </div>
           {/* ----------------------- */}
-          <div className={styles.section}>
-            <SectionPage />
-          </div>
+          {sections.map((sect, index) => (
+            <div className={styles.section}>
+              <SectionPage sections={sect} area={area} />
+            </div>
+          ))}
 
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
         </main>
       </div>
 
-
       {/* --------- MODALS & EXTRAS -------- */}
-      <Menu
-        isMenuOpen={isMenuOpen}
-        setMenuOpen={setMenuOpen}
-      />
+      <Menu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const categories = await getData.categories();
+  const area = await getData.area("Italian");
+  const lambRecepies = await getData.ingridient();
+
+  return { props: { categories, area, lambRecepies } };
 }

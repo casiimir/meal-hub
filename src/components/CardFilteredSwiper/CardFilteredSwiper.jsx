@@ -25,7 +25,7 @@ const CardFilteredSwiper = ({ obj }) => {
           <SwiperSlide
             key={index + "CardFilteredSwiper"}
             className={`${styles.swiperSlide}`}>
-            <CardFiltered />
+            <CardFiltered obj={o} />
           </SwiperSlide>
         );
       })}

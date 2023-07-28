@@ -10,7 +10,7 @@ const reduceText = (text, maxLenght) => {
     return text.slice(0, 19) + "...";
   }
 };
-const CardFiltered = () => {
+const CardFiltered = ({ obj }) => {
   // VARIABLES ----------------
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
@@ -25,7 +25,7 @@ const CardFiltered = () => {
           </div>
 
           <p className={styles.text_category}> {obj.strCategory}</p>
-          <p className={styles.text_area}> {obj.strArea}</p>
+          <p className={styles.text_area}>|| "null" {obj.strArea}</p>
         </div>
         <div className={styles.buttonSave} onClick={onClick}>
           <Button
