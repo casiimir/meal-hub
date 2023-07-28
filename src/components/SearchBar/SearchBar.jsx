@@ -4,6 +4,7 @@ import Button from "../Button";
 import { LuSettings2, LuSearch } from "react-icons/lu";
 import { getData } from "@/utils/dbManager";
 import SearchedResult from "../searchedResult";
+import FiltersModal from "../FiltersModal";
 
 const SearchBar = () => {
   // VARIABLES ----------------
@@ -15,6 +16,8 @@ const SearchBar = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [dataSearched, setDataSearched] = useState();
   const [dataToShow, setDataToShow] = useState();
+
+  const [isModalOpen, setIsModalOpen] = useState(true);
   // FUNCTIONS ----------------
   useEffect(() => {
     if (searchString.length !== 0) {
@@ -55,54 +58,58 @@ const SearchBar = () => {
   };
   // RETURN -------------------
   return (
-    <div className={styles.form}>
-      <form onSubmit={(e) => handleSubmit(e)} className={styles.container}>
-        <div className={styles.searchIcon__container}>
-          <div
-            className={
-              isOnFocus
-                ? `${styles.searchIcon__active}`
-                : `${styles.searchIcon}`
-            }
-          >
-            <LuSearch size={24} />
+    <>
+      <div className={styles.form}>
+        <form onSubmit={(e) => handleSubmit(e)} className={styles.container}>
+          <div className={styles.searchIcon__container}>
+            <div
+              className={
+                isOnFocus
+                  ? `${styles.searchIcon__active}`
+                  : `${styles.searchIcon}`
+              }
+            >
+              <LuSearch size={24} />
+            </div>
+          </div>
+          <input
+            onFocus={() => setIsOnFocus(true)}
+            onBlur={() => setIsOnFocus(false)}
+            onChange={(e) => setSearchString(e.target.value)}
+            type="text"
+            placeholder="Search"
+            className={styles.SearchBar}
+            required
+          />
+          <Button size="lg" icon={(size) => <LuSettings2 size={size} />} />
+        </form>
+        <div
+          className={
+            canSubmit
+              ? `${styles.searchResults}  ${styles.isActive}`
+              : `${styles.searchResults}  ${styles.notActive}`
+          }
+        >
+          {isSearching ? (
+            <p>Searching ...</p>
+          ) : (
+            <p>Results : {dataToShow?.length}</p>
+          )}
+
+          <div className={styles.results}>
+            {dataToShow?.map((res, index) => {
+              return (
+                <div key={index + res.idMeal} className="searched-element">
+                  <SearchedResult data={res} />
+                </div>
+              );
+            })}
           </div>
         </div>
-        <input
-          onFocus={() => setIsOnFocus(true)}
-          onBlur={() => setIsOnFocus(false)}
-          onChange={(e) => setSearchString(e.target.value)}
-          type="text"
-          placeholder="Search"
-          className={styles.SearchBar}
-          required
-        />
-        <Button size="lg" icon={(size) => <LuSettings2 size={size} />} />
-      </form>
-      <div
-        className={
-          canSubmit
-            ? `${styles.searchResults}  ${styles.isActive}`
-            : `${styles.searchResults}  ${styles.notActive}`
-        }
-      >
-        {isSearching ? (
-          <p>Searching ...</p>
-        ) : (
-          <p>Results : {dataToShow?.length}</p>
-        )}
-
-        <div className={styles.results}>
-          {dataToShow?.map((res, index) => {
-            return (
-              <div key={index + res.idMeal} className="searched-element">
-                <SearchedResult data={res} />
-              </div>
-            );
-          })}
-        </div>
       </div>
-    </div>
+      {/* ----- */}
+      <FiltersModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+    </>
   );
 };
 
