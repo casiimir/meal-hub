@@ -1,59 +1,57 @@
 // Defaull config --------------
-%button{
+%button {
   border: 0;
   background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:10px;
+  gap: 10px;
   cursor: pointer;
-  transition: color $animationSpeed $animationType, 
-  background-color $animationSpeed $animationType,
-  box-shadow $animationSpeed $animationType;
+  transition: color $animationSpeed $animationType,
+    background-color $animationSpeed $animationType,
+    box-shadow $animationSpeed $animationType;
 }
 
 // Sizes -----------------------
 %button__xxs {
   padding: 6px;
-  .text{
+  .text {
     font-size: 10px;
     font-weight: 500;
   }
 }
 %button__xs {
   padding: 14px;
-  .text{
+  .text {
     font-size: 14px;
     font-weight: 500;
   }
 }
 %button__sm {
-  padding:16px;
-  .text{
+  padding: 16px;
+  .text {
     font-size: 16px;
     font-weight: 500;
   }
 }
 %button__md {
   padding: 18px;
-  .text{
+  .text {
     font-size: 18px;
     font-weight: 500;
   }
 }
 %button__lg {
   padding: 22px;
-  .text{
+  .text {
     font-size: 22px;
     font-weight: 500;
   }
 }
 %button__xl {
   padding: 26px;
-  .text{
+  .text {
     font-size: 26px;
     font-weight: 500;
   }
 }
-
-

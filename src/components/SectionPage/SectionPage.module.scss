@@ -1,13 +1,12 @@
-.SectionPage{
-  
-  .header{
+.SectionPage {
+  .header {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: $page-padding;
+    padding: 0 16px;
   }
-  .content{
+  .content {
     padding: $page-padding;
   }
 }
