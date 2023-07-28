@@ -4,11 +4,11 @@ import styles from "./SectionPage.module.scss";
 // import { obj } from "../CardFiltered/obj";
 import { useRouter } from "next/navigation";
 // devo passare 3 props per i tre titoli
-const SectionPage = ({ sections, area }) => {
+const SectionPage = ({ sections, data }) => {
   // const handleOpenSearchCategory = (idCategory) => {
   //   router.push("/search/c-" + idCategory);
   // } per filtered;
-  console.log(area);
+  console.log(data);
   // VARIABLES ----------------
   const router = useRouter();
   // CONDITIONS ---------------
@@ -31,7 +31,7 @@ const SectionPage = ({ sections, area }) => {
           />
         </div>
         <div className={styles.content}>
-          <CardFilteredSwiper obj={area.meals} />
+          <CardFilteredSwiper obj={sections.category} />
         </div>
       </div>
     </>

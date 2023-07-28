@@ -13,13 +13,13 @@ export const getData = {
     const resp = await getCut.json();
     return resp.categories;
   },
-  lamb: async () => {
-    const get = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/filter.php?i=lamb"
-    );
-    const resp = await get.json();
-    return resp.lamb;
-  },
+  // lamb: async () => {
+  //   const get = await fetch(
+  //     "https://www.themealdb.com/api/json/v1/1/filter.php?i=lamb"
+  //   );
+  //   const resp = await get.json();
+  //   return resp.lamb;
+  // },
 
   area: async (areaId) => {
     const get = await fetch(BASE_URL + "a=" + areaId);

@@ -14,18 +14,23 @@ import Menu from "@/components/menu";
 import { useRouter } from "next/router";
 
 export default function Home({ categories, area, lambRecepies }) {
-  console.log(lambRecepies);
+  console.log(lambRecepies.meals);
   // console.log(breakfast[12]);
   // console.log(categories);
   const sections = [
-    { title: "Italian Recepies", exploreto: "/a-italian", category: "Italian" },
-    { title: "Recepies with Lamb", exploreto: "/i-lamb", category: "Lamb" },
+    { title: "Italian Recepies", exploreto: "/a-italian", category: { area } },
+    {
+      title: "Recepies with Lamb",
+      exploreto: "/i-lamb",
+      category: { lambRecepies },
+    },
     {
       title: "Recepies for Breakfast",
       exploreto: "/c-breakfast",
       category: "Breakfast",
     },
   ];
+
   // VARIABLES ----------------
 
   const router = useRouter();
@@ -90,7 +95,7 @@ export default function Home({ categories, area, lambRecepies }) {
           {/* ----------------------- */}
           {sections.map((sect, index) => (
             <div className={styles.section}>
-              <SectionPage sections={sect} area={area} />
+              <SectionPage sections={sect} dat={lambRecepies} />
             </div>
           ))}
 
@@ -107,7 +112,7 @@ export default function Home({ categories, area, lambRecepies }) {
 export async function getServerSideProps() {
   const categories = await getData.categories();
   const area = await getData.area("Italian");
-  const lambRecepies = await getData.ingridient();
+  const lambRecepies = await getData.ingridient("lamb");
 
   return { props: { categories, area, lambRecepies } };
 }

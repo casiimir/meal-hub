@@ -20,7 +20,7 @@ const CardFilteredSwiper = ({ obj }) => {
         disableOnInteraction: false,
       }}
       className={`${styles.CardFilteredSwiper}`}>
-      {obj?.map((o, index) => {
+      {/* {obj?.map((o, index) => {
         return (
           <SwiperSlide
             key={index + "CardFilteredSwiper"}
@@ -28,7 +28,7 @@ const CardFilteredSwiper = ({ obj }) => {
             <CardFiltered obj={o} />
           </SwiperSlide>
         );
-      })}
+      })} */}
     </Swiper>
   );
 };
