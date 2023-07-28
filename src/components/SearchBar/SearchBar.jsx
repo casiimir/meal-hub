@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './SearchBar.module.scss';
 import Button from '../Button';
-import { LuSettings2, LuUploadCloud, LuSearch } from "react-icons/lu";
+import { LuSettings2, LuSearch } from "react-icons/lu";
 
 
 const SearchBar = () => {
@@ -10,6 +10,8 @@ const SearchBar = () => {
   const [canSubmit, setCanSubmit] = useState(false);
   const [isOnFocus, setIsOnFocus] = useState(false);
   const [searchString, setSearchString] = useState("");
+
+  const [isSearching, setIsSearching] = useState(false);
   // FUNCTIONS ----------------
   useEffect(() => {
     searchString.length !== 0 ? setCanSubmit(true) : setCanSubmit(false);
@@ -21,43 +23,50 @@ const SearchBar = () => {
   }
   // RETURN -------------------
   return (
-    <form
-      onSubmit={(e) => handleSubmit(e)}
-      className={styles.container}
-    >
-      <div className={styles.searchIcon__container}>
-        {
-          !canSubmit ?
-            <Button
-              size="xs"
-              type="text"
-              submit={true}
-              color={isOnFocus ? "primary" : "medium"}
-              icon={() => <LuSearch size={24} />}
-            />
-            :
-            <Button
-              size="xs"
-              type="fill"
-              color="primary"
-              submit={true}
-              icon={() => <LuUploadCloud size={22} />}
-            />
-        }
+    <div className={styles.form}>
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className={styles.container}
+      >
+        <div className={styles.searchIcon__container}>
+          {
+            !canSubmit ?
+              <div className={styles.searchIcon}>
+                <LuSearch size={24} />
+              </div>
+              :
+              <div className={styles.searchIcon}>
+                <LuSearch size={24} />
+              </div>
+          }
 
+        </div>
+        <input
+          onFocus={() => setIsOnFocus(true)}
+          onBlur={() => setIsOnFocus(false)}
+          onChange={(e) => setSearchString(e.target.value)}
+          type='text'
+          placeholder='Search'
+          className={styles.SearchBar}
+          required
+        />
+        <Button size="lg" icon={(size) => <LuSettings2 size={size} />} />
+      </form>
+      <div
+        className={isOnFocus ?
+          `${styles.searchResults}  ${styles.isActive}`
+          :
+          `${styles.searchResults}  ${styles.notActive}`}
+      >
+        <h1>ascdasdc</h1>
+        <h1>ascdasdc</h1>
+        <h1>ascdasdc</h1>
+        <h1>ascdasdc</h1>
+        <h1>ascdasdc</h1>
+        <h1>ascdasdc</h1>
+        <h1>ascdasdc</h1>
       </div>
-      <input
-        onFocus={() => setIsOnFocus(true)}
-        onBlur={() => setIsOnFocus(false)}
-        onChange={(e) => setSearchString(e.target.value)}
-        type='text'
-        placeholder='Search'
-        className={styles.SearchBar}
-        required
-      />
-      <Button size="lg" icon={(size) => <LuSettings2 size={size} />} />
-    </form>
-    
+    </div>
   );
 }
 
