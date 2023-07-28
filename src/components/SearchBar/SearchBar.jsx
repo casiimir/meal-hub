@@ -57,6 +57,7 @@ const SearchBar = () => {
       />
       <Button size="lg" icon={(size) => <LuSettings2 size={size} />} />
     </form>
+    
   );
 }
 
