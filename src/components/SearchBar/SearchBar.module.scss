@@ -1,73 +1,32 @@
-.form {
+.container{
   position: relative;
-  .container {
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap : 20px;
+
+
+  .searchIcon__container{
+    position: absolute;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
-
-    .searchIcon__container {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5px;
-      .searchIcon {
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: $color-medium;
-      }
-      .searchIcon__active {
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: $color-primary;
-      }
-    }
-
-    .SearchBar {
-      padding: 19px 20px 19px 50px;
-      width: calc(100% - (22px * 2));
-      border-radius: $border-radius-default;
-      border: 2px solid $color-medium;
-      color: $color-primary;
-      outline: none;
-      font-size: 16px;
-      &:focus {
-        border: 2px solid $color-primary;
-      }
-    }
+    justify-content: center;
+    padding: 5px;
   }
 
-  .searchResults {
-    padding: $page-padding;
+
+  .SearchBar{
+    padding: 19px 20px 19px 70px;
+    width: calc(100% - (22px * 2));
     border-radius: $border-radius-default;
-    background-color: $color-light;
-    border: 2px solid $color-primary;
-    max-height: 240px;
-    width: calc(100% - ($page-padding * 2));
-    position: absolute;
-    z-index: 99;
-    overflow: scroll;
-    margin-top: 10px;
-
-    &.isActive {
-      display: block;
-    }
-    &.notActive {
-      display: none;
-    }
-
-    .results {
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 20px;
+    border: 2px solid $color-medium;
+    color: $color-primary;
+    outline: none;
+    font-size: 16px;
+    &:focus{
+      border: 2px solid $color-primary;
     }
   }
+
 }
+
