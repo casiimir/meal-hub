@@ -13,7 +13,7 @@ import SectionPage from "@/components/SectionPage";
 import Menu from "@/components/menu";
 import { useRouter } from "next/router";
 
-export default function Home({ area, lambRecepies }) {
+export default function Home({ area, lambRecepies, categories }) {
   const sections = [
     {
       title: "Italian Recepies",
@@ -106,10 +106,11 @@ export default function Home({ area, lambRecepies }) {
 }
 
 export async function getServerSideProps() {
+  const categories = await getData.categories();
   const area = await getData.area("Italian");
   const lambRecepies = await getData.ingridient("lamb");
 
   return {
-    props: { area: area.meals, lambRecepies: lambRecepies.meals },
+    props: { categories, area: area.meals, lambRecepies: lambRecepies.meals },
   };
 }

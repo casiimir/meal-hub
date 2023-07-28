@@ -18,15 +18,13 @@ const CardFilteredSwiper = ({ obj }) => {
         delay: 1500,
         disableOnInteraction: false,
       }}
-      className={`${styles.CardFilteredSwiper}`}
-    >
+      className={`${styles.CardFilteredSwiper}`}>
       {obj?.map((o, index) => {
         return (
           <SwiperSlide
             key={index + "CardFilteredSwiper"}
-            className={`${styles.swiperSlide}`}
-          >
-            {/* <CardFiltered obj={o} /> */}
+            className={`${styles.swiperSlide}`}>
+            <CardFiltered obj={o} />
           </SwiperSlide>
         );
       })}
