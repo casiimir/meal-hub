@@ -14,7 +14,7 @@ import Menu from "@/components/menu";
 import { useRouter } from "next/router";
 import recipe from "./recipe/[id]";
 
-export default function Home({ area, lambRecepies, categories, recipe }) {
+export default function Home({ area, lambRecepies, categories }) {
   const sections = [
     {
       title: "Mediterranean recepies",
@@ -110,14 +110,12 @@ export async function getServerSideProps() {
   const categories = await getData.categories();
   const area = await getData.area("Italian");
   const lambRecepies = await getData.ingridient("lamb");
-  const recipe = await getData.recipe();
 
   return {
     props: {
       categories,
       area: area.meals,
       lambRecepies: lambRecepies.meals,
-      recipe: recipe.meals,
     },
   };
 }

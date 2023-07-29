@@ -19,19 +19,15 @@ const CardFiltered = ({ obj }) => {
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
   useEffect(() => {
-    const fetchRecipeData = async () => {
-      try {
-        const response = await fetch(
-          `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${obj.idMeal}`
-        );
-        const data = await response.json();
-        setData(data.meals[0]);
-      } catch (error) {
-        console.error("Errore nella richiesta API:", error);
-      }
-    };
-
-    fetchRecipeData();
+    try {
+      fetch(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${obj.idMeal}`
+      )
+        .then((res) => res.json())
+        .then((data) => setData(data.meals[0]));
+    } catch (error) {
+      console.error("Errore nella richiesta API:", error);
+    }
   }, [obj.idMeal]);
 
   const onClick = () => console.log(obj.idMeal);
@@ -43,9 +39,8 @@ const CardFiltered = ({ obj }) => {
           <div className={styles.title_wrapper}>
             <p className={styles.text_title}>{reduceText(obj.strMeal)}</p>
           </div>
-
-          <p className={styles.text_category}> {data.strCategory}</p>
-          <p className={styles.text_area}> {data.strArea}</p>
+          <p className={styles.text_category}> {data && data.strCategory}</p>
+          <p className={styles.text_area}> {data && data.strArea}</p>
         </div>
         <div className={styles.buttonSave} onClick={onClick}>
           <Button
