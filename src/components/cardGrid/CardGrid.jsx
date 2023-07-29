@@ -10,7 +10,7 @@ const CardGrid = ({ data }) => {
   // FUNCTIONS ----------------
   const handleOpenRecipePage = () => {
     console.log("handleOpenRecipePage : , router.push(/product/" + data.idMeal);
-    router.push("/recipe/" + data.idMeal);
+    // router.push("/product/"+data.idMeal);
   }
   const handleSaveThisRecipe = () => {
     console.log("handleSaveThisRecipe :" + data.idMeal);
