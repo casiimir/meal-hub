@@ -1,116 +1,125 @@
-.container{
+.form {
+  position: relative;
+  .container {
     position: relative;
-    display:grid ;
+    display: grid;
     align-items: center;
     justify-content: center;
-    gap : 20px;
-   
-.loginForm{
-    
-    padding: 19px 20px 19px 70px;
-    width: calc(100% - (22px * 2));
-    border-radius: $border-radius-default;
-    border: 2px solid $color-medium;
-    color: $color-primary;
-    outline: none;
-    font-size: 16px;
-    &:focus{
-      border: 2px solid $color-primary;
-    }
+    gap: 20px;
 
+    .loginForm {
+      padding: 19px 20px 19px 70px;
+      width: calc(100% - (22px * 2));
+      border-radius: $border-radius-default;
+      border: 2px solid $color-medium;
+      color: $color-primary;
+      outline: none;
+      font-size: 16px;
+      &:focus {
+        border: 2px solid $color-primary;
+      }
+    }
+  }
 }
 
-.buttonSubmit{
-
- }
+.PasswordWrap {
+  position: relative;
 }
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.buttonForm{
-    padding: 19px 20px 19px 70px;
-    width: calc(75% - (20px * 2));
-    align-items: center;
-    border-radius: $border-radius-default;
-    border: 2px solid $color-medium;
-    color: $color-primary;
-    outline: none;
-    font-size: 16px;
-    &:focus{
-      border: 2px solid $color-primary;
-      
-    }
-    .buttonSign{
-        margin-right: 30px;
-    }
-}
-
-.socialButton{
+  .iconEye {
+    position: absolute;
+    padding: 10px;
     display: flex;
-    justify-content:center;
     align-items: center;
-    padding: 5px;
-    gap: 30px;
-
-}
-.paragraphContainer{
-    display: flex;
     justify-content: center;
-    align-items: center;
-
-}
-    .paragraphSignIn {
-        position: relative;
-        text-align: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        color : $color-step-700;
-        text-align: center;
-    }
-    
-    .paragraphSignIn:before{
-        content: "";
-        display: block;
-        width: 80px;
-        height: 1px;
-        background: $color-step-700;
-        position: absolute;
-        left: -87px;
-        top:50%;
-        z-index: -2;
-        transform: translateY(-50%);
-       
-    }
-    
-    .paragraphSignIn:after{
-        content: "";
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 80px;
-        height: 1px;
-        background: $color-step-700;
-        position: absolute;
-        right: -87px;
-        top:50%;
-        transform: translateY(-50%);
-        z-index: -2;
-    }
-    
-    .span{
-        background-color: #fff;
+    top: 35px;
+    right: 0;
+    transform: translateY(-50% -50%);
+  }
 }
 
-.paragraph{
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.buttonForm {
+  padding: 19px 20px 19px 70px;
+  width: calc(75% - (20px * 2));
+  align-items: center;
+  border-radius: $border-radius-default;
+  border: 2px solid $color-medium;
+  color: $color-primary;
+  outline: none;
+  font-size: 16px;
+  &:focus {
+    border: 2px solid $color-primary;
+  }
+  .buttonSign {
+    margin-right: 30px;
+  }
 }
 
-.link{
-        text-decoration: none;
-        color: rgb(187, 160, 51);    
-        margin-left: 5px; 
+.socialButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  gap: 30px;
+}
+.paragraphContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paragraphSignIn {
+  position: relative;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: $color-step-700;
+  text-align: center;
 }
 
+.paragraphSignIn:before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: $color-step-700;
+  position: absolute;
+  left: -87px;
+  top: 50%;
+  z-index: -2;
+  transform: translateY(-50%);
+}
 
+.paragraphSignIn:after {
+  content: "";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 1px;
+  background: $color-step-700;
+  position: absolute;
+  right: -87px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -2;
+}
 
+.span {
+  background-color: #fff;
+}
 
+.paragraph {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(187, 160, 51);
+  margin-left: 5px;
+}

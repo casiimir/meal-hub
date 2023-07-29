@@ -1,21 +1,34 @@
-import { useState } from 'react';
-import Head from 'next/head';
-import styles from './SingUp.module.scss';
-import Navbar from '@/components/Navbar';
-import Button from '@/components/Button';
-import { LuMenu, LuUser, LuArrowRight, LuFacebook, LuChrome  } from 'react-icons/lu';
+import { useState } from "react";
+import Head from "next/head";
+import styles from "./SingUp.module.scss";
+import Navbar from "@/components/Navbar";
+import Button from "@/components/Button";
+import {
+  LuMenu,
+  LuUser,
+  LuArrowRight,
+  LuFacebook,
+  LuChrome,
+  LuEyeOff,
+  LuEye,
+} from "react-icons/lu";
 
 const SingUp = () => {
   // VARIABLES ----------------
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState("Create an account");
-  const [pageSubtitle, setPageSubtitle] = useState("Let’s help you set up your account, it won’t take long.");
-  const [name,setName] = useState("");
+  const [pageSubtitle, setPageSubtitle] = useState(
+    "Let’s help you set up your account, it won’t take long."
+  );
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword,setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  const [label] = useState("Accept terms and Condition")
+  const [label] = useState("Accept terms and Condition");
+  const [isShow, setIsShow] = useState(false);
+  
+
   // FUNCTIONS ----------------
   function onSubmit(e) {
     e.preventDefault();
@@ -24,6 +37,10 @@ const SingUp = () => {
     console.log("Password value: " + password);
     console.log("Confirm Password:" + confirmPassword);
   }
+  const toggleShowPassword = () => {
+    setIsShow(!isShow); 
+  };
+  
   // RETURN -------------------
   return (
     <>
@@ -55,96 +72,118 @@ const SingUp = () => {
           />
           {/* ----------- HEADER ------------- */}
           <div className="page-header">
-            <h1>
-              {pageTitle}
-            </h1>
-            <p>
-              {pageSubtitle}
-            </p>
+            <h1>{pageTitle}</h1>
+            <p>{pageSubtitle}</p>
           </div>
 
           {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-          
-          <form onSubmit={onSubmit} 
-           className={styles.container}
-          >
-            <div>
-              <label htmlFor="name">Name</label>
-              <input
-                className={styles.loginForm}
-                type="text"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                placeholder="Name"/>
+          <div className={styles.form}>
+            <form onSubmit={onSubmit} className={styles.container}>
+              <div>
+                <label htmlFor="name">Name</label>
+                <input
+                  className={styles.loginForm}
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  placeholder="Name"
+                />
+              </div>
+              <div>
+                <label htmlFor="email">Email</label>
+                <input
+                  className={styles.loginForm}
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder="email"
+                />
+              </div>
+              <div className={styles.PasswordWrap}>
+                <label  htmlFor="password">Password</label>
+                <input
+                  className={styles.loginForm}
+                  type={isShow ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="Enter Password"
+                />
+                <div
+                  className={styles.iconContainer}
+                  onClick={() => toggleShowPassword()}>
+                  <div className={styles.iconEye}>
+                    {isShow ? <LuEye size={25} /> : <LuEyeOff size={25} />}
+                  </div>
+                </div>
+              </div>
+              <div className={styles.PasswordWrap}>
+                <label htmlFor="ConfirmPassword">Confirm Password</label>
+                <input
+                  className={styles.loginForm}
+                  type={isShow ? "text" : "password"}
+                  name="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  placeholder="Confirm Password"
+                />
+                <div
+                  className={styles.iconContainer}
+                  onClick={() => toggleShowPassword()}
+                >
+                  <div className={styles.iconEye}>
+                    {isShow ? <LuEye size={25} /> : <LuEyeOff size={25} />}
+                  </div>
+                </div>
+              </div>
+              <div className={styles.checkboxWrapper}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() => setIsChecked((prev) => !prev)}
+                  />
+                  <span>{label}</span>
+                </label>
+              </div>
+              <div className={styles.buttonSubmit}>
+                <Button
+                  icon={() => <LuArrowRight size={24} />}
+                  size="sm"
+                  text="Sign in"
+                  shape="light"
+                  direction="right"
+                  submit={true}
+                />
+              </div>
+              <div className={styles.paragraphContainer}>
+                <p className={styles.paragraphSignIn}>
+                  <span>Or Sign in With</span>
+                </p>
+              </div>
+            </form>
+            <div className={styles.socialButton}>
+              <Button size="lg" icon={(size) => <LuFacebook size={size} />} />
+              <Button size="lg" icon={(size) => <LuChrome size={size} />} />
             </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
-                className={styles.loginForm}
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="email"/>
-            </div>
-            <div>
-              <label htmlFor="password">Enter Password</label>
-              <input
-                className={styles.loginForm}
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder="Enter Password"
-              />
-              <label htmlFor="ConfirmPassword">Confirm Password</label>
-              <input
-                className={styles.loginForm}
-                type="Confirm Password"
-                name="Confirm Password"
-                value={password}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-                placeholder="Confirm Password"
-              />
-            </div>
-            <div className={styles.checkboxWrapper}>
-              <label>
-              <input type="checkbox" checked={isChecked} onChange={() => setIsChecked((prev) => !prev)}/>
-            <span>{label}</span>
-            </label>
-            </div>
-          <div className={styles.buttonSubmit}>
-           <Button 
-              icon={() => <LuArrowRight size={24} />}
-              size="sm"
-              text="Sign in"
-              shape="light"
-              direction="right"
-              submit={true}
-              style={{color: 'red', marginTop: 10, padding: 10}}/>
-            </div>
-            <div className={styles.paragraphContainer}>
-            <p className={styles.paragraphSignIn}><span>Or Sign in With</span></p>
-            </div>
-          </form>
-          <div className={styles.socialButton} >
-          <Button size="lg" icon={(size) => <LuFacebook size={size} />} />
-          <Button size="lg" icon={(size) => <LuChrome size={size} />} />
+            <p className={styles.paragraph}>
+              Already a member
+              <a className={styles.link} href="sign Up">
+                <span>Sign up</span>
+              </a>
+            </p>
           </div>
-          <p className={styles.paragraph}>Already a member<a className={styles.link} href="sign Up"><span>Sign up</span></a></p>
-
-         
-
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
         </main>
       </div>
     </>
   );
-}
+};
 
 export default SingUp;
