@@ -91,9 +91,10 @@
   }
 }
 
-.FilteredCard:active {
-  scale: 1.1;
-}
+// .FilteredCard:active {
+//   scale: 1.1;
+//   height: fit-content;
+// }
 // TABLET and DESKTOP
 
 @media screen and (min-width: 641px) and (max-width: 1496px) {
@@ -166,9 +167,5 @@
         border-radius: 50%;
       }
     }
-  }
-
-  .CardFiltered:hover {
-    scale: 1.1;
   }
 }

@@ -2,6 +2,7 @@ import styles from "./CardFiltered.module.scss";
 import { LuBookmarkPlus } from "react-icons/lu";
 import { obj } from "./obj";
 import Button from "../Button";
+import React, { useEffect, useState } from "react";
 
 const reduceText = (text, maxLenght) => {
   if (text.length <= maxLenght) {
@@ -11,9 +12,28 @@ const reduceText = (text, maxLenght) => {
   }
 };
 const CardFiltered = ({ obj }) => {
+  const [data, setData] = useState(null);
+  console.log(data);
   // VARIABLES ----------------
+
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
+  useEffect(() => {
+    const fetchRecipeData = async () => {
+      try {
+        const response = await fetch(
+          `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${obj.idMeal}`
+        );
+        const data = await response.json();
+        setData(data.meals[0]);
+      } catch (error) {
+        console.error("Errore nella richiesta API:", error);
+      }
+    };
+
+    fetchRecipeData();
+  }, [obj.idMeal]);
+
   const onClick = () => console.log(obj.idMeal);
   // RETURN -------------------
   return (
@@ -24,8 +44,8 @@ const CardFiltered = ({ obj }) => {
             <p className={styles.text_title}>{reduceText(obj.strMeal)}</p>
           </div>
 
-          <p className={styles.text_category}> {obj.strCategory}</p>
-          <p className={styles.text_area}>|| "null" {obj.strArea}</p>
+          <p className={styles.text_category}> {data.strCategory}</p>
+          <p className={styles.text_area}> {data.strArea}</p>
         </div>
         <div className={styles.buttonSave} onClick={onClick}>
           <Button

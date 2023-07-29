@@ -2,12 +2,24 @@ import styles from "./CardFilteredSwiper.module.scss";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import CardFiltered from "../CardFiltered";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 
 const CardFilteredSwiper = ({ obj }) => {
+  // const [cardData, setCardData] = useState(null);
+  const router = useRouter();
+  // CONDITIONS ---------------
+  // FUNCTIONS ----------------
+  // useEffect(() =>)
+  // console.log(obj);
+  const handleOpenRecepi = (idMeal) => {
+    router.push("/recipe/" + idMeal);
+    // console.log(idMeal);
+  };
   return (
     <Swiper
       modules={[Autoplay]}
@@ -22,6 +34,7 @@ const CardFilteredSwiper = ({ obj }) => {
       {obj?.map((o, index) => {
         return (
           <SwiperSlide
+            onClick={() => handleOpenRecepi(o.idMeal)}
             key={index + "CardFilteredSwiper"}
             className={`${styles.swiperSlide}`}>
             <CardFiltered obj={o} />
