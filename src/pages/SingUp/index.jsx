@@ -27,6 +27,7 @@ const SingUp = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [label] = useState("Accept terms and Condition");
   const [isShow, setIsShow] = useState(false);
+  const [isShowConfirm, setIsShowConfirm] = useState(false);
   
 
   // FUNCTIONS ----------------
@@ -39,6 +40,10 @@ const SingUp = () => {
   }
   const toggleShowPassword = () => {
     setIsShow(!isShow); 
+  };
+  
+  const toggleShowPasswordConfirm = () => {
+    setIsShowConfirm(!isShowConfirm); 
   };
   
   // RETURN -------------------
@@ -126,7 +131,7 @@ const SingUp = () => {
                 <label htmlFor="ConfirmPassword">Confirm Password</label>
                 <input
                   className={styles.loginForm}
-                  type={isShow ? "text" : "password"}
+                  type={isShowConfirm ? "text" : "password"}
                   name="Confirm Password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
@@ -135,10 +140,10 @@ const SingUp = () => {
                 />
                 <div
                   className={styles.iconContainer}
-                  onClick={() => toggleShowPassword()}
+                  onClick={() => toggleShowPasswordConfirm()}
                 >
                   <div className={styles.iconEye}>
-                    {isShow ? <LuEye size={25} /> : <LuEyeOff size={25} />}
+                    {isShowConfirm ? <LuEye size={25} /> : <LuEyeOff size={25} />}
                   </div>
                 </div>
               </div>
@@ -147,7 +152,7 @@ const SingUp = () => {
                   <input
                     type="checkbox"
                     checked={isChecked}
-                    onChange={() => setIsChecked((prev) => !prev)}
+                    onChange={() => setIsChecked()}
                   />
                   <span>{label}</span>
                 </label>
