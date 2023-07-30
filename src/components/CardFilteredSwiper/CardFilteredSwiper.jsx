@@ -34,7 +34,6 @@ const CardFilteredSwiper = ({ obj }) => {
       {obj?.map((o, index) => {
         return (
           <SwiperSlide
-            onClick={() => handleOpenRecepi(o.idMeal)}
             key={index + "CardFilteredSwiper"}
             className={`${styles.swiperSlide}`}>
             <CardFiltered obj={o} />
