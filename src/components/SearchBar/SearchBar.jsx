@@ -38,7 +38,6 @@ const SearchBar = () => {
   const handleSearch = async (string) => {
     setIsSearching(true);
     const data = await getData.letter(string.charAt(0));
-    console.log(data);
     setDataSearched(data.meals);
     setDataToShow(data.meals);
     setIsSearching(false);

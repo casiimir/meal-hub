@@ -12,6 +12,19 @@
 }
 
 // Sizes -----------------------
+@mixin badge__xs($isRound : "false") {
+  @if($isRound == "true"){
+    width: 25px;
+    height: 25px;
+    padding: 6px;
+  }@else {
+    padding: 4px 10px 4px 10px;
+  }
+  .text{
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
 @mixin badge__sm($isRound : "false") {
   @if($isRound == "true"){
     width: 45px;

@@ -1,216 +1,172 @@
-.Button {
-  @extend %button;
+.Badge{
+  @extend %badge;
 
   // TYPES ------------------
-  //-- Fill
-  &.fill {
+  //-- Fill 
+  &.fill{
     &_primary {
-      @include containerType("fill", $color-primary, $color-primary-contrast);
+     @include containerType("fill", $color-primary, $color-primary-contrast);
     }
     &_secondary {
-      @include containerType(
-        "fill",
-        $color-secondary,
-        $color-secondary-contrast
-      );
-    }
+      @include containerType("fill", $color-secondary, $color-secondary-contrast);
+    }  
     &_tertiary {
       @include containerType("fill", $color-tertiary, $color-tertiary-contrast);
-    }
+    }  
     &_success {
       @include containerType("fill", $color-success, $color-success-contrast);
-    }
+    }  
     &_warning {
       @include containerType("fill", $color-warning, $color-warning-contrast);
-    }
+    }  
     &_danger {
       @include containerType("fill", $color-danger, $color-danger-contrast);
-    }
+    }  
     &_medium {
       @include containerType("fill", $color-medium, $color-medium-contrast);
-    }
+    }  
     &_dark {
       @include containerType("fill", $color-dark, $color-dark-contrast);
-    }
+    }  
     &_light {
       @include containerType("fill", $color-light, $color-light-contrast);
-    }
+    }    
   }
   //-- outline
-  &.outline {
+  &.outline{
     &_primary {
-      @include containerType(
-        "outline",
-        $color-primary,
-        $color-primary-contrast
-      );
+      @include containerType("outline", $color-primary, $color-primary-contrast);
     }
     &_secondary {
-      @include containerType(
-        "outline",
-        $color-secondary,
-        $color-secondary-contrast
-      );
-    }
+      @include containerType("outline", $color-secondary, $color-secondary-contrast);
+    }  
     &_tertiary {
-      @include containerType(
-        "outline",
-        $color-tertiary,
-        $color-tertiary-contrast
-      );
-    }
+      @include containerType("outline", $color-tertiary, $color-tertiary-contrast);
+    }  
     &_success {
-      @include containerType(
-        "outline",
-        $color-success,
-        $color-success-contrast
-      );
-    }
+      @include containerType("outline", $color-success, $color-success-contrast);
+    }  
     &_warning {
-      @include containerType(
-        "outline",
-        $color-warning,
-        $color-warning-contrast
-      );
-    }
+      @include containerType("outline", $color-warning, $color-warning-contrast);
+    }  
     &_danger {
       @include containerType("outline", $color-danger, $color-danger-contrast);
-    }
+    }  
     &_medium {
       @include containerType("outline", $color-medium, $color-medium-contrast);
-    }
+    }  
     &_dark {
       @include containerType("outline", $color-dark, $color-dark-contrast);
-    }
+    }  
     &_light {
       @include containerType("outline", $color-light, $color-light-contrast);
-    }
-  }
+    } 
+  } 
   //-- underline
-  &.underline {
+  &.underline{
     &_primary {
-      @include containerType(
-        "underline",
-        $color-primary,
-        $color-primary-contrast
-      );
+      @include containerType("underline", $color-primary, $color-primary-contrast);
     }
     &_secondary {
-      @include containerType(
-        "underline",
-        $color-secondary,
-        $color-secondary-contrast
-      );
-    }
+      @include containerType("underline", $color-secondary, $color-secondary-contrast);
+    }  
     &_tertiary {
-      @include containerType(
-        "underline",
-        $color-tertiary,
-        $color-tertiary-contrast
-      );
-    }
+      @include containerType("underline", $color-tertiary, $color-tertiary-contrast);
+    }  
     &_success {
-      @include containerType(
-        "underline",
-        $color-success,
-        $color-success-contrast
-      );
-    }
+      @include containerType("underline", $color-success, $color-success-contrast);
+    }  
     &_warning {
-      @include containerType(
-        "underline",
-        $color-warning,
-        $color-warning-contrast
-      );
-    }
+      @include containerType("underline", $color-warning, $color-warning-contrast);
+    }  
     &_danger {
-      @include containerType(
-        "underline",
-        $color-danger,
-        $color-danger-contrast
-      );
-    }
+      @include containerType("underline", $color-danger, $color-danger-contrast);
+    }  
     &_medium {
-      @include containerType(
-        "underline",
-        $color-medium,
-        $color-medium-contrast
-      );
-    }
+      @include containerType("underline", $color-medium, $color-medium-contrast);
+    }  
     &_dark {
       @include containerType("underline", $color-dark, $color-dark-contrast);
-    }
+    }  
     &_light {
       @include containerType("underline", $color-light, $color-light-contrast);
-    }
-  }
+    } 
+  } 
   //-- text
-  &.text {
+  &.text{
     &_primary {
       @include containerType("text", $color-primary, $color-primary-contrast);
     }
     &_secondary {
-      @include containerType(
-        "text",
-        $color-secondary,
-        $color-secondary-contrast
-      );
-    }
+      @include containerType("text", $color-secondary, $color-secondary-contrast);
+    }  
     &_tertiary {
       @include containerType("text", $color-tertiary, $color-tertiary-contrast);
-    }
+    }  
     &_success {
       @include containerType("text", $color-success, $color-success-contrast);
-    }
+    }  
     &_warning {
       @include containerType("text", $color-warning, $color-warning-contrast);
-    }
+    }  
     &_danger {
       @include containerType("text", $color-danger, $color-danger-contrast);
-    }
+    }  
     &_medium {
       @include containerType("text", $color-medium, $color-medium-contrast);
-    }
+    }  
     &_dark {
       @include containerType("text", $color-dark, $color-dark-contrast);
-    }
+    }  
     &_light {
       @include containerType("text", $color-light, $color-light-contrast);
-    }
-  }
+    } 
+  } 
 
+ 
   // Directions ------------
-  &.left {
+  &.left{
     flex-direction: row;
   }
-  &.right {
+  &.right{
     flex-direction: row-reverse;
   }
 
   // Sizes -----------------
-  &.xxs {
-    @extend %button__xxs;
+
+  &.xs{
+    &.isRound {
+      @include badge__xs("true");
+    }
+    &.isNotRound{
+      @include badge__xs("false");
+    }
   }
-  &.xs {
-    @extend %button__xs;
+
+  &.sm{
+    &.isRound {
+      @include badge__sm("true");
+    }
+    &.isNotRound{
+      @include badge__sm("false");
+    }
   }
-  &.sm {
-    @extend %button__sm;
+  &.md{
+    &.isRound {
+      @include badge__md("true");
+    }
+    @include badge__md;
   }
-  &.md {
-    @extend %button__md;
-  }
-  &.lg {
-    @extend %button__lg;
-  }
-  &.xl {
-    @extend %button__xl;
+  &.lg{
+    &.isRound {
+      @include badge__lg("true");
+    }
+    @include badge__lg;
   }
 
   // Shapes ----------------
   &.round {
-    border-radius: $border-radius-round $border-radius-round
-      $border-radius-round $border-radius-round;
+    border-radius: $border-radius-round $border-radius-round $border-radius-round $border-radius-round;
   }
   &.default {
     border-radius: $border-radius-default;
@@ -221,16 +177,4 @@
   &.square {
     border-radius: $border-radius-square;
   }
-  // WIDTH -------------------------
-  &.full{
-    width: 100%;
-  }
-  &.half{
-    width: 50%;
-  }
-  &.auto{
-    width: auto;
-  }
 }
-
-

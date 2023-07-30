@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import styles from './Search.module.scss';
 import Navbar from '@/components/Navbar';
@@ -9,13 +9,59 @@ import { getData } from '@/utils/dbManager';
 import SearchBar from '@/components/SearchBar';
 import { useRouter } from 'next/router';
 
+import { collection, addDoc } from "firebase/firestore";
+import { db } from '@/utils/firebase';
+
+
 const Search = (props) => {
   // VARIABLES ----------------
   const router = useRouter();
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState(props.title);
-  const [data, setData] = useState(props.resp)
+  const [data, setData] = useState(props.resp);
+  const [isCustom, setIsCustom] = useState(props.isCustom);
   // FUNCTIONS ----------------
+
+  useEffect(() => {
+    console.log("asdcs", router.query)
+  }, []);
+
+  const doFilter = async () => {
+    const filteredData = [];
+    const maxCalls = data.length;
+    const stepCalls = 5;
+    let currentCall = 0;
+
+
+    const getAllIng = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
+    );
+    const resp = await getAllIng.json();
+
+    console.log(resp.meals);
+    const allIng = resp.meals;
+
+    const promises = [];
+
+    const maxCall = 14;
+    const step = 14;
+    let currentStep = 0;
+    let nextStep = currentStep + step;
+
+    const intv = setInterval(async () => {
+      for (currentStep; currentStep < nextStep; currentStep++) {
+
+        const docRef = await addDoc(collection(db, "nations"), allIng[currentStep]);
+        console.log("Document written with ID: ", docRef.id - " nations : ", allIng[currentStep]);
+      }
+      if (currentStep === maxCall) clearInterval(intv);
+      currentStep = nextStep;
+      nextStep = currentStep + step;
+    }, 2500);
+
+  }
+
+
   const handleGoBack = () => {
     router.back();
   }
@@ -44,9 +90,13 @@ const Search = (props) => {
             rightButton={null}
           />
           {/* ----------- HEADER ------------- */}
+          <Button
+            text="Inizia copiatura"
+            onClick={() => doFilter()}
+          />
           <div className="page-header">
             <h1>
-              {pageTitle}
+              {pageTitle} {isCustom ? "true" : " false"}
             </h1>
             <p>
               Total recipes : {data?.length}
@@ -82,6 +132,7 @@ export default Search;
 export async function getServerSideProps(context) {
   // VARIABLES ----------------------------
   const query = context.query;
+  console.log("------------- context", query);
   let dbResp;
 
 
@@ -90,7 +141,8 @@ export async function getServerSideProps(context) {
   const stringQuery = query.id;
   const typeQuery = stringQuery.charAt(0);
   const search = stringQuery.slice(2)
-
+  const promises = [];
+  let isCustom = false;
   // Switch call to api based on 
   switch (typeQuery) {
     case "a":
@@ -111,17 +163,41 @@ export async function getServerSideProps(context) {
       const dataLetter = await getData.letter(search);
       dbResp = dataLetter.meals;
       break;
+    case "k":
+      console.log("CUSTOM QUERY : ", stringQuery);
+
+      if (query.nation === "All") {
+        console.log("ALL")
+
+        const allNations = await getData.nations();
+
+        for (let i = 0; i < allNations.length; i++) {
+          const promise = await getData.area(allNations[i].strArea);
+          promises.push(promise.meals);
+        }
+      }
+      const aux = await Promise.all(promises); //this is an Array of Arrays
+
+      let auxOnlyRecipes = [];
+      aux.forEach((arr) => {
+        auxOnlyRecipes = auxOnlyRecipes.concat(arr);
+      })
+      isCustom = true;
+      dbResp = auxOnlyRecipes;
+      break;
 
     default:
       console.log("Query sbagliata");
+      dbResp = []
       break;
   }
-
+  console.log("dbResp : ", dbResp.length)
   // RETURN ----------------------------
   return {
     props: {
       resp: dbResp,
       title: search,
+      isCustom: isCustom
     }
   }
 }

@@ -37,4 +37,11 @@ export const getData = {
     const resp = await get.json();
     return resp;
   },
+  mealById: async (id) => {
+    const get = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id
+    );
+    const resp = await get.json();
+    return resp.meals;
+  },
 };

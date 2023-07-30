@@ -87,15 +87,7 @@ const recipe = () => {
 
 export default recipe;
 
-// export async function getServerSideProps() {
-//   // const search = context.query;
-//   const res = await fetch(
-//     "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772"
-//   );
-//   const data = await res.json();
 
-//   return { props: { recipe } };
-// }
 const meals = [
   {
     idMeal: "52771",

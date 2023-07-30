@@ -7,17 +7,33 @@ import Button from "../Button";
 import { getData } from "../../utils/dbManager";
 
 import styles from "./FiltersModal.module.scss";
-import Badge from "../Badge";
+import BadgeActive from "../BadgeActive";
+
+
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/scrollbar';
+
+
+
 
 const FiltersModal = ({ isOpen, setIsOpen }) => {
   // VARIABLES ----------------
   const router = useRouter();
   // CONDITIONS ---------------
-  const [query, setQuery] = useState("");
   const [classMenu, setClassMenu] = useState("isClosed"); //"isOpen" | "isClosed"
 
   const [allCategories, setAllCategories] = useState();
   const [allNations, setAllNations] = useState();
+
+  const [selectedNation, setSelectedNation] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState([]);
+
+  const [error, setError] = useState(false);
+
   // FUNCTIONS ----------------
   useEffect(() => {
     if (isOpen) {
@@ -27,6 +43,7 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
       setClassMenu("isClosed");
       document.body.style.overflow = "scroll";
     }
+
   }, [isOpen]);
 
   useEffect(() => {
@@ -36,17 +53,42 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
 
   const getAllNations = async () => {
     const data = await getData.nations();
-    console.log(data);
     setAllNations(data);
   };
   const getAllCategories = async () => {
     const data = await getData.categories();
-    console.log(data);
     setAllCategories(data);
   };
 
+  const handleCategory = (category) => {
+    if (selectedCategory.includes(category)) {
+      setSelectedCategory(selectedCategory.filter((cat) => cat.idCategory !== category.idCategory))
+    } else {
+      const aux = [...selectedCategory];
+      aux.push(category);
+      console.log(aux)
+      setSelectedCategory(aux);
+    }
+  }
+
   const handleSearch = () => {
-    router.push();
+    if (selectedCategory.length === 0) {
+      setError(true);
+    } else {
+      setError(false);
+      setIsOpen(false);
+      const auxArr = [];
+      selectedCategory.forEach((elem) => {
+        auxArr.push(elem.strCategory);
+      });
+      router.push({
+        pathname: "/search/k-Custom filter",
+        query: {
+          nation: selectedNation,
+          categories: auxArr
+        }
+      });
+    }
   };
   // RETURN -------------------
   return (
@@ -67,24 +109,76 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
       </div>
       <div className={styles.FiltersModal__content}>
         <div className={styles.section}>
-          <h4>Nations: {allNations?.length}</h4>
+          <div className={styles.section__header}>
+            <h3>Nations: {allNations?.length}</h3>
+            <p>{selectedNation}</p>
+          </div>
           <div className={styles.section__content}>
-            {allNations?.map((nation, index) => {
-              return (
-                <Badge key={index + "filterNation"} text={nation.strArea} />
-              );
-            })}
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={10}
+              slidesPerView={"auto"}
+              speed={1000}
+              autoplay={{
+                delay: 1500,
+                disableOnInteraction: true,
+              }}
+              className={`${styles.CategoriesSwiper}`}
+            >
+              {allNations?.map((nation, index) => {
+                return (
+                  <SwiperSlide
+                    key={index + "filterNation"}
+                    className={`${styles.swiperSlide}`}
+                  >
+                    <BadgeActive
+                      onClick={() => setSelectedNation(nation.strArea)}
+                      isActive={selectedNation === nation.strArea ? true : false}
+                      size="xs"
+                      single
+                      text={nation.strArea}
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
           </div>
         </div>
         <div className={styles.section}>
-          <h4>Categories: {allCategories?.length}</h4>
-          <div className={styles.section__content}>
-            {allCategories?.map((cat, index) => {
-              return (
-                <Badge key={index + "filterCategory"} text={cat.strCategory} />
-              );
-            })}
+          <div className={styles.section__header}>
+            <h3>Categories: {allCategories?.length}</h3>
+            <p>{selectedCategory.length}</p>
           </div>
+          <div className={styles.section__content}>
+            <div className={styles.content__grid}>
+
+
+              {allCategories?.map((cat, index) => {
+                return (
+                  <BadgeActive
+                    onClick={() => { handleCategory(cat); }}
+                    size="xs"
+                    text={cat.strCategory}
+                    key={index + "filterCategory"}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.footer}>
+          <Button
+            width={"full"}
+            text="Apply filters"
+            direction="right"
+            onClick={() => handleSearch()}
+          />
+          {error ?
+            <p className={styles.error}>Error: Please select al least 1 category</p>
+            :
+            null
+          }
         </div>
       </div>
     </div>

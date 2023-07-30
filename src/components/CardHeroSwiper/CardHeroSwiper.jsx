@@ -24,7 +24,7 @@ const CardHeroSwiper = ({
       }}
       spaceBetween={50}
       slidesPerView={1}
-      speed={1000}
+      speed={2000}
       autoplay={{
         delay: 1500,
         disableOnInteraction: false,
