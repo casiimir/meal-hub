@@ -4,6 +4,7 @@ import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
 import { LuMenu, LuUser } from "react-icons/lu";
+import SearchBar from "@/components/SearchBar";
 
 
 const Fridge = () => {
@@ -53,6 +54,7 @@ const Fridge = () => {
               <p>{pageSubtitle}</p>
             </div>
             {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
+            <SearchBar/>
             <div className={styles.Fridge}>
               <div className={styles.wrapper}>
                 <div
