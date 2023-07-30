@@ -24,9 +24,9 @@ const CategoriesSwiper = ({ categories }) => {
       modules={[Autoplay]}
       spaceBetween={10}
       slidesPerView={"auto"}
-      speed={1000}
+      speed={2000}
       autoplay={{
-        delay: 1500,
+        delay: 2500,
         disableOnInteraction: false,
       }}
       className={`${styles.CategoriesSwiper}`}>

@@ -23,9 +23,9 @@ const CardFilteredSwiper = ({ obj }) => {
   return (
     <Swiper
       modules={[Autoplay]}
-      spaceBetween={10}
+      spaceBetween={60}
       slidesPerView={"auto"}
-      speed={1000}
+      speed={3000}
       autoplay={{
         delay: 1500,
         disableOnInteraction: false,
