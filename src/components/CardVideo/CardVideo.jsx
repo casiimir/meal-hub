@@ -16,7 +16,7 @@ const CardVideo = ({ data }) => {
   // RETURN -------------------
   return (
     <>
-      {data.meals.map((meal) => (
+      {data?.meals.map((meal) => (
         <div className={styles.container} key={meal.idMeal}>
           <div className={styles.button}>
             <Button
@@ -27,16 +27,6 @@ const CardVideo = ({ data }) => {
               onClick={() => handleSaveThisContent()}
             />
           </div>
-          <iframe
-            className={styles.iframe}
-            width="315"
-            height="201"
-            src={meal.strYoutube.replaceAll("watch?v=", "embed/")}
-            title={meal.strMeal}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
         </div>
       ))}
     </>

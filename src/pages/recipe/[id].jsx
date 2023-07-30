@@ -3,9 +3,9 @@ import Head from "next/head";
 import styles from "./recipe.module.scss";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
-import { LuArrowLeft } from "react-icons/lu";
+import { LuArrowLeft, LuPlay } from "react-icons/lu";
 import CardVideo from "@/components/CardVideo";
-
+import CardHeroRecipe from "@/components/CardHeroRecipe";
 const recipe = ({ data }) => {
   // VARIABLES ----------------
   const recipe = data.meals[0];
@@ -54,29 +54,47 @@ const recipe = ({ data }) => {
       </main>
 
       {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-      {data.meals.map((recipe) => (
+      {data?.meals.map((recipe) => (
         <div className={styles.Recipe} key={recipe.idMeal}>
-          <CardVideo data={data} />
-          <section className={styles.Instructions}>
-            <h4 className={styles.TitleInstr}>Instruction</h4>
-            <p className={styles.Desc}>{recipe.strInstructions}</p>
-          </section>
-          <section className={styles.Ingredients}>
-            <h4 className={styles.TitleIngr}>Ingredients</h4>
-            {ingredients.map((ingredients, index) => (
-              <div className={styles.container} key={index + ingredients}>
-                <div className={styles.img}>
-                  <img
-                    src={`https://www.themealdb.com/images/ingredients/${ingredients}.png`}
+          <div className={styles.CardHero}>
+            {recipe.strYoutube === "" ? (
+              <CardHeroRecipe data={data} />
+            ) : (
+              <a className={styles.link} href={recipe.strYoutube}>
+                <CardHeroRecipe data={data} />
+                <div className={styles.buttonCenter}>
+                  <Button
+                    shape="round"
+                    size="xxs"
+                    width="40"
+                    icon={() => <LuPlay />}
                   />
                 </div>
-                <div className={styles.IngrContainer}>
-                  <h3 className={styles.IngrText}>{ingredients}</h3>
+              </a>
+            )}
+          </div>
+          <div className={styles.wrapper}>
+            <section className={styles.Instructions}>
+              <h4 className={styles.TitleInstr}>Instruction</h4>
+              <p className={styles.Desc}>{recipe.strInstructions}</p>
+            </section>
+            <section className={styles.Ingredients}>
+              <h4 className={styles.TitleIngr}>Ingredients</h4>
+              {ingredients?.map((ingredients, index) => (
+                <div className={styles.container} key={index + ingredients}>
+                  <div className={styles.img}>
+                    <img
+                      src={`https://www.themealdb.com/images/ingredients/${ingredients}.png`}
+                    />
+                  </div>
+                  <div className={styles.IngrContainer}>
+                    <h3 className={styles.IngrText}>{ingredients}</h3>
+                  </div>
+                  <p className={styles.Measure}>{measure[index]}</p>
                 </div>
-                <p className={styles.Measure}>{measure[index]}</p>
-              </div>
-            ))}
-          </section>
+              ))}
+            </section>
+          </div>
         </div>
       ))}
       {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
