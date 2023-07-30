@@ -1,0 +1,34 @@
+.Fridge {
+  background-color: black;
+  height: 100vh;
+  width: 100%;
+
+  position: sticky;
+}
+
+.wrapper {
+  position: relative;
+  overflow: visible;
+  bottom: 0;
+}
+.circle {
+  position: absolute;
+
+  bottom: 0;
+
+  transform: translate(-50%, 50%);
+  left: 50%;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: $color-primary;
+  transition: width 1s ease, height 1s ease;
+}
+
+.animate {
+  bottom: 0;
+  left: 0px;
+  width: 900px;
+  height: 900px;
+}
