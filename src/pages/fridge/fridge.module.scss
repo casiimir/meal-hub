@@ -1,34 +1,37 @@
 .Fridge {
-  background-color: black;
+  background-color: rgb(255, 0, 0);
   height: 100vh;
   width: 100%;
-
-  position: sticky;
+  position: fixed;
 }
 
 .wrapper {
   position: relative;
   overflow: visible;
   bottom: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-items: flex-end;
 }
 .circle {
   position: absolute;
-
   bottom: 0;
-
-  transform: translate(-50%, 50%);
+  transform: translate(-50%, 50%) scale(1);
   left: 50%;
-
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background-color: $color-primary;
-  transition: width 1s ease, height 1s ease;
+  opacity: 0;
+  transition: 0.95s ease-in-out;
 }
 
 .animate {
-  bottom: 0;
-  left: 0px;
-  width: 900px;
-  height: 900px;
+  width: 1350px;
+  height: 1350px;
+  bottom: -645px;
+  transform-origin: center bottom;
+  transform: translate(-50%, 0);
+  opacity: 1;
 }
