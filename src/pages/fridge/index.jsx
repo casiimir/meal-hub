@@ -6,7 +6,7 @@ const Fridge = () => {
   useEffect(() => {
     setTimeout(() => {
       setAnimate(true);
-    }, 400);
+    }, 500);
   }, []);
 
   return (
