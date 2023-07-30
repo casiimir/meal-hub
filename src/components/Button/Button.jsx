@@ -42,7 +42,7 @@ const Button = ({
       onClick={onClick}
       type={submit ? "submit" : "button"}
       className={`
-        ${styles.Button} 
+        ${styles.Button}
         ${styles[size]}
         ${styles[width]}
         ${styles[type !== "underline" && type !== "text" ? shape : "square"]}

@@ -9,6 +9,10 @@ import CardHeroRecipe from "@/components/CardHeroRecipe";
 const recipe = ({ data }) => {
   // VARIABLES ----------------
   const recipe = data.meals[0];
+  // const mediaMatch = window.matchMedia("(min-width: 768px)");
+
+  // CONDITIONS ---------------
+  // FUNCTIONS ----------------
 
   const ingredients = Object.entries(recipe)
     .filter(
@@ -25,9 +29,6 @@ const recipe = ({ data }) => {
         ingredients.startsWith("strMeasure") && values !== null && values !== ""
     )
     .map(([ingredients, values]) => values);
-
-  // CONDITIONS ---------------
-  // FUNCTIONS ----------------
   // RETURN -------------------
   return (
     <>
@@ -65,9 +66,9 @@ const recipe = ({ data }) => {
                 <div className={styles.buttonCenter}>
                   <Button
                     shape="round"
-                    size="xxs"
+                    size="sm"
                     width="40"
-                    icon={() => <LuPlay />}
+                    icon={() => <LuPlay size={24} />}
                   />
                 </div>
               </a>

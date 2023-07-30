@@ -1,5 +1,6 @@
 import Button from "../Button";
 import styles from "./CardHeroRecipe.module.scss";
+import { useState, useEffect } from "react";
 
 import { LuBookmarkPlus } from "react-icons/lu";
 
@@ -20,13 +21,16 @@ const CardHeroRecipe = ({ data }) => {
     >
       <div className={styles.CardHero__gradient}>
         <div className={styles.header}>
-          <Button
-            shape="round"
-            size="xxs"
-            width="40"
-            icon={(size) => <LuBookmarkPlus size={20} />}
-            onClick={() => handleSaveThisContent()}
-          />
+          <div className={styles.buttonSave}>
+            <Button
+              shape="round"
+              size="xxs"
+              width="40"
+              icon={(size) => <LuBookmarkPlus size={20} />}
+              onClick={() => handleSaveThisContent()}
+            />
+  
+          </div>
         </div>
 
         <div className={styles.content}>
