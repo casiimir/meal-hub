@@ -10,15 +10,16 @@ const CardHeroRecipe = ({ data }) => {
 
   const meals = data.meals[0];
   // FUNCTIONS ----------------
-  const handleSaveThisContent = () => {
+  const handleSaveThisContent = (e) => {
+    e.stopPropagation();
     console.log("handleSaveThisContent : ", meals.idMeal);
   };
+
   // RETURN -------------------
   return (
     <div
       className={styles.CardHero}
-      style={{ backgroundImage: `url(${meals.strMealThumb})` }}
-    >
+      style={{ backgroundImage: `url(${meals.strMealThumb})` }}>
       <div className={styles.CardHero__gradient}>
         <div className={styles.header}>
           <div className={styles.buttonSave}>
@@ -27,9 +28,8 @@ const CardHeroRecipe = ({ data }) => {
               size="xxs"
               width="40"
               icon={(size) => <LuBookmarkPlus size={20} />}
-              onClick={() => handleSaveThisContent()}
+              onClick={(e) => handleSaveThisContent(e)}
             />
-  
           </div>
         </div>
 

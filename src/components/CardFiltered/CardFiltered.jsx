@@ -15,7 +15,7 @@ const reduceText = (text, maxLenght) => {
 const CardFiltered = ({ obj }) => {
   const router = useRouter();
   const [data, setData] = useState(null);
-  console.log(data);
+  // console.log(data);
   // VARIABLES ----------------
 
   // CONDITIONS ---------------
@@ -28,12 +28,11 @@ const CardFiltered = ({ obj }) => {
         .then((res) => res.json())
         .then((data) => setData(data.meals[0]));
     } catch (error) {
-      console.error("Errore nella richiesta API:", error);
+      console.log("Errore nella richiesta API:", error);
     }
   }, [obj.idMeal]);
   const handleOpenRecepi = (idMeal) => {
     router.push("/recipe/" + idMeal);
-    // console.log(idMeal);
   };
 
   const onSaveClick = (e) => {

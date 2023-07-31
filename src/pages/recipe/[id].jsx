@@ -13,6 +13,7 @@ const recipe = ({ data }) => {
 
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
+  const onHandlePlay = () => window.open(recipe.strYoutube, "_blank");
 
   const ingredients = Object.entries(recipe)
     .filter(
@@ -61,17 +62,18 @@ const recipe = ({ data }) => {
             {recipe.strYoutube === "" ? (
               <CardHeroRecipe data={data} />
             ) : (
-              <a className={styles.link} href={recipe.strYoutube}>
+              <div className={styles.link}>
                 <CardHeroRecipe data={data} />
                 <div className={styles.buttonCenter}>
                   <Button
+                    onClick={() => onHandlePlay()}
                     shape="round"
                     size="sm"
                     width="40"
                     icon={() => <LuPlay size={24} />}
                   />
                 </div>
-              </a>
+              </div>
             )}
           </div>
           <div className={styles.wrapper}>
