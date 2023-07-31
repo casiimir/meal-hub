@@ -21,7 +21,7 @@ const Button = ({
   width = "default",
   size = "sm",
   text = "",
-  shape = "light",
+  shape = "default",
   submit = false,
   icon = (iconSize) => {
     return <IoChevronForward size={iconSize} />;
@@ -45,9 +45,9 @@ const Button = ({
         ${styles.Button}
         ${styles[size]}
         ${styles[width]}
-        ${styles[type !== "underline" && type !== "text" ? shape : "square"]}
         ${styles[direction]}
         ${styles[type + "_" + color]}
+        ${styles[type !== "underline" && type !== "text" ? shape : "square"]}
       `}
     >
       {icon ? icon(cFontSize[size]) : null}

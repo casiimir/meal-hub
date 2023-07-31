@@ -210,7 +210,7 @@
   // Shapes ----------------
   &.round {
     border-radius: $border-radius-round $border-radius-round
-      $border-radius-round $border-radius-round;
+      $border-radius-round $border-radius-round !important;
   }
   &.default {
     border-radius: $border-radius-default;
@@ -222,15 +222,13 @@
     border-radius: $border-radius-square;
   }
   // WIDTH -------------------------
-  &.full{
+  &.full {
     width: 100%;
   }
-  &.half{
+  &.half {
     width: 50%;
   }
-  &.auto{
+  &.auto {
     width: auto;
   }
 }
-
-
