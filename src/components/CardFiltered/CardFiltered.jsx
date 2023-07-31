@@ -4,6 +4,7 @@ import { obj } from "./obj";
 import Button from "../Button";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { localStorageManager } from "@/utils/localStorage";
 
 const reduceText = (text, maxLenght) => {
   if (text.length <= maxLenght) {
@@ -21,14 +22,23 @@ const CardFiltered = ({ obj }) => {
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
   useEffect(() => {
-    try {
-      fetch(
-        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${obj.idMeal}`
-      )
-        .then((res) => res.json())
-        .then((data) => setData(data.meals[0]));
-    } catch (error) {
-      console.log("Errore nella richiesta API:", error);
+    if (localStorageManager.getData(obj.idMeal) === null) {
+      console.log("DATI NON PRESENTI: FAI FETCH");
+      try {
+        fetch(
+          `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${obj?.idMeal}`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            localStorageManager.setData(obj?.idMeal, data.meals[0]);
+            setData(data.meals[0]);
+          });
+      } catch (error) {
+        console.log("Errore nella richiesta API:", error);
+      }
+    } else {
+      console.log("QUESTI DATI SONO GIA PRESENTI : PRENDILI DAL LOCAL");
+      setData(localStorageManager.getData(obj.idMeal));
     }
   }, [obj.idMeal]);
   const handleOpenRecepi = (idMeal) => {
