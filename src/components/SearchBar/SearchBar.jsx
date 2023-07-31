@@ -81,11 +81,13 @@ const SearchBar = ({ setFilterAll }) => {
             className={styles.SearchBar}
             required
           />
+          <div className={styles.desktopQuery}>
           <Button
             onClick={() => setIsModalOpen(!isModalOpen)}
             size="lg"
             icon={(size) => <LuSettings2 size={size} />}
           />
+          </div>
         </form>
         <div
           className={
