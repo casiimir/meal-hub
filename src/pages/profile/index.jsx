@@ -28,7 +28,6 @@ const Profile = () => {
     setMenuOpen(!isMenuOpen);
   }
   const handleSwitchContent = (content) => {
-    console.log(content)
     setContent(content);
 
     setData(content === "saved" ? savedData : watchedData);
@@ -109,7 +108,6 @@ const Profile = () => {
 
             <div className={styles.content__content}>
               {data?.map((recep, index) => {
-                console.log(recep);
                 return (
                   <CardHero data={recep} key={index + "Profile Page"} />
                 )

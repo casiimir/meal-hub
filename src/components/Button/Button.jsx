@@ -4,9 +4,9 @@ import { IoChevronForward } from "react-icons/io5";
 
 /**
  *
+ * @param {*} width string - "full" | "half" | "auto" (default -> "auto")
  * @param {*} size "xl" | "lg" | "md" | "sm" | "xs" - (default -> "sm")
  * @param {*} text string - (default -> "")
- * @param {*} width string - "full" | "50" | "default" (default -> "default")
  * @param {*} shape "round" | "default" | "light" | "square" - (default -> "default")
  * @param {*} submit boolean - (default -> false) If true it will act like a submit button for Form component
  * @param {*} icon ReactComponent - (default -> IoChevronForward)
@@ -18,9 +18,9 @@ import { IoChevronForward } from "react-icons/io5";
  */
 
 const Button = ({
+  width = "default",
   size = "sm",
   text = "",
-  width = "default",
   shape = "light",
   submit = false,
   icon = (iconSize) => {

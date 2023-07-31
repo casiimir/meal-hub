@@ -1,24 +1,92 @@
-import { useState } from 'react';
-import Head from 'next/head';
-import styles from './Search.module.scss';
-import Navbar from '@/components/Navbar';
-import Button from '@/components/Button';
-import { LuArrowLeft } from 'react-icons/lu';
-import CardGrid from '@/components/cardGrid';
-import { getData } from '@/utils/dbManager';
-import SearchBar from '@/components/SearchBar';
-import { useRouter } from 'next/router';
+import { useState, useEffect } from "react";
+import Head from "next/head";
+import styles from "./Search.module.scss";
+import Navbar from "@/components/Navbar";
+import Button from "@/components/Button";
+import { LuArrowLeft } from "react-icons/lu";
+import CardGrid from "@/components/cardGrid";
+import { getData } from "@/utils/dbManager";
+import SearchBar from "@/components/SearchBar";
+import { useRouter } from "next/router";
+
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "@/utils/firebase";
 
 const Search = (props) => {
   // VARIABLES ----------------
   const router = useRouter();
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState(props.title);
-  const [data, setData] = useState(props.resp)
+  const [data, setData] = useState(props.resp);
+  const [isCustom, setIsCustom] = useState(props.isCustom);
+  const [filterAll, setFilterAll] = useState(null);
   // FUNCTIONS ----------------
+  useEffect(() => {
+    if (isCustom === true || router.query.isCustom === "true") {
+      setIsCustom(true);
+      setPageTitle("Custom filter");
+      customSearch({
+        nation: router.query.nation,
+        categories: router.query.categories,
+      });
+    }
+  }, [router.query]);
+
+  useEffect(() => {
+    if (filterAll !== null) {
+      customSearch(filterAll);
+    }
+  }, [filterAll]);
+
+  const customSearch = async (filters) => {
+    const auxRespArray = [];
+    if (filters.nation === "All") {
+      if (typeof filters.categories === "string") {
+        const q = query(
+          collection(db, "recipes"),
+          where("strCategory", "==", filters.categories)
+        );
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          auxRespArray.push(doc.data());
+        });
+      } else {
+        const q = query(
+          collection(db, "recipes"),
+          where("strCategory", "in", filters.categories)
+        );
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          auxRespArray.push(doc.data());
+        });
+      }
+    } else {
+      const q = query(
+        collection(db, "recipes"),
+        where("strArea", "==", filters.nation)
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const auxData = doc.data();
+        if (typeof filters.categories === "string") {
+          if (auxData.strCategory.includes(filters.categories))
+            auxRespArray.push(doc.data());
+        } else {
+          filters.categories.forEach((cat) => {
+            if (auxData.strCategory.includes(cat)) {
+              auxRespArray.push(doc.data());
+            }
+          });
+        }
+      });
+    }
+    const auxPromise = await Promise.all(auxRespArray);
+    setData(auxPromise);
+  };
+
   const handleGoBack = () => {
-    router.back();
-  }
+    router.push("/");
+  };
   // RETURN -------------------
   return (
     <>
@@ -45,29 +113,21 @@ const Search = (props) => {
           />
           {/* ----------- HEADER ------------- */}
           <div className="page-header">
-            <h1>
-              {pageTitle}
-            </h1>
-            <p>
-              Total recipes : {data?.length}
-            </p>
+            <h1>{pageTitle}</h1>
+            <p>Total recipes : {data?.length}</p>
           </div>
 
           {/* ----------- SEARCH BAR ------------- */}
           <div className={styles.search__container}>
-            <SearchBar />
+            <SearchBar setFilterAll={setFilterAll} />
           </div>
 
           {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
 
           <div className={styles.Search__grid}>
-            {
-              data?.map((obj, index) => {
-                return (
-                  <CardGrid data={obj} key={index + "SearchPage"} />
-                )
-              })
-            }
+            {data?.map((obj, index) => {
+              return <CardGrid data={obj} key={index + "SearchPage"} />;
+            })}
           </div>
 
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
@@ -75,23 +135,23 @@ const Search = (props) => {
       </div>
     </>
   );
-}
+};
 
 export default Search;
 
 export async function getServerSideProps(context) {
   // VARIABLES ----------------------------
-  const query = context.query;
+  const contextQuery = context.query;
   let dbResp;
-
 
   // FUNCTIONS ----------------------------
   // Resolve query -----------
-  const stringQuery = query.id;
+  const stringQuery = contextQuery.id;
   const typeQuery = stringQuery.charAt(0);
-  const search = stringQuery.slice(2)
-
-  // Switch call to api based on 
+  const search = stringQuery.slice(2);
+  const promises = [];
+  let isCustom = false;
+  // Switch call to api based on
   switch (typeQuery) {
     case "a":
       const dataArea = await getData.area(search);
@@ -111,17 +171,22 @@ export async function getServerSideProps(context) {
       const dataLetter = await getData.letter(search);
       dbResp = dataLetter.meals;
       break;
+    case "k":
+      isCustom = true;
+      dbResp = [];
+      break;
 
     default:
       console.log("Query sbagliata");
+      dbResp = [];
       break;
   }
-
   // RETURN ----------------------------
   return {
     props: {
       resp: dbResp,
       title: search,
-    }
-  }
+      isCustom: isCustom,
+    },
+  };
 }
