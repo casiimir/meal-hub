@@ -1,120 +1,124 @@
-.container{
-    position: relative;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    gap : 20px;
-  
-   
-.loginForm{
-    
-    padding: 19px 20px 19px 70px;
-    width: calc(100% - (22px * 2));
+.main {
+  padding: 0 25px 50px;
+}
+.title {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  max-width: 450px;
+  padding: 16px 0;
+  font-size: 17px;
+  p {
+    font-size: 22px;
+  }
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  max-width: 450px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto;
+
+  .loginForm {
+    padding: 18px;
+
     border-radius: $border-radius-default;
     border: 2px solid $color-medium;
     color: $color-primary;
     outline: none;
     font-size: 16px;
-    &:focus{
+    &:focus {
       border: 2px solid $color-primary;
     }
+  }
 
-}
-
-.buttonSubmit{
- margin-right: 30px;
- }
-
-.lebel{
- $fontPrimary: "Poppins", sans-serif;
-}
-}
-
-.buttonForm{
-    padding: 19px 20px 19px 70px;
-    width: calc(75% - (20px * 2));
-    align-items: center;
-    border-radius: $border-radius-default;
-    border: 2px solid $color-medium;
-    color: $color-primary;
-    outline: none;
-    font-size: 16px;
-    &:focus{
-      border: 2px solid $color-primary;
-      
+  .buttonSubmit {
+    button {
+      width: 100%;
     }
-    .buttonSign{
-        margin-right: 30px;
-    }
+  }
 }
 
-.socialButton{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    padding: 5px;
-    gap: 30px;
-
-}
-.paragraphContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-    .paragraphSignIn {
-        position: relative;
-        text-align: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        color : $color-step-700;
-        text-align: center;
-    }
-    
-    .paragraphSignIn:before{
-        content: "";
-        display: block;
-        width: 80px;
-        height: 1px;
-        background: $color-step-700;
-        position: absolute;
-        left: -87px;
-        top:50%;
-        z-index: -2;
-        transform: translateY(-50%);
-       
-    }
-    
-    .paragraphSignIn:after{
-        content: "";
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 80px;
-        height: 1px;
-        background: $color-step-700;
-        position: absolute;
-        right: -87px;
-        top:50%;
-        transform: translateY(-50%);
-        z-index: -2;
-    }
-    
-    .span{
-        background-color: #fff;
+.buttonSign {
+  margin-right: 30px;
 }
 
-.paragraph{
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.socialButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  gap: 30px;
+  button {
+    background-color: white;
+  }
+}
+.paragraphContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paragraphSignIn {
+  position: relative;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: $color-step-700;
+  text-align: center;
 }
 
-.link{
-        text-decoration: none;
-        color: rgb(187, 160, 51);     
+.paragraphSignIn:before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: $color-step-700;
+  position: absolute;
+  left: -87px;
+  top: 50%;
+  z-index: -2;
+  transform: translateY(-50%);
 }
 
+.paragraphSignIn:after {
+  content: "";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 1px;
+  background: $color-step-700;
+  position: absolute;
+  right: -87px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -2;
+}
 
+.span {
+  background-color: #fff;
+}
 
+.paragraph {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
+.link {
+  text-decoration: none;
+  color: rgb(187, 160, 51);
+}
+
+// @media all and (min-width: 768px) {
+//   .main {
+//     background-color: red;
+//   }
+// }
