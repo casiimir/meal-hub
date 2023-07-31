@@ -19,15 +19,16 @@ const CardHeroRecipe = ({ data }) => {
   return (
     <div
       className={styles.CardHero}
-      style={{ backgroundImage: `url(${meals.strMealThumb})` }}>
+      style={{ backgroundImage: `url(${meals.strMealThumb})` }}
+    >
       <div className={styles.CardHero__gradient}>
         <div className={styles.header}>
           <div className={styles.buttonSave}>
             <Button
               shape="round"
-              size="xxs"
-              width="40"
-              icon={(size) => <LuBookmarkPlus size={20} />}
+              size="xs"
+              width="auto"
+              icon={(size) => <LuBookmarkPlus size={size} />}
               onClick={(e) => handleSaveThisContent(e)}
             />
           </div>

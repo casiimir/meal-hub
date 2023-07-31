@@ -1,7 +1,7 @@
 export const cFontSize = {
   xl: 26,
-  lg: 35,
-  md: 18,
-  sm: 16,
-  xs: 14,
+  lg: 28,
+  md: 20,
+  sm: 18,
+  xs: 16,
 };
