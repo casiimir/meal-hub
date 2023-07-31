@@ -1,12 +1,11 @@
-.container{
+.container {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap : 20px;
+  gap: 20px;
 
-
-  .searchIcon__container{
+  .searchIcon__container {
     position: absolute;
     display: flex;
     align-items: center;
@@ -14,8 +13,7 @@
     padding: 5px;
   }
 
-
-  .SearchBar{
+  .SearchBar {
     padding: 19px 20px 19px 70px;
     width: calc(100% - (22px * 2));
     border-radius: $border-radius-default;
@@ -23,10 +21,14 @@
     color: $color-primary;
     outline: none;
     font-size: 16px;
-    &:focus{
+    &:focus {
       border: 2px solid $color-primary;
     }
   }
-
 }
 
+@media screen and (min-width: 641px) and (max-width: 1920px) {
+  .rensposiveButton {
+    display: none;
+  }
+}

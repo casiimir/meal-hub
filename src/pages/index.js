@@ -52,6 +52,7 @@ export default function Home({ area, lambRecepies, categories }) {
       <div className={styles.HomePage}>
         <main>
           {/* ------------ NAVBAR ------------ */}
+
           <Navbar
             leftButton={
               <Button
@@ -72,29 +73,37 @@ export default function Home({ area, lambRecepies, categories }) {
             }
           />
           {/* ----------- HEADER ------------- */}
-          <div className="page-header">
-            <h1>{pageTitle}</h1>
-            <p>{pageSubtitle}</p>
-          </div>
+          <div className={styles.responsive}>
+            {/* RESPONSIVE */}
+            <div className={styles.responsiveFilter}>
+              <div className="page-header">
+                <h1>{pageTitle}</h1>
+                <p>{pageSubtitle}</p>
+              </div>
 
-          {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-          <div className={`${styles.section} ${styles.section_padding}`}>
-            <SearchBar />
-          </div>
-          {/* ----------------------- */}
-          <div className={styles.section}>
-            <CardHeroSwiper />
-          </div>
-          {/* ----------------------- */}
-          <div className={styles.section}>
-            <CategoriesSwiper categories={categories} />
-          </div>
-          {/* ----------------------- */}
-          {sections.map((sect, index) => (
-            <div className={styles.section} key={index + "homeSection"}>
-              <SectionPage sections={sect} />
+              {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
+              <div className={`${styles.section} ${styles.section_padding}  `}>
+                <SearchBar />
+              </div>
             </div>
-          ))}
+            {/*------------  END RESPONSIVE ------------ */}
+            {/* ----------------------- */}
+            <div className={styles.responsiveMain}>
+              <div className={styles.section}>
+                <CardHeroSwiper />
+              </div>
+              {/* ----------------------- */}
+              <div className={styles.section}>
+                <CategoriesSwiper categories={categories} />
+              </div>
+              {/* ----------------------- */}
+              {sections.map((sect, index) => (
+                <div className={styles.section} key={index + "homeSection"}>
+                  <SectionPage sections={sect} />
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
         </main>

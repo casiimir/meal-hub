@@ -1,12 +1,75 @@
-.HomePage{ 
+.HomePage {
   width: 100vw;
   height: 200vh;
-  .section{
+  // display: flex;
+  // flex-direction: column;
+
+  .responsive {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .responsiveFilter {
+    display: flex;
+    flex-direction: column;
+  }
+  .responsiveMain {
+    display: flex;
+    flex-direction: column;
+  }
+  // .responsiveFilter {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+  // .responsiveMain {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+
+  .section {
     margin-bottom: $page-section-gap;
 
-    &.section_padding{
+    &.section_padding {
       padding-left: $page-padding;
       padding-right: $page-padding;
+    }
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1920px) {
+  .HomePage {
+    width: 100vw;
+    height: 200vh;
+
+    // display: flex;
+    // flex-direction: column;
+
+    .responsive {
+      display: flex;
+      flex-direction: row;
+      padding: 0 40px;
+    }
+
+    .responsiveFilter {
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+      margin-right: 20px;
+    }
+    .responsiveMain {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+    }
+
+    .section {
+      margin-bottom: $page-section-gap;
+
+      &.section_padding {
+        padding-left: $page-padding;
+        padding-right: $page-padding;
+      }
     }
   }
 }
