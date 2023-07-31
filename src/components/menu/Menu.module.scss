@@ -1,4 +1,4 @@
-.SlideMenu{
+.SlideMenu {
   position: fixed;
   z-index: 1000;
   top: 0;
@@ -11,26 +11,25 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  
 
-  &.isOpen{
+  &.isOpen {
     width: calc(100vw - 16px * 2);
     height: calc(100vh - 16px * 2);
     transform: translateX(0px);
   }
-  &.isClosed{
+  &.isClosed {
     width: 0vw;
     height: 100vh;
   }
 
-  .header{
+  .header {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 
-    .closeBtn{
+    .closeBtn {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -40,14 +39,14 @@
     }
   }
 
-  .content{
+  .content {
     margin-top: 50px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
 
-    .contentBtn{
+    .contentBtn {
       width: calc(100% - 16px * 2);
       height: calc(50px - 16px * 2);
       border-radius: 8px;
@@ -57,15 +56,15 @@
       align-items: center;
       justify-content: space-between;
       padding: 16px;
+      cursor: pointer;
 
-      .contentBtn__text{
+      .contentBtn__text {
         font-weight: 800;
       }
-      .contentBtn__text__active{
+      .contentBtn__text__active {
         font-weight: 800;
         color: $color-primary;
       }
-
     }
   }
 }
