@@ -14,6 +14,7 @@ import Menu from "@/components/menu";
 import { useRouter } from "next/router";
 import recipe from "./recipe/[id]";
 
+
 export default function Home({ area, lambRecepies, categories }) {
   const sections = [
     {
@@ -85,6 +86,9 @@ export default function Home({ area, lambRecepies, categories }) {
               <div className={`${styles.section} ${styles.section_padding}  `}>
                 <SearchBar />
               </div>
+              {/* <div className={styles.filter}>
+                <FiltersDesktop />
+              </div> */}
             </div>
             {/*------------  END RESPONSIVE ------------ */}
             {/* ----------------------- */}
