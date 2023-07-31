@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
-import styles from "./SingUp.module.scss";
+import styles from "./SignUp.module.scss";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
 import {
@@ -28,7 +28,6 @@ const SingUp = () => {
   const [label] = useState("Accept terms and Condition");
   const [isShow, setIsShow] = useState(false);
   const [isShowConfirm, setIsShowConfirm] = useState(false);
-  
 
   // FUNCTIONS ----------------
   function onSubmit(e) {
@@ -39,13 +38,13 @@ const SingUp = () => {
     console.log("Confirm Password:" + confirmPassword);
   }
   const toggleShowPassword = () => {
-    setIsShow(!isShow); 
+    setIsShow(!isShow);
   };
-  
+
   const toggleShowPasswordConfirm = () => {
-    setIsShowConfirm(!isShowConfirm); 
+    setIsShowConfirm(!isShowConfirm);
   };
-  
+
   // RETURN -------------------
   return (
     <>
@@ -109,7 +108,7 @@ const SingUp = () => {
                 />
               </div>
               <div className={styles.PasswordWrap}>
-                <label  htmlFor="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   className={styles.loginForm}
                   type={isShow ? "text" : "password"}
@@ -121,7 +120,8 @@ const SingUp = () => {
                 />
                 <div
                   className={styles.iconContainer}
-                  onClick={() => toggleShowPassword()}>
+                  onClick={() => toggleShowPassword()}
+                >
                   <div className={styles.iconEye}>
                     {isShow ? <LuEye size={25} /> : <LuEyeOff size={25} />}
                   </div>
@@ -143,7 +143,11 @@ const SingUp = () => {
                   onClick={() => toggleShowPasswordConfirm()}
                 >
                   <div className={styles.iconEye}>
-                    {isShowConfirm ? <LuEye size={25} /> : <LuEyeOff size={25} />}
+                    {isShowConfirm ? (
+                      <LuEye size={25} />
+                    ) : (
+                      <LuEyeOff size={25} />
+                    )}
                   </div>
                 </div>
               </div>
