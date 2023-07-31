@@ -6,13 +6,6 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { localStorageManager } from "@/utils/localStorage";
 
-const reduceText = (text, maxLenght) => {
-  if (text.length <= maxLenght) {
-    return text;
-  } else {
-    return text.slice(0, 19) + "...";
-  }
-};
 const CardFiltered = ({ obj }) => {
   const router = useRouter();
   const [data, setData] = useState(null);
@@ -44,7 +37,13 @@ const CardFiltered = ({ obj }) => {
   const handleOpenRecepi = (idMeal) => {
     router.push("/recipe/" + idMeal);
   };
-
+  const reduceText = (text, maxLenght) => {
+    if (text.length <= maxLenght) {
+      return text;
+    } else {
+      return text.slice(0, 19) + "...";
+    }
+  };
   const onSaveClick = (e) => {
     e.stopPropagation();
 

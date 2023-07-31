@@ -14,13 +14,16 @@ const CardGrid = ({ data }) => {
     // router.push("/product/"+data.idMeal);
   };
 
-  //  const handleOpenRecepi = (idMeal) => {
-  //    router.push("/recipe/" + idMeal);
-  //  };
-
   const handleSaveThisRecipe = (e) => {
     e.stopPropagation();
     console.log("handleSaveThisRecipe :" + data.idMeal);
+  };
+  const reduceText = (text, maxLenght) => {
+    if (text.length <= maxLenght) {
+      return text;
+    } else {
+      return text.slice(0, 16) + "...";
+    }
   };
   // RETURN -------------------
   return (
@@ -39,7 +42,7 @@ const CardGrid = ({ data }) => {
         </div>
 
         <div>
-          <h3 className={styles.title}>{data?.strMeal}</h3>
+          <h3 className={styles.title}>{reduceText(data.strMeal)}</h3>
         </div>
       </div>
     </div>
