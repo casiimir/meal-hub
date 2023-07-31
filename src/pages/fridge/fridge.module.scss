@@ -2,6 +2,11 @@
   height: 100vh;
   width: 100%;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 .wrapper {
@@ -14,9 +19,9 @@
   justify-items: flex-end;
 }
 .circle {
-  position: absolute;
-  bottom: 0;
-  transform: translate(-50%, 50%) scale(1);
+  position: fixed;
+  bottom: 20px;
+  transform: translate(-50%, 50%) scale(0);
   left: 50%;
   width: 50px;
   height: 50px;
@@ -25,14 +30,15 @@
   opacity: 0;
   box-shadow: 4px 12px 14px black;
   transition: 0.95s ease-in-out;
+  z-index: -9999999;
 }
 
 .animate {
-  width: 1350px;
-  height: 1350px;
-  bottom: -645px;
+  width: 1000px;
+  height: 1000px;
+  bottom: -605px;
   transform-origin: center bottom;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, 0) scale(1);
   opacity: 1;
   z-index: -3;
 }
@@ -66,10 +72,117 @@
   }
 }
 
-.foodButton {
-  margin: 20px 20px;
+.title {
+  font-size: 14px;
+  font-weight: normal;
 }
 
-.title {
+// badge start
+.foodButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 20px 20px;
+
+  flex-direction: row;
+  gap: 10px;
+  max-width: 390px;
+
+  flex-shrink: 0;
+  .button {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+  }
+}
+// section recepi
+.recepiSection {
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 640px) and (max-width: 1920px) {
+  .circle {
+    position: fixed;
+    bottom: 0;
+    transform: translate(-50%, 50%) scale(0);
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: $color-primary;
+    opacity: 0;
+    box-shadow: 4px 12px 14px black;
+    transition: 0.95s ease-in-out;
+    z-index: -9999999;
+  }
+
+  .animate {
+    width: 2000px;
+    height: 2000px;
+    bottom: -1805px;
+    transform-origin: center bottom;
+    transform: translate(-50%, 0);
+    opacity: 1;
+    z-index: -3;
+  }
+
+  .container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+
+    .searchIcon__container {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+    }
+
+    .SearchBar {
+      padding: 19px 20px 19px 70px;
+      width: calc(100% - (22px * 2));
+      border-radius: $border-radius-default;
+      border: 2px solid $color-medium;
+      color: $color-primary;
+      outline: none;
+      font-size: 16px;
+      &:focus {
+        border: 2px solid $color-primary;
+      }
+    }
+  }
+
+  .foodButton {
+    position: relative;
+
+    margin: 20px 20px;
+
+    flex-direction: row;
+    gap: 10px;
+    max-width: 690px;
+
+    flex-shrink: 0;
+    .button {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 100%;
+      align-items: center;
+      justify-items: center;
+      position: relative;
+    }
+  }
+
+  .title {
+    font-size: 14px;
+    font-weight: normal;
+  }
 }

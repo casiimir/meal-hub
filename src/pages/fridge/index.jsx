@@ -104,22 +104,27 @@ const Fridge = () => {
             </form>
             <h3 className={styles.title}> Added ingredients </h3>
             <div className={styles.foodButton}>
-              {badges.map((badgeText, index) => (
-                <Button
-                  key={index}
-                  size="sm"
-                  text={badgeText}
-                  width="default"
-                  shape="round"
-                  color="secondary"
-                  type="outline"
-                  icon={() => <LuX size={22} />}
-                  direction="right"
-                  onClick={() => handleDeleteBadge(index)}
-                />
-              ))}
+              <div className={styles.button}>
+                {badges.map((badgeText, index) => (
+                  <Button
+                    key={index}
+                    size="sm"
+                    text={badgeText}
+                    width="default"
+                    shape="round"
+                    color="secondary"
+                    type="outline"
+                    icon={() => <LuX size={22} />}
+                    direction="right"
+                    onClick={() => handleDeleteBadge(index)}
+                  />
+                ))}
+              </div>
             </div>
-            {/* <SearchBar/> */}
+            <div className={styles.recepiSection}>
+              <p>inserisci la ricetta</p>
+            </div>
+
             <div className={styles.wrapper}>
               <div
                 className={`${styles.circle} ${
