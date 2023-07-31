@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import styles from "./Search.module.scss";
 import Navbar from "@/components/Navbar";
@@ -19,10 +19,73 @@ const Search = (props) => {
   const [pageTitle, setPageTitle] = useState(props.title);
   const [data, setData] = useState(props.resp);
   const [isCustom, setIsCustom] = useState(props.isCustom);
+  const [filterAll, setFilterAll] = useState(null);
   // FUNCTIONS ----------------
+  useEffect(() => {
+    if (isCustom === true || router.query.isCustom === "true") {
+      setIsCustom(true);
+      setPageTitle("Custom filter");
+      customSearch({
+        nation: router.query.nation,
+        categories: router.query.categories,
+      });
+    }
+  }, [router.query]);
+
+  useEffect(() => {
+    if (filterAll !== null) {
+      customSearch(filterAll);
+    }
+  }, [filterAll]);
+
+  const customSearch = async (filters) => {
+    const auxRespArray = [];
+    if (filters.nation === "All") {
+      if (typeof filters.categories === "string") {
+        const q = query(
+          collection(db, "recipes"),
+          where("strCategory", "==", filters.categories)
+        );
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          auxRespArray.push(doc.data());
+        });
+      } else {
+        const q = query(
+          collection(db, "recipes"),
+          where("strCategory", "in", filters.categories)
+        );
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          auxRespArray.push(doc.data());
+        });
+      }
+    } else {
+      const q = query(
+        collection(db, "recipes"),
+        where("strArea", "==", filters.nation)
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const auxData = doc.data();
+        if (typeof filters.categories === "string") {
+          if (auxData.strCategory.includes(filters.categories))
+            auxRespArray.push(doc.data());
+        } else {
+          filters.categories.forEach((cat) => {
+            if (auxData.strCategory.includes(cat)) {
+              auxRespArray.push(doc.data());
+            }
+          });
+        }
+      });
+    }
+    const auxPromise = await Promise.all(auxRespArray);
+    setData(auxPromise);
+  };
 
   const handleGoBack = () => {
-    router.back();
+    router.push("/");
   };
   // RETURN -------------------
   return (
@@ -50,15 +113,13 @@ const Search = (props) => {
           />
           {/* ----------- HEADER ------------- */}
           <div className="page-header">
-            <h1>
-              {pageTitle} {isCustom ? "true" : " false"}
-            </h1>
+            <h1>{pageTitle}</h1>
             <p>Total recipes : {data?.length}</p>
           </div>
 
           {/* ----------- SEARCH BAR ------------- */}
           <div className={styles.search__container}>
-            <SearchBar />
+            <SearchBar setFilterAll={setFilterAll} />
           </div>
 
           {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
@@ -81,7 +142,6 @@ export default Search;
 export async function getServerSideProps(context) {
   // VARIABLES ----------------------------
   const contextQuery = context.query;
-  console.log("------------- context", contextQuery);
   let dbResp;
 
   // FUNCTIONS ----------------------------
@@ -112,43 +172,8 @@ export async function getServerSideProps(context) {
       dbResp = dataLetter.meals;
       break;
     case "k":
-      console.log("CUSTOM QUERY : ", stringQuery);
-      const auxRespArray = [];
-      if (contextQuery.nation === "All") {
-        console.log("ALL");
-        console.log(contextQuery);
-
-        if (typeof contextQuery.categories === "string") {
-          const q = query(
-            collection(db, "recipes"),
-            where("strCategory", "==", contextQuery.categories)
-          );
-          const querySnapshot = await getDocs(q);
-          querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
-            auxRespArray.push(doc.data());
-          });
-        } else {
-          console.log(contextQuery.categories.length);
-          for (let index = 0; index < contextQuery.categories.length; index++) {
-            const q = query(
-              collection(db, "recipes"),
-              where("strCategory", "==", contextQuery.categories[index])
-            );
-            const querySnapshot = await getDocs(q);
-            querySnapshot.forEach((doc) => {
-              console.log(doc.id, " => ", contextQuery.categories[index]);
-              auxRespArray.push(doc.data());
-            });
-
-            // console.log(querySnapshot);
-          }
-        }
-      }
-      const auxPromise = await Promise.all(auxRespArray);
-
       isCustom = true;
-      dbResp = auxPromise;
+      dbResp = [];
       break;
 
     default:
@@ -156,7 +181,6 @@ export async function getServerSideProps(context) {
       dbResp = [];
       break;
   }
-  console.log("dbResp : ", dbResp.length);
   // RETURN ----------------------------
   return {
     props: {

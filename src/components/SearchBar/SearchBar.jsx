@@ -6,7 +6,7 @@ import { getData } from "@/utils/dbManager";
 import SearchedResult from "../searchedResult";
 import FiltersModal from "../FiltersModal";
 
-const SearchBar = () => {
+const SearchBar = ({ setFilterAll }) => {
   // VARIABLES ----------------
   // CONDITIONS ---------------
   const [canSubmit, setCanSubmit] = useState(false);
@@ -55,6 +55,7 @@ const SearchBar = () => {
       setDataToShow(auxArr);
     });
   };
+
   // RETURN -------------------
   return (
     <>
@@ -96,7 +97,7 @@ const SearchBar = () => {
           {isSearching ? (
             <p>Searching ...</p>
           ) : (
-            <p>Results : {dataToShow?.length}</p>
+            <p>Results from default database : {dataToShow?.length}</p>
           )}
 
           <div className={styles.results}>
@@ -111,7 +112,11 @@ const SearchBar = () => {
         </div>
       </div>
       {/* ----- */}
-      <FiltersModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+      <FiltersModal
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+        setFilter={setFilterAll}
+      />
     </>
   );
 };

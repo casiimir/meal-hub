@@ -78,12 +78,15 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
       selectedCategory.forEach((elem) => {
         auxArr.push(elem.strCategory);
       });
+
       router.push({
         pathname: "/search/k-Custom filter",
         query: {
           nation: selectedNation,
           categories: auxArr,
+          isCustom: true,
         },
+        shallow: false,
       });
     }
   };
