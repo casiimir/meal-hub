@@ -50,7 +50,7 @@ const recipe = ({ data }) => {
               color="dark"
             />
           }
-          pageTitle={""}
+          pageTitle={data?.meals[0]?.strMeal}
           rightButton={null}
         />
       </main>
