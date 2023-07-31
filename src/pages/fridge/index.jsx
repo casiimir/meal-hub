@@ -3,8 +3,7 @@ import styles from "./fridge.module.scss";
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
-import { LuMenu, LuUser } from "react-icons/lu";
-import SearchBar from "@/components/SearchBar";
+import { LuMenu, LuUser, LuX } from "react-icons/lu";
 import { LuSearch } from "react-icons/lu";
 import { LuSettings2 } from "react-icons/lu";
 
@@ -100,9 +99,20 @@ const Fridge = () => {
                 required
               />
             </form>
-
+            <h3 className={styles.title}> Added ingredients </h3>
+            <div className={styles.foodButton}>
+            <Button
+             size = "sm"
+             text = "kdfgkg"
+             width = "default"
+             shape = "round"
+             color = "secondary"
+             type = "outline"
+             icon={() => <LuX size={22} />}
+             direction = "right"
+            />
+            </div>
             {/* <SearchBar/> */}
-
             <div className={styles.wrapper}>
               <div
                 className={`${styles.circle} ${
@@ -110,6 +120,7 @@ const Fridge = () => {
                 } `}></div>{" "}
             </div>
           </div>
+          
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
         </main>
       </div>
