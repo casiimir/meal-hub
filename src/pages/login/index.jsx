@@ -3,8 +3,13 @@ import Head from "next/head";
 import styles from "./login.module.scss";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
-import { LuMenu, LuUser, LuArrowRight, LuFacebook, LuChrome} from "react-icons/lu";
-
+import {
+  LuMenu,
+  LuUser,
+  LuArrowRight,
+  LuFacebook,
+  LuChrome,
+} from "react-icons/lu";
 
 const Login = () => {
   // VARIABLES ----------------
@@ -28,83 +33,89 @@ const Login = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.HomePage}>
-        <main>
-          {/* ------------ NAVBAR ------------ */}
-          <Navbar
-            leftButton={
-              <Button
-                icon={() => <LuMenu size={24} />}
-                type="text"
-                color="dark"
-              />
-            }
-            pageTitle={pageTitle}
-            rightButton={
-              <Button
-                icon={() => <LuUser size={24} />}
-                type="text"
-                color="dark"
-              />
-            }
-          />
-          {/* ----------- HEADER ------------- */}
-          <div className="page-header">
-            <h1>{pageTitle}</h1>
-            <p>{pageSubtitle}</p>
-          </div>
-          {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
 
-          <form onSubmit={onSubmit} 
-           className={styles.container}
-          >
-            <div>
-              <label htmlFor="email"> Email </label>
-              <input
+      <main className={styles.main}>
+        {/* ------------ NAVBAR ------------ */}
+        {/* <Navbar
+          leftButton={
+            <Button
+              icon={() => <LuMenu size={24} />}
+              type="text"
+              color="dark"
+            />
+          }
+          pageTitle={pageTitle}
+          rightButton={
+            <Button
+              icon={() => <LuUser size={24} />}
+              type="text"
+              color="dark"
+            />
+          }
+        /> */}
+        {/* ----------- HEADER ------------- */}
+        <div className={styles.title}>
+          <h1>{pageTitle}</h1>
+          <p>{pageSubtitle}</p>
+        </div>
+        {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
+
+        <form onSubmit={onSubmit} className={styles.container}>
+          <div className={styles.inputContainer}>
+            <label htmlFor="email"> Email </label>
+            <input
               className={styles.loginForm}
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="Email"/>
-            </div>
-            <div>
-              <label htmlFor="password">Enter Password</label>
-              <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Email"
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <label htmlFor="password">Enter Password</label>
+            <input
               className={styles.loginForm}
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder="Enter Password"
-              />
-            </div>
-            <p>Forgot Password?</p>
+              type="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Enter Password"
+            />
+          </div>
+          <p>Forgot Password?</p>
           <div className={styles.buttonSubmit}>
-           <Button 
+            <Button
               icon={() => <LuArrowRight size={24} />}
-              size="sm"
+              size="md"
               text="Sign in"
               shape="light"
               direction="right"
               submit={true}
-              style={{color: 'red', marginTop: 10, padding: 10}}/>
-            </div>
-            <div className={styles.paragraphContainer}>
-            <p className={styles.paragraphSignIn}><span>Or Sign in With</span></p>
-            </div>
-          </form>
+              style={{ color: "red", marginTop: 10, padding: 10 }}
+            />
+          </div>
+          <div className={styles.paragraphContainer}>
+            <p className={styles.paragraphSignIn}>
+              <span>Or Sign in With</span>
+            </p>
+          </div>
+        </form>
 
-          <div className={styles.socialButton} >
+        <div className={styles.socialButton}>
           <Button size="lg" icon={(size) => <LuFacebook size={size} />} />
           <Button size="lg" icon={(size) => <LuChrome size={size} />} />
-          </div>
-          <p className={styles.paragraph}>Don’t have an account?<a className={styles.link} href="sign Up"><span>Sign up</span></a></p>
-          {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-        </main>
-      </div>
+        </div>
+        <p className={styles.paragraph}>
+          Don’t have an account?
+          <a className={styles.link} href="sign Up">
+            <span>Sign up</span>
+          </a>
+        </p>
+        {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
+      </main>
     </>
   );
 };
