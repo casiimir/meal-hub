@@ -20,7 +20,14 @@ const SearchBar = ({ setFilterAll }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // FUNCTIONS ----------------
   useEffect(() => {
-    searchString.length !== 0 ? setCanSubmit(true) : setCanSubmit(false);
+    if (searchString.length !== 0) {
+      setCanSubmit(true);
+      handleSearchSelection(searchString);
+      dataSearched === null ? handleSearch(searchString) : null;
+    } else {
+      setCanSubmit(false);
+      setDataSearched(null);
+    }
   }, [searchString]);
 
   const handleSubmit = (e) => {
