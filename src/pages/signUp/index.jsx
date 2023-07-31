@@ -55,7 +55,7 @@ const SingUp = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.HomePage}>
-        <main>
+        
           {/* ------------ NAVBAR ------------ */}
           <Navbar
             leftButton={
@@ -75,15 +75,16 @@ const SingUp = () => {
             }
           />
           {/* ----------- HEADER ------------- */}
-          <div className="page-header">
+          <main className={styles.main}>
+          <div className={styles.title}>
             <h1>{pageTitle}</h1>
             <p>{pageSubtitle}</p>
           </div>
 
           {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-          <div className={styles.form}>
+        
             <form onSubmit={onSubmit} className={styles.container}>
-              <div>
+              <div className={styles.inputContainer}>
                 <label htmlFor="name">Name</label>
                 <input
                   className={styles.loginForm}
@@ -95,7 +96,7 @@ const SingUp = () => {
                   placeholder="Name"
                 />
               </div>
-              <div>
+              <div className={styles.inputContainer}>
                 <label htmlFor="email">Email</label>
                 <input
                   className={styles.loginForm}
@@ -106,8 +107,8 @@ const SingUp = () => {
                   required
                   placeholder="email"
                 />
-              </div>
-              <div className={styles.PasswordWrap}>
+              </div >
+              <div className={`${styles.PasswordWrap} ${styles.inputContainer}`}>
                 <label htmlFor="password">Password</label>
                 <input
                   className={styles.loginForm}
@@ -127,7 +128,7 @@ const SingUp = () => {
                   </div>
                 </div>
               </div>
-              <div className={styles.PasswordWrap}>
+              <div className={`${styles.PasswordWrap} ${styles.inputContainer}`}>
                 <label htmlFor="ConfirmPassword">Confirm Password</label>
                 <input
                   className={styles.loginForm}
@@ -187,7 +188,7 @@ const SingUp = () => {
                 <span>Sign up</span>
               </a>
             </p>
-          </div>
+          
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
         </main>
       </div>

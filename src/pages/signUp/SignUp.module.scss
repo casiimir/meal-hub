@@ -1,26 +1,49 @@
-.form {
-  position: relative;
+.main {
+  padding: 0 25px 50px;
+}
+
+.title {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  max-width: 450px;
+  padding: 16px 0;
+  font-size: 17px;
+  p {
+    font-size: 22px;
+  }
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
   .container {
-    position: relative;
-    display: grid;
-    align-items: center;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+  
     gap: 20px;
+    margin: 0 auto;
 
   .loginForm {
-      padding: 19px 20px 19px 70px;
-      width: calc(100% - (22px * 2));
-      border-radius: $border-radius-default;
-      border: 2px solid $color-medium;
-      color: $color-primary;
-      outline: none;
-      font-size: 16px;
+    padding: 18px;
+    border-radius: $border-radius-default;
+    border: 2px solid $color-medium;
+    color: $color-primary;
+    outline: none;
+    font-size: 16px;
       &:focus {
         border: 2px solid $color-primary;
       }
     }
+    .buttonSubmit {
+      button {
+        width: 100%;
+      }
+    }
   }
-}
 
 .PasswordWrap {
   position: relative;
@@ -48,6 +71,7 @@
   align-items: center;
   padding: 5px;
   gap: 30px;
+  
 }
 .paragraphContainer {
   display: flex;
@@ -105,4 +129,12 @@
   text-decoration: none;
   color: rgb(187, 160, 51);
   margin-left: 5px;
+}
+
+.checkboxWrapper {
+  
+  input{
+    accent-color: $color-primary;
+    margin-right: 10px;
+  }
 }
