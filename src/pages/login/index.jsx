@@ -14,7 +14,7 @@ import {
 const Login = () => {
   // VARIABLES ----------------
   // CONDITIONS ---------------
-  const [pageTitle, setPageTitle] = useState("Login");
+  const [pageTitle, setPageTitle] = useState("Hello,");
   const [pageSubtitle, setPageSubtitle] = useState("Welcome Back");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,26 +34,18 @@ const Login = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* ------------ NAVBAR ------------ */}
+      <Navbar
+        leftButton={
+          <Button icon={() => <LuMenu size={24} />} type="text" color="dark" />
+        }
+        pageTitle={pageTitle}
+        rightButton={
+          <Button icon={() => <LuUser size={24} />} type="text" color="dark" />
+        }
+      />
+      {/* ----------- HEADER ------------- */}
       <main className={styles.main}>
-        {/* ------------ NAVBAR ------------ */}
-        {/* <Navbar
-          leftButton={
-            <Button
-              icon={() => <LuMenu size={24} />}
-              type="text"
-              color="dark"
-            />
-          }
-          pageTitle={pageTitle}
-          rightButton={
-            <Button
-              icon={() => <LuUser size={24} />}
-              type="text"
-              color="dark"
-            />
-          }
-        /> */}
-        {/* ----------- HEADER ------------- */}
         <div className={styles.title}>
           <h1>{pageTitle}</h1>
           <p>{pageSubtitle}</p>
