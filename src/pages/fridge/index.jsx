@@ -9,27 +9,39 @@ import { LuSettings2 } from "react-icons/lu";
 
 const Fridge = () => {
   // VARIABLES ----------------
-  // CONDITIONS ---------------
+  // CONDITIONS
+  const [badgeContent, setBadgeContent] = useState("");
+  const [badges, setBadges] = useState([]);
   const [canSubmit, setCanSubmit] = useState(false);
   const [isOnFocus, setIsOnFocus] = useState(false);
   const [searchString, setSearchString] = useState("");
   const [pageTitle, setPageTitle] = useState("Fridge");
   const [pageSubtitle, setPageSubtitle] = useState("Sottotitolo pagina");
   // FUNCTIONS ----------------
+
+  // animation
   const [animate, setAnimate] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setAnimate(true);
     }, 400);
   }, []);
-
+  // ---------
   useEffect(() => {
     searchString.length !== 0 ? setCanSubmit(true) : setCanSubmit(false);
   }, [searchString]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("OPEN FILTERED PAGE WITH THIS SEARCH INPUT : ", searchString);
+    if (searchString.length !== 0) {
+      setBadges([...badges, searchString]);
+      setSearchString("");
+    }
+  };
+
+  const handleDeleteBadge = (index) => {
+    const updatedBadges = badges.filter((_, i) => i !== index);
+    setBadges(updatedBadges);
   };
   // RETURN -------------------
   return (
@@ -71,28 +83,19 @@ const Fridge = () => {
               onSubmit={(e) => handleSubmit(e)}
               className={styles.container}>
               <div className={styles.searchIcon__container}>
-                {!canSubmit ? (
-                  <Button
-                    size="xs"
-                    type="text"
-                    submit={true}
-                    color={isOnFocus ? "primary" : "medium"}
-                    icon={() => <LuSearch size={24} />}
-                  />
-                ) : (
-                  <Button
-                    size="xs"
-                    type="fill"
-                    color="primary"
-                    submit={true}
-                    icon={() => <LuUploadCloud size={22} />}
-                  />
-                )}
+                <div
+                  className={`${
+                    isOnFocus ? styles.searchIcon__active : styles.searchIcon
+                  }`}>
+                  {" "}
+                  <LuSearch size={24} />
+                </div>
               </div>
               <input
                 onFocus={() => setIsOnFocus(true)}
                 onBlur={() => setIsOnFocus(false)}
                 onChange={(e) => setSearchString(e.target.value)}
+                value={searchString}
                 type="text"
                 placeholder="Search"
                 className={styles.SearchBar}
@@ -101,16 +104,20 @@ const Fridge = () => {
             </form>
             <h3 className={styles.title}> Added ingredients </h3>
             <div className={styles.foodButton}>
-            <Button
-             size = "sm"
-             text = "kdfgkg"
-             width = "default"
-             shape = "round"
-             color = "secondary"
-             type = "outline"
-             icon={() => <LuX size={22} />}
-             direction = "right"
-            />
+              {badges.map((badgeText, index) => (
+                <Button
+                  key={index}
+                  size="sm"
+                  text={badgeText}
+                  width="default"
+                  shape="round"
+                  color="secondary"
+                  type="outline"
+                  icon={() => <LuX size={22} />}
+                  direction="right"
+                  onClick={() => handleDeleteBadge(index)}
+                />
+              ))}
             </div>
             {/* <SearchBar/> */}
             <div className={styles.wrapper}>
@@ -120,7 +127,7 @@ const Fridge = () => {
                 } `}></div>{" "}
             </div>
           </div>
-          
+
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
         </main>
       </div>

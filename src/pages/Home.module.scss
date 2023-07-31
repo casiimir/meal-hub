@@ -1,12 +1,18 @@
-.HomePage{ 
+.HomePage {
   width: 100vw;
   height: 200vh;
-  .section{
+  .section {
     margin-bottom: $page-section-gap;
 
-    &.section_padding{
+    &.section_padding {
       padding-left: $page-padding;
       padding-right: $page-padding;
     }
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1920px) {
+  .desktopQuery {
+    display: none;
   }
 }
