@@ -9,16 +9,12 @@ import { getData } from "../../utils/dbManager";
 import styles from "./FiltersModal.module.scss";
 import BadgeActive from "../BadgeActive";
 
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/scrollbar';
-
-
-
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 
 const FiltersModal = ({ isOpen, setIsOpen }) => {
   // VARIABLES ----------------
@@ -43,7 +39,6 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
       setClassMenu("isClosed");
       document.body.style.overflow = "scroll";
     }
-
   }, [isOpen]);
 
   useEffect(() => {
@@ -62,14 +57,16 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
 
   const handleCategory = (category) => {
     if (selectedCategory.includes(category)) {
-      setSelectedCategory(selectedCategory.filter((cat) => cat.idCategory !== category.idCategory))
+      setSelectedCategory(
+        selectedCategory.filter((cat) => cat.idCategory !== category.idCategory)
+      );
     } else {
       const aux = [...selectedCategory];
       aux.push(category);
-      console.log(aux)
+      console.log(aux);
       setSelectedCategory(aux);
     }
-  }
+  };
 
   const handleSearch = () => {
     if (selectedCategory.length === 0) {
@@ -85,8 +82,8 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
         pathname: "/search/k-Custom filter",
         query: {
           nation: selectedNation,
-          categories: auxArr
-        }
+          categories: auxArr,
+        },
       });
     }
   };
@@ -133,7 +130,9 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
                   >
                     <BadgeActive
                       onClick={() => setSelectedNation(nation.strArea)}
-                      isActive={selectedNation === nation.strArea ? true : false}
+                      isActive={
+                        selectedNation === nation.strArea ? true : false
+                      }
                       size="xs"
                       single
                       text={nation.strArea}
@@ -151,12 +150,12 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
           </div>
           <div className={styles.section__content}>
             <div className={styles.content__grid}>
-
-
               {allCategories?.map((cat, index) => {
                 return (
                   <BadgeActive
-                    onClick={() => { handleCategory(cat); }}
+                    onClick={() => {
+                      handleCategory(cat);
+                    }}
                     size="xs"
                     text={cat.strCategory}
                     key={index + "filterCategory"}
@@ -174,11 +173,11 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
             direction="right"
             onClick={() => handleSearch()}
           />
-          {error ?
-            <p className={styles.error}>Error: Please select al least 1 category</p>
-            :
-            null
-          }
+          {error ? (
+            <p className={styles.error}>
+              Error: Please select al least 1 category
+            </p>
+          ) : null}
         </div>
       </div>
     </div>

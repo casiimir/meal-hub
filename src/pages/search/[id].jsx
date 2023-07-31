@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react';
-import Head from 'next/head';
-import styles from './Search.module.scss';
-import Navbar from '@/components/Navbar';
-import Button from '@/components/Button';
-import { LuArrowLeft } from 'react-icons/lu';
-import CardGrid from '@/components/cardGrid';
-import { getData } from '@/utils/dbManager';
-import SearchBar from '@/components/SearchBar';
-import { useRouter } from 'next/router';
+import { useState } from "react";
+import Head from "next/head";
+import styles from "./Search.module.scss";
+import Navbar from "@/components/Navbar";
+import Button from "@/components/Button";
+import { LuArrowLeft } from "react-icons/lu";
+import CardGrid from "@/components/cardGrid";
+import { getData } from "@/utils/dbManager";
+import SearchBar from "@/components/SearchBar";
+import { useRouter } from "next/router";
 
-import { collection, addDoc } from "firebase/firestore";
-import { db } from '@/utils/firebase';
-
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "@/utils/firebase";
 
 const Search = (props) => {
   // VARIABLES ----------------
@@ -22,49 +21,9 @@ const Search = (props) => {
   const [isCustom, setIsCustom] = useState(props.isCustom);
   // FUNCTIONS ----------------
 
-  useEffect(() => {
-    console.log("asdcs", router.query)
-  }, []);
-
-  const doFilter = async () => {
-    const filteredData = [];
-    const maxCalls = data.length;
-    const stepCalls = 5;
-    let currentCall = 0;
-
-
-    const getAllIng = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
-    );
-    const resp = await getAllIng.json();
-
-    console.log(resp.meals);
-    const allIng = resp.meals;
-
-    const promises = [];
-
-    const maxCall = 14;
-    const step = 14;
-    let currentStep = 0;
-    let nextStep = currentStep + step;
-
-    const intv = setInterval(async () => {
-      for (currentStep; currentStep < nextStep; currentStep++) {
-
-        const docRef = await addDoc(collection(db, "nations"), allIng[currentStep]);
-        console.log("Document written with ID: ", docRef.id - " nations : ", allIng[currentStep]);
-      }
-      if (currentStep === maxCall) clearInterval(intv);
-      currentStep = nextStep;
-      nextStep = currentStep + step;
-    }, 2500);
-
-  }
-
-
   const handleGoBack = () => {
     router.back();
-  }
+  };
   // RETURN -------------------
   return (
     <>
@@ -90,17 +49,11 @@ const Search = (props) => {
             rightButton={null}
           />
           {/* ----------- HEADER ------------- */}
-          <Button
-            text="Inizia copiatura"
-            onClick={() => doFilter()}
-          />
           <div className="page-header">
             <h1>
               {pageTitle} {isCustom ? "true" : " false"}
             </h1>
-            <p>
-              Total recipes : {data?.length}
-            </p>
+            <p>Total recipes : {data?.length}</p>
           </div>
 
           {/* ----------- SEARCH BAR ------------- */}
@@ -111,13 +64,9 @@ const Search = (props) => {
           {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
 
           <div className={styles.Search__grid}>
-            {
-              data?.map((obj, index) => {
-                return (
-                  <CardGrid data={obj} key={index + "SearchPage"} />
-                )
-              })
-            }
+            {data?.map((obj, index) => {
+              return <CardGrid data={obj} key={index + "SearchPage"} />;
+            })}
           </div>
 
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
@@ -125,25 +74,24 @@ const Search = (props) => {
       </div>
     </>
   );
-}
+};
 
 export default Search;
 
 export async function getServerSideProps(context) {
   // VARIABLES ----------------------------
-  const query = context.query;
-  console.log("------------- context", query);
+  const contextQuery = context.query;
+  console.log("------------- context", contextQuery);
   let dbResp;
-
 
   // FUNCTIONS ----------------------------
   // Resolve query -----------
-  const stringQuery = query.id;
+  const stringQuery = contextQuery.id;
   const typeQuery = stringQuery.charAt(0);
-  const search = stringQuery.slice(2)
+  const search = stringQuery.slice(2);
   const promises = [];
   let isCustom = false;
-  // Switch call to api based on 
+  // Switch call to api based on
   switch (typeQuery) {
     case "a":
       const dataArea = await getData.area(search);
@@ -165,39 +113,56 @@ export async function getServerSideProps(context) {
       break;
     case "k":
       console.log("CUSTOM QUERY : ", stringQuery);
+      const auxRespArray = [];
+      if (contextQuery.nation === "All") {
+        console.log("ALL");
+        console.log(contextQuery);
 
-      if (query.nation === "All") {
-        console.log("ALL")
+        if (typeof contextQuery.categories === "string") {
+          const q = query(
+            collection(db, "recipes"),
+            where("strCategory", "==", contextQuery.categories)
+          );
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+            auxRespArray.push(doc.data());
+          });
+        } else {
+          console.log(contextQuery.categories.length);
+          for (let index = 0; index < contextQuery.categories.length; index++) {
+            const q = query(
+              collection(db, "recipes"),
+              where("strCategory", "==", contextQuery.categories[index])
+            );
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+              console.log(doc.id, " => ", contextQuery.categories[index]);
+              auxRespArray.push(doc.data());
+            });
 
-        const allNations = await getData.nations();
-
-        for (let i = 0; i < allNations.length; i++) {
-          const promise = await getData.area(allNations[i].strArea);
-          promises.push(promise.meals);
+            // console.log(querySnapshot);
+          }
         }
       }
-      const aux = await Promise.all(promises); //this is an Array of Arrays
+      const auxPromise = await Promise.all(auxRespArray);
 
-      let auxOnlyRecipes = [];
-      aux.forEach((arr) => {
-        auxOnlyRecipes = auxOnlyRecipes.concat(arr);
-      })
       isCustom = true;
-      dbResp = auxOnlyRecipes;
+      dbResp = auxPromise;
       break;
 
     default:
       console.log("Query sbagliata");
-      dbResp = []
+      dbResp = [];
       break;
   }
-  console.log("dbResp : ", dbResp.length)
+  console.log("dbResp : ", dbResp.length);
   // RETURN ----------------------------
   return {
     props: {
       resp: dbResp,
       title: search,
-      isCustom: isCustom
-    }
-  }
+      isCustom: isCustom,
+    },
+  };
 }
