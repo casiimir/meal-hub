@@ -8,7 +8,7 @@ import Button from "@/components/Button";
 import { LuMenu, LuUser } from "react-icons/lu";
 import CardHeroSwiper from "@/components/CardHeroSwiper";
 import CategoriesSwiper from "@/components/CategoriesSwiper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SectionPage from "@/components/SectionPage";
 import Menu from "@/components/menu";
 import { useRouter } from "next/router";
@@ -28,6 +28,8 @@ export default function Home({ area, lambRecepies, categories }) {
       category: lambRecepies,
     },
   ];
+  // const currentHours = new Date().getHours()
+  const currentHours = 19
   // console.log(recipe);
   // VARIABLES ----------------
 
@@ -36,12 +38,25 @@ export default function Home({ area, lambRecepies, categories }) {
   const [pageTitle, setPageTitle] = useState("Welcome!");
   const [pageSubtitle, setPageSubtitle] = useState("Sottotitolo pagina");
   const [isMenuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+
+    if (currentHours > 7 && currentHours < 12) {
+      setPageSubtitle("What are you cooking for breakfast?");
+    } else if (currentHours >= 12 && currentHours < 14) {
+      setPageSubtitle("What are you cooking for lunch?")
+    } else if (currentHours >= 19 && currentHours < 22) {
+      setPageSubtitle("What are you cooking for dinner?")
+    } else {
+      setPageSubtitle("What are you cooking?"); // Puoi aggiungere qui l'azione per il caso in cui nessuna delle condizioni sopra sia soddisfatta
+    }
+  }, [])
   // FUNCTIONS ----------------
   const hendleMenuButton = () => {
     console.log("hendleMenuButton");
     setMenuOpen(!isMenuOpen);
   };
-  // RETURN -------------------
+
+    // RETURN -------------------
   return (
     <>
       <Head>

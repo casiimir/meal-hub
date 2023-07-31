@@ -27,7 +27,7 @@
   }
 
   .header {
-    border: 1px solid red;
+    // border: 1px solid red;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -46,7 +46,7 @@
         justify-content: space-between;
       }
       .section__content {
-        border: 1px solid blue;
+        // border: 1px solid blue;
         display: flex;
         flex-direction: row;
         overflow: scroll;
@@ -74,13 +74,12 @@
 
 @media all and (min-width: 641px) {
   .FiltersModal {
-  
-    border: 1px solid green;
-  position: static;
+    // border: 1px solid green;
+    position: static;
     &.isClosed{
-      border: 1px solid black;
-      width: 99%;
-      max-width: 673px;
+    // border: 1px solid black;
+    width: 93.5%;
+    max-width: 530px;
     height: fit-content;
     }
   .header{
