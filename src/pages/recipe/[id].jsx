@@ -3,13 +3,18 @@ import Head from "next/head";
 import styles from "./recipe.module.scss";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
-import { LuArrowLeft } from "react-icons/lu";
+import { LuArrowLeft, LuPlay } from "react-icons/lu";
 import CardVideo from "@/components/CardVideo";
-
-const recipe = () => {
+import CardHeroRecipe from "@/components/CardHeroRecipe";
+const recipe = ({ data }) => {
   // VARIABLES ----------------
+  const recipe = data.meals[0];
+  // const mediaMatch = window.matchMedia("(min-width: 768px)");
 
-  const ingredients = Object.entries(meals[0])
+  // CONDITIONS ---------------
+  // FUNCTIONS ----------------
+
+  const ingredients = Object.entries(recipe)
     .filter(
       ([ingredients, values]) =>
         ingredients.startsWith("strIngredient") &&
@@ -18,15 +23,12 @@ const recipe = () => {
     )
     .map(([ingredients, values]) => values);
 
-  const measure = Object.entries(meals[0])
+  const measure = Object.entries(recipe)
     .filter(
       ([ingredients, values]) =>
         ingredients.startsWith("strMeasure") && values !== null && values !== ""
     )
     .map(([ingredients, values]) => values);
-
-  // CONDITIONS ---------------
-  // FUNCTIONS ----------------
   // RETURN -------------------
   return (
     <>
@@ -53,31 +55,47 @@ const recipe = () => {
       </main>
 
       {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-
-      {meals.map((recipe) => (
+      {data?.meals.map((recipe) => (
         <div className={styles.Recipe} key={recipe.idMeal}>
-          <CardVideo />
-
-          <section className={styles.Instructions}>
-            <h4 className={styles.TitleInstr}>Instruction</h4>
-            <p className={styles.Desc}>{recipe.strInstructions}</p>
-          </section>
-          <section className={styles.Ingredients}>
-            <h4 className={styles.TitleIngr}>Ingredients</h4>
-            {ingredients.map((ingredients, index) => (
-              <div className={styles.container} key={index + ingredients}>
-                <div className={styles.img}>
-                  <img
-                    src={`https://www.themealdb.com/images/ingredients/${ingredients}.png`}
+          <div className={styles.CardHero}>
+            {recipe.strYoutube === "" ? (
+              <CardHeroRecipe data={data} />
+            ) : (
+              <a className={styles.link} href={recipe.strYoutube}>
+                <CardHeroRecipe data={data} />
+                <div className={styles.buttonCenter}>
+                  <Button
+                    shape="round"
+                    size="sm"
+                    width="40"
+                    icon={() => <LuPlay size={24} />}
                   />
                 </div>
-                <div className={styles.IngrContainer}>
-                  <h3 className={styles.IngrText}>{ingredients}</h3>
+              </a>
+            )}
+          </div>
+          <div className={styles.wrapper}>
+            <section className={styles.Instructions}>
+              <h4 className={styles.TitleInstr}>Instruction</h4>
+              <p className={styles.Desc}>{recipe.strInstructions}</p>
+            </section>
+            <section className={styles.Ingredients}>
+              <h4 className={styles.TitleIngr}>Ingredients</h4>
+              {ingredients?.map((ingredients, index) => (
+                <div className={styles.container} key={index + ingredients}>
+                  <div className={styles.img}>
+                    <img
+                      src={`https://www.themealdb.com/images/ingredients/${ingredients}.png`}
+                    />
+                  </div>
+                  <div className={styles.IngrContainer}>
+                    <h3 className={styles.IngrText}>{ingredients}</h3>
+                  </div>
+                  <p className={styles.Measure}>{measure[index]}</p>
                 </div>
-                <p className={styles.Measure}>{measure[index]}</p>
-              </div>
-            ))}
-          </section>
+              ))}
+            </section>
+          </div>
         </div>
       ))}
       {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
@@ -87,71 +105,12 @@ const recipe = () => {
 
 export default recipe;
 
-// export async function getServerSideProps() {
-//   // const search = context.query;
-//   const res = await fetch(
-//     "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772"
-//   );
-//   const data = await res.json();
+export async function getServerSideProps(context) {
+  const search = context.query.id;
+  const res = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${search}`
+  );
+  const data = await res.json();
 
-//   return { props: { recipe } };
-// }
-const meals = [
-  {
-    idMeal: "52771",
-    strMeal: "Spicy Arrabiata Penne",
-    strDrinkAlternate: null,
-    strCategory: "Vegetarian",
-    strArea: "Italian",
-    strInstructions:
-      "Bring a large pot of water to a boil. Add kosher salt to the boiling water, then add the pasta. Cook according to the package instructions, about 9 minutes.\r\nIn a large skillet over medium-high heat, add the olive oil and heat until the oil starts to shimmer. Add the garlic and cook, stirring, until fragrant, 1 to 2 minutes. Add the chopped tomatoes, red chile flakes, Italian seasoning and salt and pepper to taste. Bring to a boil and cook for 5 minutes. Remove from the heat and add the chopped basil.\r\nDrain the pasta and add it to the sauce. Garnish with Parmigiano-Reggiano flakes and more basil and serve warm.",
-    strMealThumb:
-      "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg",
-    strTags: "Pasta,Curry",
-    strYoutube: "https://www.youtube.com/watch?v=1IszT_guI08",
-    strIngredient1: "penne rigate",
-    strIngredient2: "olive oil",
-    strIngredient3: "garlic",
-    strIngredient4: "chopped tomatoes",
-    strIngredient5: "red chile flakes",
-    strIngredient6: "italian seasoning",
-    strIngredient7: "basil",
-    strIngredient8: "Parmigiano-Reggiano",
-    strIngredient9: "",
-    strIngredient10: "",
-    strIngredient11: "",
-    strIngredient12: "",
-    strIngredient13: "",
-    strIngredient14: "",
-    strIngredient15: "",
-    strIngredient16: null,
-    strIngredient17: null,
-    strIngredient18: null,
-    strIngredient19: null,
-    strIngredient20: null,
-    strMeasure1: "1 pound",
-    strMeasure2: "1/4 cup",
-    strMeasure3: "3 cloves",
-    strMeasure4: "1 tin ",
-    strMeasure5: "1/2 teaspoon",
-    strMeasure6: "1/2 teaspoon",
-    strMeasure7: "6 leaves",
-    strMeasure8: "spinkling",
-    strMeasure9: "",
-    strMeasure10: "",
-    strMeasure11: "",
-    strMeasure12: "",
-    strMeasure13: "",
-    strMeasure14: "",
-    strMeasure15: "",
-    strMeasure16: null,
-    strMeasure17: null,
-    strMeasure18: null,
-    strMeasure19: null,
-    strMeasure20: null,
-    strSource: null,
-    strImageSource: null,
-    strCreativeCommonsConfirmed: null,
-    dateModified: null,
-  },
-];
+  return { props: { data } };
+}
