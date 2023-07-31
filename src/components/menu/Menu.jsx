@@ -1,14 +1,12 @@
-import { Routes } from '@/pages/routes';
-import styles from './Menu.module.scss'
-import { useRouter } from 'next/router';
-import { getAuth } from 'firebase/auth';
-import { useEffect, useState } from 'react';
-import { LuX } from 'react-icons/lu';
+import { Routes } from "@/pages/routes";
+import styles from "./Menu.module.scss";
+import { useRouter } from "next/router";
+import { getAuth } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { LuX } from "react-icons/lu";
+import Button from "../Button";
 
-const Menu = ({
-  isMenuOpen,
-  setMenuOpen
-}) => {
+const Menu = ({ isMenuOpen, setMenuOpen }) => {
   // VARIABLES ----------------
   const router = useRouter();
   // const auth = getAuth();
@@ -28,73 +26,70 @@ const Menu = ({
       setClassMenu("isClosed");
       document.body.style.overflow = "scroll";
     }
-    setCurrentLocation(router.asPath)
+    setCurrentLocation(router.asPath);
   }, [isMenuOpen]);
 
   const handleNavigate = (path) => {
     setMenuOpen(false);
     router.push(path);
-  }
+  };
   // RETURN -------------------
   return (
-    <div className={`
+    <div
+      className={`
     ${styles.SlideMenu}
     ${styles[classMenu]}
-    `}>
-
+    `}
+    >
       <div className={`${styles.header}`}>
-        <div onClick={() => setMenuOpen(false)} className={`${styles.closeBtn}`}>
-          <LuX size={24} />
-        </div>
+        <Button
+          icon={(size) => <LuX size={size} />}
+          onClick={() => setMenuOpen(false)}
+        />
       </div>
 
       <div className={`${styles.content}`}>
         {Routes.map((route, index) => {
-          if (!route.hideSideMenu) return (
-            <div
-              onClick={() => handleNavigate(route.path)}
-              key={index + "sideMenuRoutes"}
-              className={`${styles.contentBtn}`}
-            >
-              {route.icons ?
-
-                currentLocation !== route.path ? route.icons[0] : route.icons[1]
-
-                : null}
-              <p className={currentLocation !== route.path ? `${styles.contentBtn__text}` : `${styles.contentBtn__text__active}`}>
-                {route.name}
-              </p>
-            </div>
-          )
+          if (!route.hideSideMenu)
+            return (
+              <div
+                onClick={() => handleNavigate(route.path)}
+                key={index + "sideMenuRoutes"}
+                className={`${styles.contentBtn}`}
+              >
+                {route.icons
+                  ? currentLocation !== route.path
+                    ? route.icons[0]
+                    : route.icons[1]
+                  : null}
+                <p
+                  className={
+                    currentLocation !== route.path
+                      ? `${styles.contentBtn__text}`
+                      : `${styles.contentBtn__text__active}`
+                  }
+                >
+                  {route.name}
+                </p>
+              </div>
+            );
         })}
 
-        {logged ?
-
+        {logged ? (
           <div
             // onClick={() => { signOut(auth).then(() => setMenuOpen(false)) }}
             className={`${styles.contentBtn}`}
           >
-            <p className={`${styles.contentBtn__text}`}>
-              Log out
-
-            </p>
+            <p className={`${styles.contentBtn__text}`}>Log out</p>
           </div>
-          :
-          <div
-
-            className={`${styles.contentBtn}`}
-          >
-            <p className={`${styles.contentBtn__text}`}>
-              Utente non loggato
-
-            </p>
+        ) : (
+          <div className={`${styles.contentBtn}`}>
+            <p className={`${styles.contentBtn__text}`}>Utente non loggato</p>
           </div>
-        }
-
+        )}
       </div>
-
     </div>
   );
-}
+};
 
 export default Menu;
