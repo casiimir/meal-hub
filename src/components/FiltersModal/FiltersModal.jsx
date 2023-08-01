@@ -96,8 +96,7 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
       className={`
     ${styles.FiltersModal}
     ${styles[classMenu]}
-    `}
-    >
+    `}>
       <div className={styles.header}>
         <h3>Filter Search</h3>
         <Button
@@ -111,6 +110,7 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
         <div className={styles.section}>
           <div className={styles.section__header}>
             <h3>Nations: {allNations?.length}</h3>
+
             <p>{selectedNation}</p>
           </div>
           <div className={styles.section__content}>
@@ -123,14 +123,12 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
                 delay: 1500,
                 disableOnInteraction: true,
               }}
-              className={`${styles.CategoriesSwiper}`}
-            >
+              className={`${styles.CategoriesSwiper}`}>
               {allNations?.map((nation, index) => {
                 return (
                   <SwiperSlide
                     key={index + "filterNation"}
-                    className={`${styles.swiperSlide}`}
-                  >
+                    className={`${styles.swiperSlide}`}>
                     <BadgeActive
                       onClick={() => setSelectedNation(nation.strArea)}
                       isActive={

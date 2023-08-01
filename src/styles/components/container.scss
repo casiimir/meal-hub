@@ -4,7 +4,7 @@
     background-color: $color;
     color: $contrast;
     @if ($hover == "true") {
-      &:hover {
+      &:active {
         outline: $border-width solid $color;
         background-color: #fff;
         color: $color;
@@ -16,7 +16,7 @@
     outline-offset: -$border-width;
     color: $color;
     @if ($hover == "true") {
-      &:hover {
+      &:active {
         background-color: $color;
         color: $contrast;
       }

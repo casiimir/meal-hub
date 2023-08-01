@@ -116,20 +116,23 @@ const Search = (props) => {
             <h1>{pageTitle}</h1>
             <p>Total recipes : {data?.length}</p>
           </div>
-
-          {/* ----------- SEARCH BAR ------------- */}
-          <div className={styles.search__container}>
-            <SearchBar setFilterAll={setFilterAll} />
+          {/* RESPONSIVE PART */}
+          <div className={styles.responsive}>
+            {/* ----------- SEARCH BAR ------------- */}
+            <div className={styles.responsiveFilter}>
+              <div className={styles.search__container}>
+                <SearchBar setFilterAll={setFilterAll} />
+              </div>
+            </div>
+            {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
+            <div className={styles.responsiveMain}>
+              <div className={styles.Search__grid}>
+                {data?.map((obj, index) => {
+                  return <CardGrid data={obj} key={index + "SearchPage"} />;
+                })}
+              </div>
+            </div>
           </div>
-
-          {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-
-          <div className={styles.Search__grid}>
-            {data?.map((obj, index) => {
-              return <CardGrid data={obj} key={index + "SearchPage"} />;
-            })}
-          </div>
-
           {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
         </main>
       </div>
