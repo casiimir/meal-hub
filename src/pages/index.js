@@ -40,14 +40,14 @@ export default function Home({ area, lambRecepies, categories }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
 
-    if (currentHours > 7 && currentHours < 12) {
+    if (currentHours >= 7 < 12) {
       setPageSubtitle("What are you cooking for breakfast?");
-    } else if (currentHours >= 12 && currentHours < 14) {
+    } else if (currentHours >= 12 < 15) {
       setPageSubtitle("What are you cooking for lunch?")
-    } else if (currentHours >= 19 && currentHours < 22) {
+    } else if (currentHours >= 19 < 22) {
       setPageSubtitle("What are you cooking for dinner?")
     } else {
-      setPageSubtitle("What are you cooking?"); // Puoi aggiungere qui l'azione per il caso in cui nessuna delle condizioni sopra sia soddisfatta
+      setPageSubtitle("What are you cooking?"); 
     }
   }, [])
   // FUNCTIONS ----------------
