@@ -8,11 +8,12 @@ import Button from "@/components/Button";
 import { LuMenu, LuUser } from "react-icons/lu";
 import CardHeroSwiper from "@/components/CardHeroSwiper";
 import CategoriesSwiper from "@/components/CategoriesSwiper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SectionPage from "@/components/SectionPage";
 import Menu from "@/components/menu";
 import { useRouter } from "next/router";
 import recipe from "./recipe/[id]";
+
 
 export default function Home({ area, lambRecepies, categories }) {
   const sections = [
@@ -27,6 +28,8 @@ export default function Home({ area, lambRecepies, categories }) {
       category: lambRecepies,
     },
   ];
+  // const currentHours = new Date().getHours()
+  const currentHours = 19
   // console.log(recipe);
   // VARIABLES ----------------
 
@@ -35,12 +38,25 @@ export default function Home({ area, lambRecepies, categories }) {
   const [pageTitle, setPageTitle] = useState("Welcome!");
   const [pageSubtitle, setPageSubtitle] = useState("Sottotitolo pagina");
   const [isMenuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+
+    if (currentHours >= 7 < 12) {
+      setPageSubtitle("What are you cooking for breakfast?");
+    } else if (currentHours >= 12 < 15) {
+      setPageSubtitle("What are you cooking for lunch?")
+    } else if (currentHours >= 19 < 22) {
+      setPageSubtitle("What are you cooking for dinner?")
+    } else {
+      setPageSubtitle("What are you cooking?"); 
+    }
+  }, [])
   // FUNCTIONS ----------------
   const hendleMenuButton = () => {
     console.log("hendleMenuButton");
     setMenuOpen(!isMenuOpen);
   };
-  // RETURN -------------------
+
+    // RETURN -------------------
   return (
     <>
       <Head>
@@ -85,6 +101,9 @@ export default function Home({ area, lambRecepies, categories }) {
               <div className={`${styles.section} ${styles.section_padding}  `}>
                 <SearchBar />
               </div>
+              {/* <div className={styles.filter}>
+                <FiltersDesktop />
+              </div> */}
             </div>
             {/*------------  END RESPONSIVE ------------ */}
             {/* ----------------------- */}
