@@ -1,0 +1,75 @@
+.CardHero {
+  border-radius: $border-radius-default;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 1440px;
+  position: relative;
+
+  cursor: pointer;
+
+  .CardHero__gradient {
+    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), #000);
+    border-radius: $border-radius-default;
+    .header {
+      padding: $page-padding;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      // justify-content: flex-end;
+      .indicatior {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        z-index: 1;
+        background-color: $color-primary;
+        border-radius: $border-radius-default;
+        padding: 10px;
+        color: $text-color;
+      }
+
+      .buttonSave {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        z-index: 1;
+        // button {
+        //   @media all and (min-width: 768px) and (max-width: 955px) {
+        //     background-color: red;
+        //     width: 50px;
+        //   }
+        //   @media all and (min-width: 955px) {
+        //     background-color: black;
+        //     width: 57px;
+        //     height: 57px;
+        //     svg {
+        //       width: 26px;
+        //       height: 26px;
+        //     }
+        //   }
+        // }
+      }
+    }
+
+    .content {
+      color: $text-color;
+      padding: $page-padding;
+      .card__title {
+        font-size: 14px;
+        @media all and (min-width: 768px) {
+          font-size: 25px;
+        }
+      }
+      .card__subtitle {
+        font-size: 11px;
+        @media all and (min-width: 768px) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

@@ -49,11 +49,7 @@ const Recipe = ({ data }) => {
           leftButton={
             <Button
               onClick={() => {
-                if (window.history.state && window.history.state.idx > 0) {
-                  router.back();
-                } else {
-                  router.push("/");
-                }
+                router.back();
               }}
               icon={() => <LuArrowLeft size={24} />}
               type="text"

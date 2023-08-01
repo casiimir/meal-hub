@@ -1,12 +1,15 @@
 .Fridge {
-  height: 100vh;
-  width: 100%;
-  position: fixed;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  padding: $page-padding;
+}
+
+.recipes__slider {
+  margin-top: 20px;
 }
 
 .wrapper {
@@ -103,6 +106,141 @@
 // section recepi
 .recepiSection {
   margin-top: 20px;
+}
+
+.FiltersModal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  .section {
+    .section__header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .section__header__recipe {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section__content__cards {
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+    }
+    .section__content {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+
+      .form {
+        width: 100%;
+        .container {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 20px;
+
+          .searchIcon__container {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            .searchIcon {
+              padding: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: $color-medium;
+            }
+            .searchIcon__active {
+              padding: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: $color-primary;
+            }
+          }
+
+          .SearchBar {
+            padding: 22px 20px 22px 50px;
+            width: 100%;
+            border-radius: $border-radius-default;
+            border: 2px solid $color-medium;
+            color: $color-primary;
+            outline: none;
+            font-size: 16px;
+            &:focus {
+              border: 2px solid $color-primary;
+            }
+          }
+        }
+
+        .searchResults {
+          padding: $page-padding;
+          border-radius: $border-radius-default;
+          background-color: white;
+          border: 2px solid $color-primary;
+          max-height: 240px;
+          width: calc(100% - ($page-padding * 4));
+          position: absolute;
+          z-index: 1001;
+          overflow: scroll;
+          margin-top: 10px;
+
+          &.isActive {
+            display: block;
+          }
+          &.notActive {
+            display: none;
+          }
+
+          .results {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 20px;
+          }
+        }
+      }
+
+      .content__grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+    }
+  }
+}
+.ingredients__container {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  margin-top: 26px;
+
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  .ingredients__container__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ingredients__content {
+    display: flex;
+    flex-direction: column;
+
+    gap: $gap;
+    height: 55vh;
+    overflow: scroll;
+  }
 }
 
 @media screen and (min-width: 640px) and (max-width: 1920px) {

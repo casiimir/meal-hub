@@ -1,0 +1,185 @@
+.FiltersModal {
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  right: 0;
+  height: 0vh;
+  transform: translateY(50px);
+  background-color: white;
+  transition: all 0.25s ease-in-out;
+  padding: $page-padding;
+  border-radius: $border-radius-default;
+  box-shadow: 0px 0px 15px 14px rgba(0, 0, 0, 0.1);
+
+  &.isOpen {
+    width: calc(100vw - $page-padding * 2);
+    height: calc(90vh - $page-padding * 2);
+    transform: translateY(0px);
+  }
+  &.isClosed {
+    width: calc(100vw - $page-padding * 2);
+    height: 0vh;
+  }
+
+  .swiperSlide {
+    width: auto !important;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .FiltersModal__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    .section {
+      .section__header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .section__content {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+
+        .form {
+          width: 100%;
+          .container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+
+            .searchIcon__container {
+              position: absolute;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 5px;
+              .searchIcon {
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $color-medium;
+              }
+              .searchIcon__active {
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $color-primary;
+              }
+            }
+
+            .SearchBar {
+              padding: 22px 20px 22px 50px;
+              width: 100%;
+              border-radius: $border-radius-default;
+              border: 2px solid $color-medium;
+              color: $color-primary;
+              outline: none;
+              font-size: 16px;
+              &:focus {
+                border: 2px solid $color-primary;
+              }
+            }
+          }
+
+          .searchResults {
+            padding: $page-padding;
+            border-radius: $border-radius-default;
+            background-color: white;
+            border: 2px solid $color-primary;
+            max-height: 240px;
+            width: calc(100% - ($page-padding * 4));
+            position: absolute;
+            z-index: 1001;
+            overflow: scroll;
+            margin-top: 10px;
+
+            &.isActive {
+              display: block;
+            }
+            &.notActive {
+              display: none;
+            }
+
+            .results {
+              margin-top: 10px;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+              gap: 20px;
+            }
+          }
+        }
+
+        .content__grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+      }
+    }
+  }
+  .ingredients__container {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    margin-top: 26px;
+    .ingredients__container__header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ingredients__content {
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      height: 50vh;
+      overflow: scroll;
+    }
+  }
+  .footer {
+    margin-top: 20px;
+    width: calc(100vw - ($page-padding * 2));
+  }
+  .error {
+    color: $color-danger;
+  }
+}
+
+@media all and (min-width: 641px) {
+  .FiltersModal {
+    // border: 1px solid green;
+    position: static;
+    &.isClosed {
+      // border: 1px solid black;
+      width: 93.5%;
+      max-width: 530px;
+      height: fit-content;
+    }
+    .header {
+      width: 100%;
+      button {
+        display: none;
+      }
+    }
+    .section__content {
+      width: 100%;
+    }
+    .footer {
+      width: auto;
+    }
+  }
+}

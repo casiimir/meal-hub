@@ -4,7 +4,7 @@
   width: calc(100vw - ($page-padding * 4));
   padding: $page-padding;
   top: -$page-padding;
-  transform: translateY(-100px);
+  transform: translateY(-200px);
   left: $page-padding;
   display: flex;
   flex-direction: row;
@@ -32,7 +32,7 @@
     transform: translateY(0px);
   }
   &.isClosed {
-    transform: translateY(-100px);
+    transform: translateY(-200px);
     top: -$page-padding;
   }
   // TYPE--------

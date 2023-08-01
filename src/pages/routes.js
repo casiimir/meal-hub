@@ -20,14 +20,6 @@ export const Routes = [
     icons: [<LuCompass size={24} />, <LuCompass color={mainColor} size={24} />],
   },
   {
-    name: "Saved recipes",
-    path: "/saved",
-    icons: [
-      <LuBookmark size={24} />,
-      <LuBookmark color={mainColor} size={24} />,
-    ],
-  },
-  {
     name: "About us",
     path: "/about",
     icons: [
