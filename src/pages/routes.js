@@ -29,7 +29,7 @@ export const Routes = [
   },
   {
     name: "About us",
-    path: "/about",
+    path: "/aboutUs",
     icons: [
       <LuHandMetal size={24} />,
       <LuHandMetal color={mainColor} size={24} />,
