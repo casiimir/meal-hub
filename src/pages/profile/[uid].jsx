@@ -59,10 +59,7 @@ const Profile = ({ user, uid, followers, following }) => {
       const q = query(recipeRef, where("idMeal", "==", saved.saved[index]));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        // console.log(doc.id, " => ", doc.data());
         aux.push(doc.data());
-        console.log(aux);
       });
     }
     const promise = Promise.all(aux);
@@ -120,7 +117,6 @@ const Profile = ({ user, uid, followers, following }) => {
   }, []);
 
   const handleRemoveSpecificIndex = (index) => {
-    console.log("callback");
     setData((data) => data.filter((_, i) => i !== index));
   };
 
