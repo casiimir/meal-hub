@@ -8,16 +8,16 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  max-width: 1040px;
+  max-width: 1175px;
   padding: 16px 0;
-  font-size: 17px;
+  font-size: $heading4;
   h1{
      margin-bottom: 20px;
   }
   p {
     width: 100%;
     text-align:justify;
-    font-size: 22px;
+    font-size: $heading4;
   }
 }
 
