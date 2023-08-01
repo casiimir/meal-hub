@@ -30,9 +30,8 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
       category: lambRecepies,
     },
   ];
-  // const currentHours = new Date().getHours()
-  const currentHours = 19;
-  // console.log(recipe);
+  const currentHours = new Date().getHours()
+
   // VARIABLES ----------------
 
   const router = useRouter();
@@ -43,11 +42,11 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
   );
   const [isMenuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
-    if (currentHours >= 7 < 12) {
+    if (currentHours >= 7 && currentHours < 12) {
       setPageSubtitle("What are you cooking for breakfast?");
-    } else if (currentHours >= 12 < 15) {
+    } else if (currentHours >= 12 && currentHours <= 15) {
       setPageSubtitle("What are you cooking for lunch?");
-    } else if (currentHours >= 19 < 22) {
+    } else if (currentHours >=18 && currentHours  <= 22) {
       setPageSubtitle("What are you cooking for dinner?");
     } else {
       setPageSubtitle("What are you cooking?");
