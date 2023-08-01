@@ -2,7 +2,6 @@ import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import Head from "next/head";
 import { getData } from "@/utils/dbManager";
-
 import styles from "./Home.module.scss";
 import Button from "@/components/Button";
 import { LuMenu, LuUser } from "react-icons/lu";

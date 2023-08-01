@@ -3,6 +3,7 @@ import Head from "next/head";
 import styles from "./aboutUs.module.scss";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
+import NinaImg from "../../../public/assets/img/Nina.jpg";
 import { LuMenu, LuUser } from "react-icons/lu";
 
 const ProfileCard = () => {
@@ -15,25 +16,25 @@ const ProfileCard = () => {
 
   const profiles = [
     {
-      imageSrc: "url_immagine_1.jpg",
+      src: "https://www.venetoformazione.it/wp-content/uploads/2022/02/ottimizzare-immagini-display-retina.jpg",
       title: "Cerma Michela",
       description:
         "Michela is a highly collaborative team member who always brings an excellent spirit of cooperation to the table. She possesses extensive knowledge and experience in programming with JS, React, and CSS. With her proactive attitude, Michela is always ready to lend a helping hand and find innovative solutions to any challenges the team may encounter.",
     },
     {
-      imageSrc: "url_immagine_2.jpg",
+      src: "https://github.com/casiimir/meal-hub/blob/dev/public/assets/img/Luna.jpg",
       title: "Inchiappa Nina",
       description:
         "Nina is another valuable member of the team, with a unique blend of graphic design skills and expertise in programming with React.jsx and CSS. Her exceptional collaborative abilities make her an asset when working with others, and she excels in problem-solving within the realm of web development.",
     },
     {
-      imageSrc: "url_immagine_3.jpg",
-      title: "Luna Raimondo",
+      src: NinaImg,
+      title: "Raimondo Luna",
       description:
         "Luna's strength lies in UI and UX design, bringing a creative and user-centered approach to the team. She has a keen eye for aesthetics and user experience, complemented by her knowledge of programming in JS with the React framework and CSS. Luna's seamless collaboration with her teammates fosters a positive and productive work environment.",
     },
     {
-      imageSrc: "url_immagine_3.jpg",
+      src: NinaImg,
       title: "Turcanu Daniel",
       description:
         "Daniel brings a wealth of knowledge to the team, possessing excellent proficiency in various programming languages such as JS, TypeScript, and a deep understanding of frameworks like React and Next.js. Additionally, he is well-versed in database technologies like MySQL and Firebase. Daniel's broad skillset allows him to tackle a wide range of challenges, and his expertise in different areas makes him a valuable resource for the team.",
@@ -82,7 +83,7 @@ const ProfileCard = () => {
               <div className={styles.profile__card} key={index}>
                 <img
                   className={styles.profile__image}
-                  src={profile.imageSrc}
+                  src={profile.src}
                   alt="Profile"
                 />
                 <div className={styles.text__wrap}>
