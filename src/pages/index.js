@@ -8,13 +8,16 @@ import Button from "@/components/Button";
 import { LuMenu, LuUser } from "react-icons/lu";
 import CardHeroSwiper from "@/components/CardHeroSwiper";
 import CategoriesSwiper from "@/components/CategoriesSwiper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SectionPage from "@/components/SectionPage";
 import Menu from "@/components/menu";
 import { useRouter } from "next/router";
-import recipe from "./recipe/[id]";
+import { useAuthContext } from "@/context/AuthContext";
+import { localStorageManager } from "@/utils/localStorage";
 
-export default function Home({ area, lambRecepies, categories }) {
+export default function Home({ area, lambRecepies, categories, heroData }) {
+  // VARIABLES ----------------
+  const { user } = useAuthContext();
   const sections = [
     {
       title: "Mediterranean recepies",
@@ -27,19 +30,33 @@ export default function Home({ area, lambRecepies, categories }) {
       category: lambRecepies,
     },
   ];
-  // console.log(recipe);
-  // VARIABLES ----------------
 
   const router = useRouter();
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState("Welcome!");
-  const [pageSubtitle, setPageSubtitle] = useState("Sottotitolo pagina");
+  const [pageSubtitle, setPageSubtitle] = useState(
+    "Login to unlock all funcionalities!"
+  );
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [userLogged, setUserLogged] = useState(null);
   // FUNCTIONS ----------------
   const hendleMenuButton = () => {
     console.log("hendleMenuButton");
     setMenuOpen(!isMenuOpen);
   };
+  useEffect(() => {
+    console.log(user);
+    if (user) {
+      const auxData = localStorageManager.getData("user");
+      setUserLogged(auxData);
+      console.log("user local data : ", auxData);
+      setPageTitle("Welcome back!");
+      setPageSubtitle("Nice to see you again " + auxData.name);
+    } else {
+      setUserLogged(null);
+    }
+  }, [user]);
+
   // RETURN -------------------
   return (
     <>
@@ -68,7 +85,13 @@ export default function Home({ area, lambRecepies, categories }) {
                 icon={() => <LuUser size={24} />}
                 type="text"
                 color="dark"
-                onClick={() => router.push("/profile")}
+                text={userLogged?.name}
+                direction="right"
+                onClick={
+                  user?.uid
+                    ? () => router.push("/profile/" + user?.uid)
+                    : () => router.push("/login")
+                }
               />
             }
           />
@@ -90,7 +113,7 @@ export default function Home({ area, lambRecepies, categories }) {
             {/* ----------------------- */}
             <div className={styles.responsiveMain}>
               <div className={styles.section}>
-                <CardHeroSwiper />
+                <CardHeroSwiper data={heroData} />
               </div>
               {/* ----------------------- */}
               <div className={styles.section}>
@@ -116,12 +139,14 @@ export default function Home({ area, lambRecepies, categories }) {
 }
 
 export async function getServerSideProps() {
+  const heroData = await getData.category("Pasta");
   const categories = await getData.categories();
   const area = await getData.area("Italian");
   const lambRecepies = await getData.ingridient("lamb");
 
   return {
     props: {
+      heroData,
       categories,
       area: area.meals,
       lambRecepies: lambRecepies.meals,

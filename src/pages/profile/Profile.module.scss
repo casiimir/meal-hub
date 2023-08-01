@@ -2,42 +2,58 @@
   .profile__info {
     display: flex;
     flex-direction: column;
-    gap : $gap;
-
-    .avatar{
-      width: 100px;
-      height: 100px;
-      border-radius: 100%;
-      background-color: $color-primary;
-      .avatar__img{
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+    gap: $gap;
+    .profile__info__header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      .avatar {
+        width: 100px;
+        height: 100px;
         border-radius: 100%;
+        box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .avatar__img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          border-radius: 100%;
+        }
+      }
+      .profile__data {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        .profile__data__container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
       }
     }
 
-    .description{
-
+    .description {
     }
 
-    .modify__container{
-
+    .modify__container {
     }
   }
-  .content{
+  .content {
     border-top: 1px solid $color-medium;
     padding: $page-padding;
     display: flex;
     flex-direction: column;
-    .header{
+    .header {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
     }
 
-    .content__content{
+    .content__content {
       padding-top: $page-padding;
       display: flex;
       flex-direction: column;

@@ -10,7 +10,7 @@ import SearchBar from "@/components/SearchBar";
 import { useRouter } from "next/router";
 
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "@/utils/firebase";
+import { db } from "@/firebase/config";
 
 const Search = (props) => {
   // VARIABLES ----------------

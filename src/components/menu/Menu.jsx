@@ -1,22 +1,33 @@
 import { Routes } from "@/pages/routes";
 import styles from "./Menu.module.scss";
 import { useRouter } from "next/router";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { LuX } from "react-icons/lu";
+import { LuLogIn, LuLogOut, LuX } from "react-icons/lu";
 import Button from "../Button";
+import { useAuthContext } from "@/context/AuthContext";
+import { localStorageManager } from "@/utils/localStorage";
 
 const Menu = ({ isMenuOpen, setMenuOpen }) => {
   // VARIABLES ----------------
   const router = useRouter();
-  // const auth = getAuth();
-  // const { user } = useAuthContext();
+  const auth = getAuth();
+  const { user } = useAuthContext();
 
   // CONDITIONS ---------------
   const [classMenu, setClassMenu] = useState("isClosed"); //"isOpen" | "isClosed"
   const [currentLocation, setCurrentLocation] = useState("");
-  const [logged, setLogged] = useState(false);
+  const [userLogged, setUserLogged] = useState(null);
   // FUNCTIONS ----------------
+  useEffect(() => {
+    console.log(user);
+    if (user) {
+      const auxData = localStorageManager.getData("user");
+      setUserLogged(auxData);
+    } else {
+      setUserLogged(null);
+    }
+  }, [user]);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -75,18 +86,30 @@ const Menu = ({ isMenuOpen, setMenuOpen }) => {
             );
         })}
 
-        {logged ? (
-          <div
-            // onClick={() => { signOut(auth).then(() => setMenuOpen(false)) }}
-            className={`${styles.contentBtn}`}
-          >
-            <p className={`${styles.contentBtn__text}`}>Log out</p>
-          </div>
-        ) : (
-          <div className={`${styles.contentBtn}`}>
-            <p className={`${styles.contentBtn__text}`}>Utente non loggato</p>
-          </div>
-        )}
+        {userLogged ? (
+          <Button
+            type="outline"
+            color="danger"
+            direction="right"
+            icon={(size) => <LuLogOut size={size} />}
+            onClick={() => {
+              signOut(auth).then(() => setMenuOpen(false));
+            }}
+            text={"Log out from " + userLogged?.name}
+          />
+        ) : isMenuOpen ? (
+          <Button
+            type="fill"
+            color="primary"
+            direction="right"
+            icon={(size) => <LuLogIn size={size} />}
+            onClick={() => {
+              router.push("/login");
+              setMenuOpen(false);
+            }}
+            text={"Login to unlock all features"}
+          />
+        ) : null}
       </div>
     </div>
   );

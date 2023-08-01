@@ -8,9 +8,6 @@ const Navbar = ({ leftButton, pageTitle = "Default page", rightButton }) => {
   const navBarHeight = 80; // è da cambiare in base al valore in "styles - variables.scss"
   // CONDITIONS ---------------
   const [showPageTitle, setShowPageTitle] = useState(false);
-  const handleGoBack = () => {
-    router.push("/");
-  };
   // FUNCTIONS ----------------
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -23,9 +20,7 @@ const Navbar = ({ leftButton, pageTitle = "Default page", rightButton }) => {
   return (
     <>
       <div className={styles.Navbar}>
-        <div onClick={() => handleGoBack()} className={styles.sx}>
-          {leftButton}
-        </div>
+        <div className={styles.sx}>{leftButton}</div>
         <div className={styles.pageTitle}>
           {showPageTitle ? pageTitle : null}
         </div>

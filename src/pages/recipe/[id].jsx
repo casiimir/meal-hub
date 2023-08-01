@@ -6,9 +6,11 @@ import Button from "@/components/Button";
 import { LuArrowLeft, LuPlay } from "react-icons/lu";
 import CardVideo from "@/components/CardVideo";
 import CardHeroRecipe from "@/components/CardHeroRecipe";
+import { useRouter } from "next/navigation";
 const recipe = ({ data }) => {
   // VARIABLES ----------------
   const recipe = data.meals[0];
+  const router = useRouter();
   // const mediaMatch = window.matchMedia("(min-width: 768px)");
 
   // CONDITIONS ---------------
@@ -45,6 +47,13 @@ const recipe = ({ data }) => {
         <Navbar
           leftButton={
             <Button
+              onClick={() => {
+                if (window.history.state && window.history.state.idx > 0) {
+                  router.back();
+                } else {
+                  router.push("/");
+                }
+              }}
               icon={() => <LuArrowLeft size={24} />}
               type="text"
               color="dark"
