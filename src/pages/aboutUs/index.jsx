@@ -9,14 +9,14 @@ const ProfileCard = () => {
   // VARIABLES ----------------
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState("About Us");
-  const [pageSubtitle, setPageSubtitle] = useState("Sottotitolo pagina");
+  const [pageSubtitle, setPageSubtitle] = useState("Together, this diverse team of Michela, Nina, Luna, and Daniel forms a cohesive unit, combining their respective skills in programming, design, and collaboration. Their collective strengths and collaborative mindset ensure that they can tackle complex projects, finding innovative and elegant solutions to deliver outstanding results in the realm of web development and beyond.");
 
   const profiles = [
     {
       imageSrc: "url_immagine_1.jpg",
-      title: "Crema Michela",
+      title: "Cerma Michela",
       description:
-        "Michela is a highly collaborative team member who always brings an excellent spirit of cooperation to the table. She possesses extensive knowledge and experience in programming with JS, JSX, and CSS. With her proactive attitude, Michela is always ready to lend a helping hand and find innovative solutions to any challenges the team may encounter.",
+        "Michela is a highly collaborative team member who always brings an excellent spirit of cooperation to the table. She possesses extensive knowledge and experience in programming with JS, React, and CSS. With her proactive attitude, Michela is always ready to lend a helping hand and find innovative solutions to any challenges the team may encounter.",
     },
     {
       imageSrc: "url_immagine_2.jpg",
@@ -45,7 +45,7 @@ const ProfileCard = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.HomePage}>
-        <main>
+        
           {/* ------------ NAVBAR ------------ */}
           <Navbar
             leftButton={
@@ -65,7 +65,8 @@ const ProfileCard = () => {
             }
           />
           {/* ----------- HEADER ------------- */}
-          <div className="page-header">
+          <main className={styles.main}>
+          <div  className={styles.title}>
             <h1>{pageTitle}</h1>
             <p>{pageSubtitle}</p>
           </div>
@@ -82,7 +83,7 @@ const ProfileCard = () => {
                 />
                  <div className={styles.text__wrap}>
                 <h2 className={styles.profile__title}>{profile.title}</h2>
-                <p className="profile-description">{profile.description}</p>
+                <p className={styles.profile__description}>{profile.description}</p>
                 </div>
               </div>
             ))}
