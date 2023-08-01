@@ -1,7 +1,6 @@
 import Button from "../Button";
 import CardFilteredSwiper from "../CardFilteredSwiper";
 import styles from "./SectionPage.module.scss";
-// import { obj } from "../CardFiltered/obj";
 import { useRouter } from "next/navigation";
 // devo passare 3 props per i tre titoli
 const SectionPage = ({ sections }) => {
@@ -11,14 +10,14 @@ const SectionPage = ({ sections }) => {
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
   const handleExplore = () => {
-    router.push("/search/" + sections.exploreto);
+    router.push("/search/" + sections?.exploreto);
   };
   // RETURN -------------------
   return (
     <>
       <div className={styles.SectionPage}>
         <div className={styles.header}>
-          <h3>{sections.title}</h3>
+          <h3>{sections?.title}</h3>
           <Button
             text="Explore more"
             type="text"
@@ -28,7 +27,7 @@ const SectionPage = ({ sections }) => {
           />
         </div>
         <div className={styles.content}>
-          <CardFilteredSwiper obj={sections.category} />
+          <CardFilteredSwiper obj={sections?.category} />
         </div>
       </div>
     </>

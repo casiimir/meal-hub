@@ -2,6 +2,7 @@ import Button from "../Button";
 import { useRouter } from "next/router";
 import { LuBookmarkPlus } from "react-icons/lu";
 import styles from "./CardGrid.module.scss";
+import SaveBadge from "../SaveBadge";
 
 const CardGrid = ({ data }) => {
   // VARIABLES ----------------
@@ -10,14 +11,8 @@ const CardGrid = ({ data }) => {
   // FUNCTIONS ----------------
   const handleOpenRecipePage = (idMeal) => {
     router.push("/recipe/" + idMeal);
-    // console.log("handleOpenRecipePage : , router.push(/product/" + data.idMeal);
-    // router.push("/product/"+data.idMeal);
   };
 
-  const handleSaveThisRecipe = (e) => {
-    e.stopPropagation();
-    console.log("handleSaveThisRecipe :" + data.idMeal);
-  };
   const reduceText = (text, maxLenght) => {
     if (text.length <= maxLenght) {
       return text;
@@ -30,15 +25,11 @@ const CardGrid = ({ data }) => {
     <div
       className={styles.CardGrid}
       style={{ backgroundImage: `url(${data?.strMealThumb})` }}
-      onClick={() => handleOpenRecipePage(data.idMeal)}>
+      onClick={() => handleOpenRecipePage(data.idMeal)}
+    >
       <div className={styles.CardGrid__gradient}>
         <div className={styles.header}>
-          <Button
-            size="xs"
-            shape="round"
-            icon={(size) => <LuBookmarkPlus size={size} />}
-            onClick={(e) => handleSaveThisRecipe(e)}
-          />
+          <SaveBadge idMeal={data.idMeal} />
         </div>
 
         <div>

@@ -120,7 +120,7 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
                 <CategoriesSwiper categories={categories} />
               </div>
               {/* ----------------------- */}
-              {sections.map((sect, index) => (
+              {sections?.map((sect, index) => (
                 <div className={styles.section} key={index + "homeSection"}>
                   <SectionPage sections={sect} />
                 </div>
@@ -144,12 +144,14 @@ export async function getServerSideProps() {
   const area = await getData.area("Italian");
   const lambRecepies = await getData.ingridient("lamb");
 
+  console.log(heroData, categories, area, lambRecepies);
+
   return {
     props: {
       heroData,
       categories,
-      area: area.meals,
-      lambRecepies: lambRecepies.meals,
+      area,
+      lambRecepies,
     },
   };
 }

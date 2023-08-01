@@ -1,19 +1,20 @@
-import { useState } from "react";
 import Head from "next/head";
 import styles from "./recipe.module.scss";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
 import { LuArrowLeft, LuPlay } from "react-icons/lu";
-import CardVideo from "@/components/CardVideo";
 import CardHeroRecipe from "@/components/CardHeroRecipe";
 import { useRouter } from "next/navigation";
-const recipe = ({ data }) => {
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "@/firebase/config";
+import { useState } from "react";
+
+const Recipe = ({ data }) => {
   // VARIABLES ----------------
-  const recipe = data.meals[0];
   const router = useRouter();
-  // const mediaMatch = window.matchMedia("(min-width: 768px)");
 
   // CONDITIONS ---------------
+  const [recipe, setRecipe] = useState(data);
   // FUNCTIONS ----------------
   const onHandlePlay = () => window.open(recipe.strYoutube, "_blank");
 
@@ -59,69 +60,73 @@ const recipe = ({ data }) => {
               color="dark"
             />
           }
-          pageTitle={data?.meals[0]?.strMeal}
+          pageTitle={recipe.strMeal}
           rightButton={null}
         />
       </main>
 
       {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-      {data?.meals.map((recipe) => (
-        <div className={styles.Recipe} key={recipe.idMeal}>
-          <div className={styles.CardHero}>
-            {recipe.strYoutube === "" ? (
-              <CardHeroRecipe data={data} />
-            ) : (
-              <div className={styles.link}>
-                <CardHeroRecipe data={data} />
-                <div className={styles.buttonCenter}>
-                  <Button
-                    onClick={() => onHandlePlay()}
-                    shape="round"
-                    size="sm"
-                    width="40"
-                    icon={() => <LuPlay size={24} />}
+
+      <div className={styles.Recipe} key={recipe.idMeal}>
+        <div className={styles.CardHero}>
+          {recipe.strYoutube === "" ? (
+            <CardHeroRecipe data={recipe} />
+          ) : (
+            <div className={styles.link}>
+              <CardHeroRecipe data={recipe} />
+              <div className={styles.buttonCenter}>
+                <Button
+                  onClick={() => onHandlePlay()}
+                  shape="round"
+                  size="sm"
+                  width="40"
+                  icon={() => <LuPlay size={24} />}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className={styles.wrapper}>
+          <section className={styles.Instructions}>
+            <h4 className={styles.TitleInstr}>Instruction</h4>
+            <p className={styles.Desc}>{recipe.strInstructions}</p>
+          </section>
+          <section className={styles.Ingredients}>
+            <h4 className={styles.TitleIngr}>Ingredients</h4>
+            {ingredients?.map((ingredients, index) => (
+              <div className={styles.container} key={index + ingredients}>
+                <div className={styles.img}>
+                  <img
+                    src={`https://www.themealdb.com/images/ingredients/${ingredients}.png`}
                   />
                 </div>
-              </div>
-            )}
-          </div>
-          <div className={styles.wrapper}>
-            <section className={styles.Instructions}>
-              <h4 className={styles.TitleInstr}>Instruction</h4>
-              <p className={styles.Desc}>{recipe.strInstructions}</p>
-            </section>
-            <section className={styles.Ingredients}>
-              <h4 className={styles.TitleIngr}>Ingredients</h4>
-              {ingredients?.map((ingredients, index) => (
-                <div className={styles.container} key={index + ingredients}>
-                  <div className={styles.img}>
-                    <img
-                      src={`https://www.themealdb.com/images/ingredients/${ingredients}.png`}
-                    />
-                  </div>
-                  <div className={styles.IngrContainer}>
-                    <h3 className={styles.IngrText}>{ingredients}</h3>
-                  </div>
-                  <p className={styles.Measure}>{measure[index]}</p>
+                <div className={styles.IngrContainer}>
+                  <h3 className={styles.IngrText}>{ingredients}</h3>
                 </div>
-              ))}
-            </section>
-          </div>
+                <p className={styles.Measure}>{measure[index]}</p>
+              </div>
+            ))}
+          </section>
         </div>
-      ))}
+      </div>
+
       {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
     </>
   );
 };
 
-export default recipe;
+export default Recipe;
 
 export async function getServerSideProps(context) {
   const search = context.query.id;
-  const res = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${search}`
-  );
-  const data = await res.json();
+  let data;
+  const recipesRef = collection(db, "recipes");
+  const dataQ = query(recipesRef, where("idMeal", "==", search));
+
+  const querySnapshot = await getDocs(dataQ);
+  querySnapshot.forEach((doc) => {
+    data = doc.data();
+  });
 
   return { props: { data } };
 }

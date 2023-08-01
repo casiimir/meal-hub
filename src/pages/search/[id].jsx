@@ -155,21 +155,21 @@ export async function getServerSideProps(context) {
   switch (typeQuery) {
     case "a":
       const dataArea = await getData.area(search);
-      dbResp = dataArea.meals;
+      dbResp = dataArea;
       break;
     case "c":
       const dataCategory = await getData.category(search);
-      dbResp = dataCategory.meals;
+      dbResp = dataCategory;
       break;
 
     case "i":
       const dataIngridients = await getData.ingridient(search);
-      dbResp = dataIngridients.meals;
+      dbResp = dataIngridients;
       break;
 
     case "f":
       const dataLetter = await getData.letter(search);
-      dbResp = dataLetter.meals;
+      dbResp = dataLetter;
       break;
     case "k":
       isCustom = true;

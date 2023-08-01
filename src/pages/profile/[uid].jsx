@@ -14,14 +14,23 @@ import {
 import { useRouter } from "next/router";
 import CardHero from "@/components/CardHero";
 import Menu from "@/components/menu";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "@/firebase/config";
 import ModifyUser from "@/components/ModifyUser";
 import { localStorageManager } from "@/utils/localStorage";
+import { useAuthContext } from "@/context/AuthContext";
 
 const Profile = ({ user, uid, followers, following }) => {
   // VARIABLES ----------------
   const router = useRouter();
+  const { saved } = useAuthContext();
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState("");
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -35,10 +44,30 @@ const Profile = ({ user, uid, followers, following }) => {
 
   const [localData, setLocalData] = useState(null);
   const [follow, setFollow] = useState(false);
+
   // FUNCTIONS ----------------
   const handleSwitchContent = (content) => {
     setContent(content);
-    setData(content === "saved" ? userData.saved : userData.watched);
+    content === "saved" ? getSavedData() : null;
+  };
+
+  const getSavedData = async () => {
+    const aux = [];
+    const recipeRef = collection(db, "recipes");
+    for (let index = 0; index < saved?.saved?.length; index++) {
+      console.log(saved.saved[index]);
+      const q = query(recipeRef, where("idMeal", "==", saved.saved[index]));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        // console.log(doc.id, " => ", doc.data());
+        aux.push(doc.data());
+        console.log(aux);
+      });
+    }
+    const promise = Promise.all(aux);
+
+    setData(aux);
   };
 
   const handleFollowUnfollow = async () => {
@@ -85,6 +114,15 @@ const Profile = ({ user, uid, followers, following }) => {
       }
     }
   }, [user]);
+
+  useEffect(() => {
+    getSavedData();
+  }, []);
+
+  const handleRemoveSpecificIndex = (index) => {
+    console.log("callback");
+    setData((data) => data.filter((_, i) => i !== index));
+  };
 
   // RETURN -------------------
   return (
@@ -200,7 +238,13 @@ const Profile = ({ user, uid, followers, following }) => {
 
             <div className={styles.content__content}>
               {data?.map((recep, index) => {
-                return <CardHero data={recep} key={index + "Profile Page"} />;
+                return (
+                  <CardHero
+                    callback={() => handleRemoveSpecificIndex(index)}
+                    data={recep}
+                    key={index + "Profile Page"}
+                  />
+                );
               })}
             </div>
           </div>
