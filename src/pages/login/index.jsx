@@ -9,20 +9,50 @@ import {
   LuArrowRight,
   LuFacebook,
   LuChrome,
+  LuAlertTriangle,
+  LuHome,
 } from "react-icons/lu";
+import { useRouter } from "next/navigation";
+import Menu from "@/components/menu";
+import Toast from "@/components/Toast";
+import signIn from "@/firebase/auth/signin";
+import { useAuthContext } from "@/context/AuthContext";
 
 const Login = () => {
   // VARIABLES ----------------
+  const router = useRouter();
+  const { user } = useAuthContext();
   // CONDITIONS ---------------
-  const [pageTitle, setPageTitle] = useState("Hello,");
-  const [pageSubtitle, setPageSubtitle] = useState("Welcome Back");
+  const [pageTitle, setPageTitle] = useState("Hello");
+  const [pageSubtitle, setPageSubtitle] = useState(
+    "Login to unlock all functionalities!"
+  );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const [error, setError] = useState(false);
+
   // FUNCTIONS ----------------
-  function onSubmit(e) {
+  const hendleMenuButton = () => {
+    console.log("hendleMenuButton");
+    setMenuOpen(!isMenuOpen);
+  };
+  async function onSubmit(e) {
     e.preventDefault();
-    console.log("Email value: " + email);
-    console.log("Password value: " + password);
+
+    setError(false);
+    const { result, error } = await signIn(email, password);
+
+    if (error) {
+      setError(true);
+      return console.log(error);
+    }
+    console.log(result);
+    router.push("/profile/" + result.user.uid);
+  }
+  if (user) {
+    router.push("/");
   }
   // RETURN -------------------
   return (
@@ -37,11 +67,21 @@ const Login = () => {
       {/* ------------ NAVBAR ------------ */}
       <Navbar
         leftButton={
-          <Button icon={() => <LuMenu size={24} />} type="text" color="dark" />
+          <Button
+            icon={() => <LuMenu size={24} />}
+            type="text"
+            color="dark"
+            onClick={() => hendleMenuButton()}
+          />
         }
         pageTitle={pageTitle}
         rightButton={
-          <Button icon={() => <LuUser size={24} />} type="text" color="dark" />
+          <Button
+            icon={() => <LuHome size={24} />}
+            type="text"
+            color="dark"
+            onClick={() => router.push("/")}
+          />
         }
       />
       {/* ----------- HEADER ------------- */}
@@ -82,11 +122,10 @@ const Login = () => {
             <Button
               icon={() => <LuArrowRight size={24} />}
               size="md"
-              text="Sign in"
+              text="Login"
               shape="light"
               direction="right"
               submit={true}
-              style={{ color: "red", marginTop: 10, padding: 10 }}
             />
           </div>
           <div className={styles.paragraphContainer}>
@@ -100,13 +139,29 @@ const Login = () => {
           <Button size="lg" icon={(size) => <LuFacebook size={size} />} />
           <Button size="lg" icon={(size) => <LuChrome size={size} />} />
         </div>
-        <p className={styles.paragraph}>
+        <p className={styles.dontHaveAccount}>
           Don’t have an account?
-          <a className={styles.link} href="sign Up">
-            <span>Sign up</span>
-          </a>
+          <Button
+            size="xs"
+            type="text"
+            direction="right"
+            text="Sign in"
+            onClick={() => router.push("/signUp")}
+          />
         </p>
         {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
+        {/* --------- MODALS & EXTRAS -------- */}
+        <Menu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
+        {/* ----- */}
+        {error ? (
+          <Toast
+            color="warning"
+            isOpen={error}
+            setIsClosed={() => setError(false)}
+            text="OPS! Wrong email or password"
+            icon={(size) => <LuAlertTriangle size={size} />}
+          />
+        ) : null}
       </main>
     </>
   );

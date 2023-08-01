@@ -18,14 +18,14 @@
   display: flex;
   flex-direction: column;
 }
-  .container {
-    max-width: 450px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  
-    gap: 20px;
-    margin: 0 auto;
+.container {
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 20px;
+  margin: 0 auto;
 
   .loginForm {
     padding: 18px;
@@ -34,16 +34,16 @@
     color: $color-primary;
     outline: none;
     font-size: 16px;
-      &:focus {
-        border: 2px solid $color-primary;
-      }
-    }
-    .buttonSubmit {
-      button {
-        width: 100%;
-      }
+    &:focus {
+      border: 2px solid $color-primary;
     }
   }
+  .buttonSubmit {
+    button {
+      width: 100%;
+    }
+  }
+}
 
 .PasswordWrap {
   position: relative;
@@ -59,10 +59,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 35px;
+    top: 50px;
     right: 0;
     transform: translateY(-50% -50%);
+    cursor: pointer;
   }
+}
+
+.dontHaveAccount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.passwordHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .socialButton {
@@ -71,7 +88,6 @@
   align-items: center;
   padding: 5px;
   gap: 30px;
-  
 }
 .paragraphContainer {
   display: flex;
@@ -132,10 +148,8 @@
 }
 
 .checkboxWrapper {
-  
-  input{
+  input {
     accent-color: $color-primary;
     margin-right: 10px;
   }
 }
-

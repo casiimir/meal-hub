@@ -1,0 +1,166 @@
+.Toast {
+  position: fixed;
+  z-index: 9999;
+  width: calc(100vw - ($page-padding * 4));
+  padding: $page-padding;
+  top: -$page-padding;
+  transform: translateY(-100px);
+  left: $page-padding;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: $gap;
+  border-radius: $border-radius-default;
+
+  .sx {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $gap;
+  }
+
+  .dx {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $gap;
+  }
+
+  &.isOpen {
+    top: $page-padding;
+    transform: translateY(0px);
+  }
+  &.isClosed {
+    transform: translateY(-100px);
+    top: -$page-padding;
+  }
+  // TYPE--------
+  &.fill {
+    &_primary {
+      @include containerTypeNoHover(
+        "fill",
+        $color-primary,
+        $color-primary-contrast
+      );
+    }
+    &_secondary {
+      @include containerTypeNoHover(
+        "fill",
+        $color-secondary,
+        $color-secondary-contrast
+      );
+    }
+    &_tertiary {
+      @include containerTypeNoHover(
+        "fill",
+        $color-tertiary,
+        $color-tertiary-contrast
+      );
+    }
+    &_success {
+      @include containerTypeNoHover(
+        "fill",
+        $color-success,
+        $color-success-contrast
+      );
+    }
+    &_warning {
+      @include containerTypeNoHover(
+        "fill",
+        $color-warning,
+        $color-warning-contrast
+      );
+    }
+    &_danger {
+      @include containerTypeNoHover(
+        "fill",
+        $color-danger,
+        $color-danger-contrast
+      );
+    }
+    &_medium {
+      @include containerTypeNoHover(
+        "fill",
+        $color-medium,
+        $color-medium-contrast
+      );
+    }
+    &_dark {
+      @include containerTypeNoHover("fill", $color-dark, $color-dark-contrast);
+    }
+    &_light {
+      @include containerTypeNoHover(
+        "fill",
+        $color-light,
+        $color-light-contrast
+      );
+    }
+  }
+  //-- outline
+  &.outline {
+    &_primary {
+      @include containerTypeNoHover(
+        "outline",
+        $color-primary,
+        $color-primary-contrast
+      );
+    }
+    &_secondary {
+      @include containerTypeNoHover(
+        "outline",
+        $color-secondary,
+        $color-secondary-contrast
+      );
+    }
+    &_tertiary {
+      @include containerTypeNoHover(
+        "outline",
+        $color-tertiary,
+        $color-tertiary-contrast
+      );
+    }
+    &_success {
+      @include containerTypeNoHover(
+        "outline",
+        $color-success,
+        $color-success-contrast
+      );
+    }
+    &_warning {
+      @include containerTypeNoHover(
+        "outline",
+        $color-warning,
+        $color-warning-contrast
+      );
+    }
+    &_danger {
+      @include containerTypeNoHover(
+        "outline",
+        $color-danger,
+        $color-danger-contrast
+      );
+    }
+    &_medium {
+      @include containerTypeNoHover(
+        "outline",
+        $color-medium,
+        $color-medium-contrast
+      );
+    }
+    &_dark {
+      @include containerTypeNoHover(
+        "outline",
+        $color-dark,
+        $color-dark-contrast
+      );
+    }
+    &_light {
+      @include containerTypeNoHover(
+        "outline",
+        $color-light,
+        $color-light-contrast
+      );
+    }
+  }
+}

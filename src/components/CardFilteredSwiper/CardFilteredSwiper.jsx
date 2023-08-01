@@ -10,16 +10,10 @@ import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 
 const CardFilteredSwiper = ({ obj }) => {
-  // const [cardData, setCardData] = useState(null);
-  const router = useRouter();
+  // VARIABLES ----------------
+  // FUNCTIONS ----------------
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
-  // useEffect(() =>)
-  // console.log(obj);
-  const handleOpenRecepi = (idMeal) => {
-    router.push("/recipe/" + idMeal);
-    // console.log(idMeal);
-  };
   return (
     <Swiper
       modules={[Autoplay]}
@@ -30,12 +24,14 @@ const CardFilteredSwiper = ({ obj }) => {
         delay: 1500,
         disableOnInteraction: false,
       }}
-      className={`${styles.CardFilteredSwiper}`}>
+      className={`${styles.CardFilteredSwiper}`}
+    >
       {obj?.map((o, index) => {
         return (
           <SwiperSlide
             key={index + "CardFilteredSwiper"}
-            className={`${styles.swiperSlide}`}>
+            className={`${styles.swiperSlide}`}
+          >
             <CardFiltered obj={o} />
           </SwiperSlide>
         );

@@ -1,46 +1,63 @@
 // Mixin -----------------------
-@mixin containerType($type, $color, $contrast, $hover:"true"){
-  @if($type == "fill"){
+@mixin containerType($type, $color, $contrast, $hover: "true") {
+  @if ($type == "fill") {
     background-color: $color;
-    color :$contrast;
-    @if($hover == "true"){
-      &:hover{
+    color: $contrast;
+    @if ($hover == "true") {
+      &:hover {
         outline: $border-width solid $color;
         background-color: #fff;
-        color : $color;
+        color: $color;
         outline-offset: -$border-width;
       }
     }
-  }@else if ($type == "outline"){
+  } @else if ($type == "outline") {
     outline: $border-width solid $color;
     outline-offset: -$border-width;
-    color : $color;
-    @if($hover == "true"){
-      &:hover{
+    color: $color;
+    @if ($hover == "true") {
+      &:hover {
         background-color: $color;
-        color :$contrast;
+        color: $contrast;
       }
     }
-  }@else if ($type == "underline"){
+  } @else if ($type == "underline") {
     border-bottom: $border-width solid $color;
-    color : $color;
-    @if($hover == "true"){   
-      &:hover{
+    color: $color;
+    @if ($hover == "true") {
+      &:hover {
         background-color: $color;
-        color :$contrast;
+        color: $contrast;
         outline: $border-width solid $color;
         outline-offset: -$border-width;
       }
     }
-  }@else if ($type == "text"){
-    color : $color;
+  } @else if ($type == "text") {
+    color: $color;
     border-radius: 0;
-    @if($hover == "true"){
-      &:hover{
-        box-shadow: 0 2px 0 0 
-        $color;
+    @if ($hover == "true") {
+      &:hover {
+        box-shadow: 0 2px 0 0 $color;
         border-radius: 0;
       }
     }
+  }
+}
+
+// Mixin -----------------------
+@mixin containerTypeNoHover($type, $color, $contrast, $hover: "true") {
+  @if ($type == "fill") {
+    background-color: $color;
+    color: $contrast;
+  } @else if ($type == "outline") {
+    outline: $border-width solid $color;
+    outline-offset: -$border-width;
+    color: $color;
+  } @else if ($type == "underline") {
+    border-bottom: $border-width solid $color;
+    color: $color;
+  } @else if ($type == "text") {
+    color: $color;
+    border-radius: 0;
   }
 }

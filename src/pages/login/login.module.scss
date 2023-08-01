@@ -112,6 +112,14 @@
   margin-bottom: 20px;
 }
 
+.dontHaveAccount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 .link {
   text-decoration: none;
   color: rgb(187, 160, 51);

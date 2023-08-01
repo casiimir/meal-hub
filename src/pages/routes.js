@@ -35,9 +35,4 @@ export const Routes = [
       <LuHandMetal color={mainColor} size={24} />,
     ],
   },
-  {
-    name: "User Profile",
-    path: "/profile",
-    icons: [<LuSmile size={24} />, <LuSmile color={mainColor} size={24} />],
-  },
 ];

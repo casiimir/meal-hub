@@ -1,3 +1,7 @@
+import { db } from "@/firebase/config";
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { localStorageManager } from "./localStorage";
+
 const BASE_URL = "http://www.themealdb.com/api/json/v1/1/filter.php?";
 
 export const getData = {
@@ -18,7 +22,7 @@ export const getData = {
   category: async (categoryId) => {
     const get = await fetch(BASE_URL + "c=" + categoryId);
     const resp = await get.json();
-    return resp;
+    return resp.meals;
   },
   categories: async () => {
     const getCut = await fetch(
@@ -38,12 +42,12 @@ export const getData = {
   area: async (areaId) => {
     const get = await fetch(BASE_URL + "a=" + areaId);
     const resp = await get.json();
-    return resp;
+    return resp.meals;
   },
   ingridient: async (ingridientId) => {
     const get = await fetch(BASE_URL + "i=" + ingridientId);
     const resp = await get.json();
-    return resp;
+    return resp.meals;
   },
 
   letter: async (letter) => {
@@ -51,7 +55,7 @@ export const getData = {
       "https://www.themealdb.com/api/json/v1/1/search.php?f=" + letter
     );
     const resp = await get.json();
-    return resp;
+    return resp.meals;
   },
   mealById: async (id) => {
     const get = await fetch(
@@ -59,5 +63,30 @@ export const getData = {
     );
     const resp = await get.json();
     return resp.meals;
+  },
+};
+
+export const recipeManager = {
+  saveAdd: async (recipeId) => {
+    const userLocal = await localStorageManager.getData("user");
+    const savedRef = doc(db, "saved", userLocal?.uid);
+    await updateDoc(savedRef, {
+      saved: arrayUnion(recipeId),
+    })
+      .catch((err) => console.log("ERR : ", err))
+      .then((res) => {
+        console.log(res);
+      });
+  },
+  removeAdd: async (recipeId) => {
+    const userLocal = await localStorageManager.getData("user");
+    const savedRef = doc(db, "saved", userLocal?.uid);
+    await updateDoc(savedRef, {
+      saved: arrayRemove(recipeId),
+    })
+      .catch((err) => console.log("ERR : ", err))
+      .then((res) => {
+        console.log(res);
+      });
   },
 };
