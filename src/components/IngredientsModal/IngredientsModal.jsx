@@ -120,8 +120,7 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
       className={`
         ${styles.FiltersModal}
         ${styles[classMenu]}
-      `}
-    >
+      `}>
       <div className={styles.header}>
         <h3>Ingredients</h3>
         <Button
@@ -140,16 +139,14 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
             <div className={styles.form}>
               <form
                 onSubmit={(e) => handleSubmit(e)}
-                className={styles.container}
-              >
+                className={styles.container}>
                 <div className={styles.searchIcon__container}>
                   <div
                     className={
                       isOnFocus
                         ? `${styles.searchIcon__active}`
                         : `${styles.searchIcon}`
-                    }
-                  >
+                    }>
                     <LuSearch size={24} />
                   </div>
                 </div>
@@ -169,8 +166,7 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
                   canSubmit
                     ? `${styles.searchResults}  ${styles.isActive}`
                     : `${styles.searchResults}  ${styles.notActive}`
-                }
-              >
+                }>
                 {isSearching ? (
                   <p>Searching ...</p>
                 ) : user ? (
@@ -184,8 +180,7 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
                     return (
                       <div
                         key={index + res.idIngredient}
-                        className="searched-element"
-                      >
+                        className="searched-element">
                         <IngredientSearchedResult
                           callback={() => handleAddIngredient(res)}
                           data={res}

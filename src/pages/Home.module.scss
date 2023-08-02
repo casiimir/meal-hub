@@ -13,6 +13,11 @@
   .responsiveFilter {
     display: flex;
     flex-direction: column;
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
   }
   .responsiveMain {
     display: flex;
@@ -45,6 +50,7 @@
       flex-direction: column;
       width: 40%;
       margin-right: 40px;
+      position: sticky;
     }
     .responsiveMain {
       margin-top: 18px;

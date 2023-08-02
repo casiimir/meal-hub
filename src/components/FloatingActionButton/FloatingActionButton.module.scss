@@ -4,3 +4,11 @@
   bottom: $page-padding;
   right: $page-padding;
 }
+
+@media screen and (min-width: 641px) and (max-width: 1920px) {
+  .FloatingActionButton {
+    display: none;
+
+    // box-shadow: 2px 2px 4px px rgba(0, 0, 0, 0.1);
+  }
+}

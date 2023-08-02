@@ -17,6 +17,9 @@
 
     .search__container {
       padding: $page-padding;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .Search__grid {

@@ -30,7 +30,7 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
       category: lambRecepies,
     },
   ];
-  const currentHours = new Date().getHours()
+  const currentHours = new Date().getHours();
 
   // VARIABLES ----------------
 
@@ -47,7 +47,7 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
       setPageSubtitle("What are you cooking for breakfast?");
     } else if (currentHours >= 12 && currentHours <= 15) {
       setPageSubtitle("What are you cooking for lunch?");
-    } else if (currentHours >=18 && currentHours  <= 22) {
+    } else if (currentHours >= 18 && currentHours <= 22) {
       setPageSubtitle("What are you cooking for dinner?");
     } else {
       setPageSubtitle("What are you cooking?");
@@ -122,6 +122,7 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
               {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
               <div className={`${styles.section} ${styles.section_padding}  `}>
                 <SearchBar />
+                <FloatingActionButton />
               </div>
               {/* <div className={styles.filter}>
                 <FiltersDesktop />
@@ -152,7 +153,6 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
 
       {/* --------- MODALS & EXTRAS -------- */}
       <Menu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
-      <FloatingActionButton />
     </>
   );
 }
