@@ -4,10 +4,12 @@ import Button from "../Button";
 import { LuBookmarkMinus, LuBookmarkPlus } from "react-icons/lu";
 import { recipeManager } from "@/utils/dbManager";
 import { useAuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const SaveBadge = ({ idMeal = "52959", size = "sm", callback }) => {
   // VARIABLES ----------------
-  const { saved } = useAuthContext();
+  const { saved, user } = useAuthContext();
+  const router = useRouter();
   // CONDITIONS ---------------
   const [isSaved, setIsSaved] = useState(false);
   useEffect(() => {
@@ -30,21 +32,38 @@ const SaveBadge = ({ idMeal = "52959", size = "sm", callback }) => {
   // RETURN -------------------
   return (
     <div className={styles.SaveBadge}>
-      <Button
-        shape="round"
-        size={size}
-        color={isSaved ? "warning" : "primary"}
-        icon={
-          isSaved
-            ? (size) => <LuBookmarkMinus size={size} />
-            : (size) => <LuBookmarkPlus size={size} />
-        }
-        onClick={
-          isSaved
-            ? (e) => handleRemoveThisContent(e)
-            : (e) => handleSaveThisContent(e)
-        }
-      />
+      {user ? (
+        <Button
+          shape="round"
+          size={size}
+          color={isSaved ? "warning" : "primary"}
+          icon={
+            isSaved
+              ? (size) => <LuBookmarkMinus size={size} />
+              : (size) => <LuBookmarkPlus size={size} />
+          }
+          onClick={
+            isSaved
+              ? (e) => handleRemoveThisContent(e)
+              : (e) => handleSaveThisContent(e)
+          }
+        />
+      ) : (
+        <Button
+          shape="round"
+          size={size}
+          color={isSaved ? "warning" : "primary"}
+          icon={
+            isSaved
+              ? (size) => <LuBookmarkMinus size={size} />
+              : (size) => <LuBookmarkPlus size={size} />
+          }
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push("/login");
+          }}
+        />
+      )}
     </div>
   );
 };

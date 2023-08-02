@@ -1,9 +1,9 @@
-.Navbar{
+.Navbar {
   position: fixed;
   top: 0;
-  // width: calc(100% - ($page-padding * 2));
+  width: calc(100% - ($page-padding * 2));
   // height: calc($navbar-height - ($page-padding * 2));
-  width: 100%;
+  padding: 0 $page-padding 0 $page-padding;
   height: $navbar-height;
   z-index: 999;
   background-color: $color-light;
@@ -12,20 +12,20 @@
   align-items: center;
   justify-content: space-between;
 
-  .sx{
+  .sx {
     display: flex;
     align-items: center;
     justify-content: flex-start;
   }
- 
-  .pageTitle{
+
+  .pageTitle {
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
- 
-  .dx{
+
+  .dx {
     display: flex;
     align-items: center;
     justify-content: flex-end;

@@ -1,0 +1,17 @@
+.Comment {
+  padding: 16px;
+  border-radius: $border-radius-default;
+  box-shadow: 0px 0px 15px -3px rgba(0, 0, 0, 0.1);
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    .small {
+      color: $color-medium;
+      font-size: 10px;
+    }
+  }
+}

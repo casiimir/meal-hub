@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
 import {
   LuMenu,
-  LuUser,
   LuArrowRight,
   LuFacebook,
   LuChrome,

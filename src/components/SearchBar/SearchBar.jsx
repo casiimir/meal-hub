@@ -38,8 +38,8 @@ const SearchBar = ({ setFilterAll }) => {
   const handleSearch = async (string) => {
     setIsSearching(true);
     const data = await getData.letter(string.charAt(0));
-    setDataSearched(data.meals);
-    setDataToShow(data.meals);
+    setDataSearched(data);
+    setDataToShow(data);
     setIsSearching(false);
   };
 
@@ -82,11 +82,11 @@ const SearchBar = ({ setFilterAll }) => {
             required
           />
           <div className={styles.desktopQuery}>
-          <Button
-            onClick={() => setIsModalOpen(!isModalOpen)}
-            size="lg"
-            icon={(size) => <LuSettings2 size={size} />}
-          />
+            <Button
+              onClick={() => setIsModalOpen(!isModalOpen)}
+              size="lg"
+              icon={(size) => <LuSettings2 size={size} />}
+            />
           </div>
         </form>
         <div
