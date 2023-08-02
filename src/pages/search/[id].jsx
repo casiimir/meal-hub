@@ -8,6 +8,7 @@ import CardGrid from "@/components/cardGrid";
 import { getData } from "@/utils/dbManager";
 import SearchBar from "@/components/SearchBar";
 import { useRouter } from "next/router";
+import FloatingActionButton from "@/components/FloatingActionButton";
 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/config";
@@ -122,6 +123,7 @@ const Search = (props) => {
             <div className={styles.responsiveFilter}>
               <div className={styles.search__container}>
                 <SearchBar setFilterAll={setFilterAll} />
+                <FloatingActionButton />
               </div>
             </div>
             {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}

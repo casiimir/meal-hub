@@ -323,4 +323,36 @@
     font-size: 14px;
     font-weight: normal;
   }
+
+  .FiltersModal__content {
+    width: 50%;
+  }
+
+  .searchResults {
+    max-width: 45%;
+
+    z-index: 1001;
+    overflow: scroll;
+    margin-top: 10px;
+
+    &.isActive {
+      display: block;
+    }
+    &.notActive {
+      display: none;
+    }
+  }
+
+  .ingredients__content {
+    width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: fit-content;
+  }
+
+  .ingredients__content::-webkit-scrollbar {
+    width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
 }

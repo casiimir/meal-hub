@@ -11,6 +11,7 @@
   grid-template-columns: 20% 60% 20%;
   align-items: center;
   justify-content: space-between;
+  z-index: 2;
 
   .sx {
     display: flex;

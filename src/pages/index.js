@@ -122,6 +122,7 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
               {/* ------ INIZIO CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
               <div className={`${styles.section} ${styles.section_padding}  `}>
                 <SearchBar />
+                <FloatingActionButton />
               </div>
               {/* <div className={styles.filter}>
                 <FiltersDesktop />
@@ -152,7 +153,6 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
 
       {/* --------- MODALS & EXTRAS -------- */}
       <Menu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
-      <FloatingActionButton />
     </>
   );
 }
