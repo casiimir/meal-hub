@@ -175,7 +175,7 @@ const Recipe = ({ data }) => {
             <Button
               text={"Login"}
               onClick={() => {
-                handleOpenModalComments();
+                router.push("/login");
               }}
               icon={() => <LuLogIn size={24} />}
               type="fill"
