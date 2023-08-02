@@ -31,6 +31,7 @@ const CardComments = ({ data }) => {
       <CardHero
         data={recipeData}
         onClick={() => router.push("/recipe/" + recipeData.idMeal)}
+        noSave
       />
       <div className={styles.comments}>
         <h4 className={styles.title}>Fist 4 comments:</h4>

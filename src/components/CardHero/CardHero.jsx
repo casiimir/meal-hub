@@ -2,7 +2,7 @@ import styles from "./CardHero.module.scss";
 import { useRouter } from "next/router";
 import SaveBadge from "../SaveBadge";
 
-const CardHero = ({ data, callback = () => {} }) => {
+const CardHero = ({ data, callback = () => {}, noSave = false }) => {
   // VARIABLES ----------------
   const router = useRouter();
   // CONDITIONS ---------------
@@ -21,8 +21,11 @@ const CardHero = ({ data, callback = () => {} }) => {
       >
         <div className={styles.CardHero__gradient}>
           <div className={styles.header}>
-            <SaveBadge callback={callback} idMeal={data?.idMeal} />
+            {noSave ? null : (
+              <SaveBadge callback={callback} idMeal={data?.idMeal} />
+            )}
           </div>
+
           <div className={styles.content}>
             <h3 className={styles.card__title}>{data?.strMeal}</h3>
             <p className={styles.card__subtitle}>{data?.strCategory}</p>
