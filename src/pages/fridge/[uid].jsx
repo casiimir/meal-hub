@@ -8,7 +8,6 @@ import { LuSearch } from "react-icons/lu";
 import { useAuthContext } from "@/context/AuthContext";
 import { localStorageManager } from "@/utils/localStorage";
 import Menu from "@/components/menu";
-import { useRouter } from "next/navigation";
 import {
   arrayRemove,
   arrayUnion,
@@ -25,6 +24,7 @@ import { getData } from "@/utils/dbManager";
 import IngredientSearchedResult from "@/components/IngredientSearchedResult";
 import IngredientWithRecepies from "@/components/IngredientWithRecepies";
 import CardHeroRecipeSuggested from "@/components/CardHeroRecipeSuggested";
+import { useRouter } from "next/navigation";
 
 const Fridge = (props) => {
   // VARIABLES ----------------
@@ -74,6 +74,7 @@ const Fridge = (props) => {
       getAllIngredients();
     } else {
       setUserLogged(null);
+      router.push("/login");
     }
   }, [user]);
 
@@ -180,9 +181,6 @@ const Fridge = (props) => {
     setRecipesBasedOnIng(aux);
   };
 
-  if (!user) {
-    return router.push("/login");
-  }
   // RETURN -------------------
   return (
     <>
@@ -301,7 +299,11 @@ const Fridge = (props) => {
                         {list?.map((ingredient, index) => {
                           return (
                             <IngredientWithRecepies
-                              key={index + "ingredientsList"}
+                              key={
+                                index +
+                                "ingredientsList" +
+                                ingredient.idIngredient
+                              }
                               callback2={() => {
                                 handleRemoveThisIngredient(ingredient);
                               }}
