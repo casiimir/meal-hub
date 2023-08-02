@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { LuEye, LuPlus, LuSearch, LuX } from "react-icons/lu";
+import { LuEye, LuLogIn, LuPlus, LuSearch, LuX } from "react-icons/lu";
 import Button from "../Button";
 import styles from "./IngredientsModal.module.scss";
 import "swiper/css";
@@ -120,106 +120,130 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
       className={`
         ${styles.FiltersModal}
         ${styles[classMenu]}
-      `}>
-      <div className={styles.header}>
-        <h3>Ingredients</h3>
-        <Button
-          onClick={() => setIsOpen(false)}
-          type="outline"
-          size="sm"
-          icon={(size) => <LuX size={size} />}
-        />
-      </div>
-      <div className={styles.FiltersModal__content}>
-        <div className={styles.section}>
-          <div className={styles.section__header}>
-            Search ingredient to add:
+      `}
+    >
+      {user ? (
+        <>
+          <div className={styles.header}>
+            <h3>Ingredients</h3>
+            <Button
+              onClick={() => setIsOpen(false)}
+              type="outline"
+              size="sm"
+              icon={(size) => <LuX size={size} />}
+            />
           </div>
-          <div className={styles.section__content}>
-            <div className={styles.form}>
-              <form
-                onSubmit={(e) => handleSubmit(e)}
-                className={styles.container}>
-                <div className={styles.searchIcon__container}>
+          <div className={styles.FiltersModal__content}>
+            <div className={styles.section}>
+              <div className={styles.section__header}>
+                Search ingredient to add:
+              </div>
+              <div className={styles.section__content}>
+                <div className={styles.form}>
+                  <form
+                    onSubmit={(e) => handleSubmit(e)}
+                    className={styles.container}
+                  >
+                    <div className={styles.searchIcon__container}>
+                      <div
+                        className={
+                          isOnFocus
+                            ? `${styles.searchIcon__active}`
+                            : `${styles.searchIcon}`
+                        }
+                      >
+                        <LuSearch size={24} />
+                      </div>
+                    </div>
+                    <input
+                      onFocus={() => setIsOnFocus(true)}
+                      onBlur={() => setIsOnFocus(false)}
+                      onChange={(e) => setSearchString(e.target.value)}
+                      type="text"
+                      value={searchString}
+                      placeholder="Search"
+                      className={styles.SearchBar}
+                      required
+                    />
+                  </form>
                   <div
                     className={
-                      isOnFocus
-                        ? `${styles.searchIcon__active}`
-                        : `${styles.searchIcon}`
-                    }>
-                    <LuSearch size={24} />
+                      canSubmit
+                        ? `${styles.searchResults}  ${styles.isActive}`
+                        : `${styles.searchResults}  ${styles.notActive}`
+                    }
+                  >
+                    {isSearching ? (
+                      <p>Searching ...</p>
+                    ) : user ? (
+                      <p>
+                        Results from default database : {dataToShow?.length}
+                      </p>
+                    ) : (
+                      <p>Login to unlock all functionalities!</p>
+                    )}
+
+                    <div className={styles.results}>
+                      {dataToShow?.map((res, index) => {
+                        return (
+                          <div
+                            key={index + res.idIngredient}
+                            className="searched-element"
+                          >
+                            <IngredientSearchedResult
+                              callback={() => handleAddIngredient(res)}
+                              data={res}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-                <input
-                  onFocus={() => setIsOnFocus(true)}
-                  onBlur={() => setIsOnFocus(false)}
-                  onChange={(e) => setSearchString(e.target.value)}
-                  type="text"
-                  value={searchString}
-                  placeholder="Search"
-                  className={styles.SearchBar}
-                  required
-                />
-              </form>
-              <div
-                className={
-                  canSubmit
-                    ? `${styles.searchResults}  ${styles.isActive}`
-                    : `${styles.searchResults}  ${styles.notActive}`
-                }>
-                {isSearching ? (
-                  <p>Searching ...</p>
-                ) : user ? (
-                  <p>Results from default database : {dataToShow?.length}</p>
-                ) : (
-                  <p>Login to unlock all functionalities!</p>
-                )}
 
-                <div className={styles.results}>
-                  {dataToShow?.map((res, index) => {
-                    return (
-                      <div
-                        key={index + res.idIngredient}
-                        className="searched-element">
-                        <IngredientSearchedResult
-                          callback={() => handleAddIngredient(res)}
-                          data={res}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className={styles.ingredients__container}>
-                <div className={styles.ingredients__container__header}>
-                  <h4>Ingredients list: {list.length}</h4>
-                  <Button
-                    text="Edit list"
-                    direction="right"
-                    type="text"
-                    onClick={() => router.push("/fridge/" + user?.uid)}
-                  />
-                </div>
-                <div className={styles.ingredients__content}>
-                  {list?.map((ingredient, index) => {
-                    return (
-                      <IngredientSearchedResult
-                        key={index + "ingredientsList"}
-                        callback={() =>
-                          handleOpenIngredientPage(ingredient.strIngredient)
-                        }
-                        data={ingredient}
-                        icon={() => <LuEye size={24} />}
+                  <div className={styles.ingredients__container}>
+                    <div className={styles.ingredients__container__header}>
+                      <h4>Ingredients list: {list.length}</h4>
+                      <Button
+                        text="Edit list"
+                        direction="right"
+                        type="text"
+                        onClick={() => router.push("/fridge/" + user?.uid)}
                       />
-                    );
-                  })}
+                    </div>
+                    <div className={styles.ingredients__content}>
+                      {list?.map((ingredient, index) => {
+                        return (
+                          <IngredientSearchedResult
+                            key={index + "ingredientsList"}
+                            callback={() =>
+                              handleOpenIngredientPage(ingredient.strIngredient)
+                            }
+                            data={ingredient}
+                            icon={() => <LuEye size={24} />}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.header}>
+            <h3>Comments</h3>
+          </div>
+          <Button
+            onClick={() => router.push("/login")}
+            width="full"
+            icon={(size) => <LuLogIn size={size} />}
+            direction="right"
+            text="Login to unlock full funcionalities!"
+          />
+        </>
+      )}
     </div>
   );
 };

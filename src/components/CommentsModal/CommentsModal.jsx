@@ -7,13 +7,15 @@ import "swiper/css/scrollbar";
 import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { useAuthContext } from "@/context/AuthContext";
-import { LuSend, LuX } from "react-icons/lu";
+import { LuLogIn, LuSend, LuX } from "react-icons/lu";
 import { localStorageManager } from "@/utils/localStorage";
 import Comment from "../Comment";
+import { useRouter } from "next/navigation";
 
 const CommentsModal = ({ isOpen, setIsOpen, comments, recipeId }) => {
   // VARIABLES ----------------
   const { user } = useAuthContext();
+  const router = useRouter();
   // CONDITIONS ---------------
   const [classMenu, setClassMenu] = useState("isClosed"); //"isOpen" | "isClosed"
   const [commentToLeave, setCommentToLeave] = useState("");
@@ -68,34 +70,51 @@ const CommentsModal = ({ isOpen, setIsOpen, comments, recipeId }) => {
         ${styles[classMenu]}
       `}
     >
-      <div className={styles.header}>
-        <h3>Comments</h3>
-        <Button
-          onClick={() => setIsOpen(false)}
-          type="outline"
-          size="sm"
-          icon={(size) => <LuX size={size} />}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <input
-          onChange={(e) => setCommentToLeave(e.target.value)}
-          type="text"
-          className={styles.input}
-          value={commentToLeave}
-          placeholder="Leave a comment"
-        />
-        <Button
-          color={commentToLeave ? "primary" : "light"}
-          onClick={commentToLeave ? () => handleAddComment() : () => {}}
-          icon={(size) => <LuSend size={size} />}
-        />
-      </div>
-      <div className={styles.content}>
-        {comments?.map((com, index) => {
-          return <Comment data={com} index={index + "-" + recipeId} />;
-        })}
-      </div>
+      {user ? (
+        <>
+          <div className={styles.header}>
+            <h3>Comments</h3>
+            <Button
+              onClick={() => setIsOpen(false)}
+              type="outline"
+              size="sm"
+              icon={(size) => <LuX size={size} />}
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <input
+              onChange={(e) => setCommentToLeave(e.target.value)}
+              type="text"
+              className={styles.input}
+              value={commentToLeave}
+              placeholder="Leave a comment"
+            />
+            <Button
+              color={commentToLeave ? "primary" : "light"}
+              onClick={commentToLeave ? () => handleAddComment() : () => {}}
+              icon={(size) => <LuSend size={size} />}
+            />
+          </div>
+          <div className={styles.content}>
+            {comments?.map((com, index) => {
+              return <Comment data={com} index={index + "-" + recipeId} />;
+            })}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.header}>
+            <h3>Comments</h3>
+          </div>
+          <Button
+            onClick={() => router.push("/login")}
+            width="full"
+            icon={(size) => <LuLogIn size={size} />}
+            direction="right"
+            text="Login to unlock full funcionalities!"
+          />
+        </>
+      )}
     </div>
   );
 };
