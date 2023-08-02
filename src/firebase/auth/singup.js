@@ -34,6 +34,11 @@ export default async function signUp(email, password, name) {
               await setDoc(doc(db, "saved", data.user.uid), {
                 saved: [],
               });
+            })
+            .then(async () => {
+              await setDoc(doc(db, "usersIngredientsList", data.user.uid), {
+                list: [],
+              });
             });
         });
       }

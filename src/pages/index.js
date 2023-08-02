@@ -13,6 +13,7 @@ import Menu from "@/components/menu";
 import { useRouter } from "next/router";
 import { useAuthContext } from "@/context/AuthContext";
 import { localStorageManager } from "@/utils/localStorage";
+import FloatingActionButton from "@/components/FloatingActionButton";
 
 export default function Home({ area, lambRecepies, categories, heroData }) {
   // VARIABLES ----------------
@@ -40,6 +41,7 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
     "Login to unlock all funcionalities!"
   );
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [userLogged, setUserLogged] = useState(null);
   useEffect(() => {
     if (currentHours >= 7 && currentHours < 12) {
       setPageSubtitle("What are you cooking for breakfast?");
@@ -51,7 +53,7 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
       setPageSubtitle("What are you cooking?");
     }
   }, []);
-  const [userLogged, setUserLogged] = useState(null);
+
   // FUNCTIONS ----------------
   const hendleMenuButton = () => {
     console.log("hendleMenuButton");
@@ -150,15 +152,21 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
 
       {/* --------- MODALS & EXTRAS -------- */}
       <Menu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
+      <FloatingActionButton />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const heroData = await getData.category("Pasta");
-  const categories = await getData.categories();
-  const area = await getData.area("Italian");
-  const lambRecepies = await getData.ingridient("lamb");
+  let heroData, categories, area, lambRecepies;
+  try {
+    heroData = await getData.category("Pasta");
+    categories = await getData.categories();
+    area = await getData.area("Italian");
+    lambRecepies = await getData.ingridient("lamb");
+  } catch (error) {
+    console.log("ERROR", error);
+  }
 
   console.log(heroData, categories, area, lambRecepies);
 

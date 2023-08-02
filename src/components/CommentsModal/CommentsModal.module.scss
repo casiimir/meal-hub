@@ -1,0 +1,74 @@
+.CommentsModal {
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  right: 0;
+  height: 0vh;
+  transform: translateY(50px);
+  background-color: white;
+  transition: all 0.25s ease-in-out;
+  padding: $page-padding;
+  border-radius: $border-radius-default;
+  box-shadow: 0px 0px 15px 14px rgba(0, 0, 0, 0.1);
+
+  &.isOpen {
+    width: calc(100vw - $page-padding * 2);
+    height: calc(90vh - $page-padding * 2);
+    transform: translateY(0px);
+  }
+  &.isClosed {
+    width: calc(100vw - $page-padding * 2);
+    height: 0vh;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .inputContainer {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: $gap;
+    .input {
+      height: 46px;
+      width: 100%;
+      border-radius: $border-radius-default;
+      border: 2px solid $color-medium;
+      color: $color-primary;
+      outline: none;
+      font-size: 16px;
+      padding-left: 16px;
+      padding-right: 16px;
+      &:focus {
+        border: 2px solid $color-primary;
+      }
+    }
+  }
+  .content {
+    margin-top: 26px;
+  }
+}
+
+@media all and (min-width: 641px) {
+  .CommentsModal {
+    // border: 1px solid green;
+    position: static;
+    &.isClosed {
+      // border: 1px solid black;
+      width: 93.5%;
+      max-width: 530px;
+      height: fit-content;
+    }
+    .header {
+      width: 100%;
+      button {
+        display: none;
+      }
+    }
+  }
+}
