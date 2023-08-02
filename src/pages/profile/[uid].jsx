@@ -53,18 +53,30 @@ const Profile = ({ user, uid, followers, following }) => {
 
   const getSavedData = async () => {
     const aux = [];
-    const recipeRef = collection(db, "recipes");
-    for (let index = 0; index < saved?.saved?.length; index++) {
-      console.log(saved.saved[index]);
-      const q = query(recipeRef, where("idMeal", "==", saved.saved[index]));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        aux.push(doc.data());
-      });
-    }
-    const promise = Promise.all(aux);
+    const docRef = doc(db, "saved", uid);
+    const docSnap = await getDoc(docRef);
 
-    setData(aux);
+    if (docSnap.exists()) {
+      console.log("Document data:");
+      const recipeRef = collection(db, "recipes");
+      for (let index = 0; index < docSnap.data()?.saved?.length; index++) {
+        console.log(docSnap.data()?.saved[index]);
+        const q = query(
+          recipeRef,
+          where("idMeal", "==", docSnap.data()?.saved[index])
+        );
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          aux.push(doc.data());
+        });
+      }
+      const promise = Promise.all(aux);
+
+      setData(aux);
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
   };
 
   const handleFollowUnfollow = async () => {
