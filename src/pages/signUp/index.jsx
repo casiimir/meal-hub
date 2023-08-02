@@ -247,14 +247,14 @@ const SingUp = () => {
             </div>
             <div className={styles.paragraphContainer}>
               <p className={styles.paragraphSignIn}>
-                <span>Or Sign in With</span>
+                <span>Or</span>
               </p>
             </div>
           </form>
-          <div className={styles.socialButton}>
+          {/* <div className={styles.socialButton}>
             <Button size="lg" icon={(size) => <LuFacebook size={size} />} />
             <Button size="lg" icon={(size) => <LuChrome size={size} />} />
-          </div>
+          </div> */}
           <p className={styles.dontHaveAccount}>
             Already a member
             <Button

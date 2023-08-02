@@ -50,6 +50,7 @@ const Login = () => {
     console.log(result);
     router.push("/profile/" + result.user.uid);
   }
+
   if (user) {
     router.push("/");
   }
@@ -129,15 +130,19 @@ const Login = () => {
           </div>
           <div className={styles.paragraphContainer}>
             <p className={styles.paragraphSignIn}>
-              <span>Or Sign in With</span>
+              <span>Or</span>
             </p>
           </div>
         </form>
 
-        <div className={styles.socialButton}>
+        {/* <div className={styles.socialButton}>
           <Button size="lg" icon={(size) => <LuFacebook size={size} />} />
-          <Button size="lg" icon={(size) => <LuChrome size={size} />} />
-        </div>
+          <Button
+            onClick={() => handleLoginGoogle()}
+            size="lg"
+            icon={(size) => <LuChrome size={size} />}
+          />
+        </div> */}
         <p className={styles.dontHaveAccount}>
           Don’t have an account?
           <Button
