@@ -162,6 +162,7 @@ const Fridge = (props) => {
 
   const getCombined = async () => {
     const arrayActual = [];
+    console.log(list);
     list.forEach((elem) => {
       arrayActual.push(elem.strIngredient);
     });
