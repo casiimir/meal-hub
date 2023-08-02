@@ -1,12 +1,16 @@
 
-Here's the README file for your recipe app "Yummy": 
+<img src="./README/photo_2023-08-02_12-25-51 (2).jpg">
 
-Yummy - Your Ultimate Recipe App
+<html>
+<body>
+<h1>Here's the README file for your recipe app "Yummy":</h1>
 
-Welcome to Yummy, the ultimate recipe app that brings you a vast collection of recipes from different categories and nationalities. We are excited to introduce some new features that will enhance your cooking experience!
+<h1>Yummy - Your Ultimate Recipe App</h1>
 
-Features:
+<p>Welcome to Yummy, the ultimate recipe app that brings you a vast collection of recipes from different categories and nationalities. We are excited to introduce some new features that will enhance your cooking experience!</p>
 
+<h1>Features:</h1>
+<p>
 User Authentication and Login: With our new login feature, you can create a personalized account and save your favorite recipes for easy access. Your account will also allow you to sync your data across devices, so you never lose your recipe collection.
 
 Save and Access Recipes: Once logged in, you can now save recipes to your profile. This way, you can quickly access your favorite recipes whenever you want. Say goodbye to endless searching; your favorite recipes are just a click away!
@@ -17,34 +21,39 @@ Category Filters: We understand that sometimes you have a specific craving or di
 
 Enhanced Fridge Feature: Our unique ingredient-based search has been taken to the next level. Powered by API calls and Firebase integration, you can now receive even more personalized recipe suggestions based on the ingredients you have in your fridge. Let Yummy inspire your culinary creativity!
 
- Minimalistic Design: Enjoy a clean and user-friendly design that simplifies your recipe exploration experience.
+ Minimalistic Design: Enjoy a clean and user-friendly design that simplifies your recipe exploration experience. </p>
 
-Behind the Scenes:
-
+<h1>Behind the Scenes:</h1>
+<p>
 Our app continues to be built on Next.js, taking advantage of Server-Side Rendering (SSR) for efficient page rendering and improved SEO performance. To enhance the visual appeal and consistency, we used the React Icon Library for icons and incorporate the Swiper library for smooth and engaging animated sliders.
 
 We have expanded our use of React Hooks, including useState, useEffect, useRouter, and now, to manage state and side-effects more efficiently. The global data management is handled by the UseContext API, ensuring a seamless experience across the app.
 
-In addition to the existing technologies, we have integrated Firebase for user authentication, data storage, and synchronization across devices. Utilizing Firebase's Firestore, we store your saved recipes securely and reliably.
+In addition to the existing technologies, we have integrated Firebase for user authentication, data storage, and synchronization across devices. Utilizing Firebase's Firestore, we store your saved recipes securely and reliably.</p>
 
-Getting Started						 						
+<h1>Getting Started	</h1>				 						
 
-Clone the repository:
+<h2>Clone the repository:</h2>
+<p>
 bash
 git clone https://github.com/your-username/yummy.git
-cd yummy
-Install dependencies:
+cd yummy </p>
+
+<h2>Install dependencies:</h2>
+<p>
 bash
-npm install
+npm install </p>
 
-Run the development server:
+<h2>Run the development server:</h2>
+<p>
 bash
-npm run dev
+npm run dev </p>
+<p>
+Open your browser and navigate to http://localhost:3000 to access Yummy.</p>
 
-Open your browser and navigate to http://localhost:3000 to access Yummy.
+<h1>Contributing</h1>
 
-Contributing					
-We welcome contributions from the community to make Yummy even better. If you find a bug, have a suggestion, or want to add new features, please feel free to open an issue or submit a pull request.			
+<p>We welcome contributions from the community to make Yummy even better. If you find a bug, have a suggestion, or want to add new features, please feel free to open an issue or submit a pull request.			
 License			
 This project is licensed under the MIT License.
 Acknowledgments						
@@ -52,6 +61,6 @@ We would like to express our gratitude to the open-source community for providin
 						
 Thank you for checking out Yummy! We hope you enjoy using the app and discovering delightful recipes for every occasion. If you have any questions or need further assistance, feel free to contact us.		
 Happy cooking with Yummy! 🍳🍔🍰
-Cerma Michela, Inchiappa Nina, Raimondo Luna, Turcanu Daniel, and the Yummy team.
-
-<img src="./README/photo_2023-08-02_12-25-51 (2).jpg">
+Cerma Michela, Inchiappa Nina, Raimondo Luna, Turcanu Daniel, and the Yummy team.</p>
+</body>
+</html>
