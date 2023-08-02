@@ -57,10 +57,8 @@ const Profile = ({ user, uid, followers, following }) => {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:");
       const recipeRef = collection(db, "recipes");
       for (let index = 0; index < docSnap.data()?.saved?.length; index++) {
-        console.log(docSnap.data()?.saved[index]);
         const q = query(
           recipeRef,
           where("idMeal", "==", docSnap.data()?.saved[index])
