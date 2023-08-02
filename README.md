@@ -11,17 +11,18 @@
 
 <h1>Features:</h1>
 <p>
-User Authentication and Login: With our new login feature, you can create a personalized account and save your favorite recipes for easy access. Your account will also allow you to sync your data across devices, so you never lose your recipe collection.
 
-Save and Access Recipes: Once logged in, you can now save recipes to your profile. This way, you can quickly access your favorite recipes whenever you want. Say goodbye to endless searching; your favorite recipes are just a click away!
+<h2>User Authentication and Login:</h2> With our new login feature, you can create a personalized account and save your favorite recipes for easy access. Your account will also allow you to sync your data across devices, so you never lose your recipe collection.
 
-Step-by-Step Instructions: We have added detailed step-by-step instructions for each recipe, making it easier for both seasoned chefs and beginners to follow along and create delicious dishes.
+<h2>Save and Access Recipes:</h2> Once logged in, you can now save recipes to your profile. This way, you can quickly access your favorite recipes whenever you want. Say goodbye to endless searching; your favorite recipes are just a click away!
 
-Category Filters: We understand that sometimes you have a specific craving or dietary preference. Now, you can easily filter recipes based on categories like vegan, gluten-free, comfort food, and more. Finding the perfect recipe has never been simpler.
+<h2>Step-by-Step Instructions:</h2> We have added detailed step-by-step instructions for each recipe, making it easier for both seasoned chefs and beginners to follow along and create delicious dishes.
 
-Enhanced Fridge Feature: Our unique ingredient-based search has been taken to the next level. Powered by API calls and Firebase integration, you can now receive even more personalized recipe suggestions based on the ingredients you have in your fridge. Let Yummy inspire your culinary creativity!
+<h2>Category Filters:</h2> We understand that sometimes you have a specific craving or dietary preference. Now, you can easily filter recipes based on categories like vegan, gluten-free, comfort food, and more. Finding the perfect recipe has never been simpler.
 
- Minimalistic Design: Enjoy a clean and user-friendly design that simplifies your recipe exploration experience. </p>
+<h2>Enhanced Fridge Feature:</h2> Our unique ingredient-based search has been taken to the next level. Powered by API calls and Firebase integration, you can now receive even more personalized recipe suggestions based on the ingredients you have in your fridge. Let Yummy inspire your culinary creativity!
+
+<h2>Minimalistic Design:</h2>Enjoy a clean and user-friendly design that simplifies your recipe exploration experience. </p>
 
 <h1>Behind the Scenes:</h1>
 <p>
@@ -36,8 +37,8 @@ In addition to the existing technologies, we have integrated Firebase for user a
 <h2>Clone the repository:</h2>
 <p>
 bash
-git clone https://github.com/your-username/yummy.git
-cd yummy </p>
+git clone <a href="https://github.com/your-username/yummy.git"> cd yummy </a>
+</p>
 
 <h2>Install dependencies:</h2>
 <p>
@@ -49,7 +50,8 @@ npm install </p>
 bash
 npm run dev </p>
 <p>
-Open your browser and navigate to http://localhost:3000 to access Yummy.</p>
+Open your browser and navigate to <a href="http://localhost:3000 "> to access Yummy.</a> 
+</p> 
 
 <h1>Contributing</h1>
 
