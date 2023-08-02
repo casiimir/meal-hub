@@ -18,7 +18,7 @@ const ProfileCard = () => {
 
   const profiles = [
     {
-      src: "",
+      src: "https://github.com/casiimir/meal-hub/blob/main/public/assets/img/Michi.jpg?raw=true",
       title: "Cerma Michela",
       description:
         "Michela is a highly collaborative team member who always brings an excellent spirit of cooperation to the table. She possesses extensive knowledge and experience in programming with JS, React, and CSS. With her proactive attitude, Michela is always ready to lend a helping hand and find innovative solutions to any challenges the team may encounter.",
