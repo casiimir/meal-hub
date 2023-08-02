@@ -3,7 +3,6 @@
 
 <html>
 <body>
-<h1>Here's the README file for your recipe app "Yummy":</h1>
 
 <h1>Yummy - Your Ultimate Recipe App</h1>
 
