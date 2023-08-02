@@ -10,7 +10,7 @@ const CardVideo = ({ data }) => {
   // CONDITIONS ---------------
   // FUNCTIONS ----------------
   const handleSaveThisContent = () => {
-    console.log("handleSaveThisContent : ", data.meals[0].idMeal);
+    // console.log("handleSaveThisContent : ", data.meals[0].idMeal);
   };
 
   // RETURN -------------------

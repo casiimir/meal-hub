@@ -32,7 +32,7 @@ const SearchBar = ({ setFilterAll }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("OPEN FILTERED PAGE WITH THIS SEARCH INPUT : ", searchString);
+    // console.log("OPEN FILTERED PAGE WITH THIS SEARCH INPUT : ", searchString);
   };
 
   const handleSearch = async (string) => {

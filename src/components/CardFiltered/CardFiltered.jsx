@@ -12,7 +12,7 @@ const CardFiltered = ({ obj }) => {
   // FUNCTIONS ----------------
   useEffect(() => {
     if (localStorageManager.getData(obj?.idMeal) === null) {
-      console.log("DATI NON PRESENTI: FAI FETCH");
+      // console.log("DATI NON PRESENTI: FAI FETCH");
       try {
         fetch(
           `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${obj?.idMeal}`
@@ -26,7 +26,7 @@ const CardFiltered = ({ obj }) => {
         console.log("Errore nella richiesta API:", error);
       }
     } else {
-      console.log("QUESTI DATI SONO GIA PRESENTI : PRENDILI DAL LOCAL");
+      // console.log("QUESTI DATI SONO GIA PRESENTI : PRENDILI DAL LOCAL");
       setData(localStorageManager.getData(obj?.idMeal));
     }
   }, [obj.idMeal]);

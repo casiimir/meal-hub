@@ -19,7 +19,7 @@ const IngredientWithRecepies = ({
   }, []);
   const handleGetData = async () => {
     const recepies = await getData.ingridient(data?.strIngredient);
-    console.log(recepies);
+    // console.log(recepies);
     setMainRecepies(recepies);
   };
   // RETURN -------------------

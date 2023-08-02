@@ -60,7 +60,7 @@ const ModifyUser = ({ isModifyOpen, setModifyOpen, userData }) => {
   }, [isModifyOpen]);
 
   const handleUploadData = async () => {
-    console.log("handleSaveData");
+    // console.log("handleSaveData");
     if (compressedImg) {
       const folder = "users/" + user?.uid;
       const name = Date.now();
@@ -102,11 +102,11 @@ const ModifyUser = ({ isModifyOpen, setModifyOpen, userData }) => {
   };
 
   const handleSetName = (string) => {
-    console.log(string);
+    // console.log(string);
     setNewName(string);
   };
   const handleSetBio = (string) => {
-    console.log(string);
+    // console.log(string);
     setNewBio(string);
   };
 

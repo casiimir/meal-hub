@@ -17,7 +17,7 @@ const CardComments = ({ data }) => {
   }, [data]);
   // FUNCTIONS ----------------
   const getData = async (idMeal) => {
-    console.log(data);
+    // console.log(data);
     const ref = collection(db, "recipes");
     const q = query(ref, where("idMeal", "==", idMeal));
     const querySnapshot = await getDocs(q);

@@ -46,7 +46,7 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
   useEffect(() => {
     if (user) {
       onSnapshot(doc(db, "usersIngredientsList", user?.uid), (doc) => {
-        console.log("Current data: ", doc.data());
+        // console.log("Current data: ", doc.data());
         setList(doc.data().list.reverse());
       });
       getAllIngredients();
@@ -54,10 +54,10 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
   }, [user]);
 
   const getAllIngredients = async () => {
-    console.log("getAllIngredients");
+    // console.log("getAllIngredients");
     const resp = await getData.allIngredients();
     setAllIngredients(resp);
-    console.log("resp");
+    // console.log("resp");
   };
 
   const handleSearch = async (string) => {
@@ -91,7 +91,7 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
   }, [isOpen]);
 
   const handleAddIngredient = async (ingObj) => {
-    console.log("handleAddIngredient : ", user?.uid);
+    // console.log("handleAddIngredient : ", user?.uid);
     const ingrediendsListRef = doc(db, "usersIngredientsList", user?.uid);
     const stringUrl = `https://www.themealdb.com/images/ingredients/${ingObj.strIngredient}.png`;
     ingObj.imgUrl = stringUrl;
@@ -106,11 +106,11 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
   };
 
   const handleAddNewIngredient = () => {
-    console.log("handleAddNewIngredient");
+    // console.log("handleAddNewIngredient");
   };
 
   const handleOpenIngredientPage = (ingredientName) => {
-    console.log("handleOpenIngredientPage");
+    // console.log("handleOpenIngredientPage");
     router.push("/ingredient/" + ingredientName);
   };
 

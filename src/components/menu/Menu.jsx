@@ -20,7 +20,7 @@ const Menu = ({ isMenuOpen, setMenuOpen }) => {
   const [userLogged, setUserLogged] = useState(null);
   // FUNCTIONS ----------------
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
     if (user) {
       const auxData = localStorageManager.getData("user");
       setUserLogged(auxData);

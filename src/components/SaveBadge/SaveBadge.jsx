@@ -18,13 +18,11 @@ const SaveBadge = ({ idMeal = "52959", size = "sm", callback }) => {
   // FUNCTIONS ----------------
   const handleSaveThisContent = (e) => {
     e.stopPropagation();
-    console.log("handleSaveThisContent : ", idMeal);
     recipeManager.saveAdd(idMeal);
     setIsSaved(true);
   };
   const handleRemoveThisContent = (e) => {
     e.stopPropagation();
-    console.log("handleRemoveThisContent : ", idMeal);
     recipeManager.removeAdd(idMeal);
     setIsSaved(false);
     callback();

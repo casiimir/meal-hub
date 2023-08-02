@@ -29,7 +29,7 @@ const CommentsModal = ({ isOpen, setIsOpen, comments, recipeId }) => {
   }, [isOpen]);
 
   const handleAddComment = async () => {
-    console.log(commentToLeave, recipeId);
+    // console.log(commentToLeave, recipeId);
     const docRef = doc(db, "comments", recipeId);
     const docSnap = await getDoc(docRef);
 

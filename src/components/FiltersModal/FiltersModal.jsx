@@ -63,7 +63,7 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
     } else {
       const aux = [...selectedCategory];
       aux.push(category);
-      console.log(aux);
+      // console.log(aux);
       setSelectedCategory(aux);
     }
   };
@@ -96,7 +96,8 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
       className={`
     ${styles.FiltersModal}
     ${styles[classMenu]}
-    `}>
+    `}
+    >
       <div className={styles.header}>
         <h3>Filter Search</h3>
         <Button
@@ -123,12 +124,14 @@ const FiltersModal = ({ isOpen, setIsOpen }) => {
                 delay: 1500,
                 disableOnInteraction: true,
               }}
-              className={`${styles.CategoriesSwiper}`}>
+              className={`${styles.CategoriesSwiper}`}
+            >
               {allNations?.map((nation, index) => {
                 return (
                   <SwiperSlide
                     key={index + "filterNation"}
-                    className={`${styles.swiperSlide}`}>
+                    className={`${styles.swiperSlide}`}
+                  >
                     <BadgeActive
                       onClick={() => setSelectedNation(nation.strArea)}
                       isActive={

@@ -9,7 +9,7 @@ const CardHero = ({ data, callback = () => {} }) => {
   // FUNCTIONS ----------------
   const handleOpenRecepi = (idMeal) => {
     router.push("/recipe/" + idMeal);
-    console.log(data?.idMeal);
+    // console.log(data?.idMeal);
   };
   // RETURN -------------------
   return (

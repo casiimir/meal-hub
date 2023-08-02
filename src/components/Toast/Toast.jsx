@@ -51,7 +51,6 @@ const Toast = ({
       setTimeout(() => setTransitionTime(transitionTime - 1), 1000);
     } else {
       if (classMenu === "isClosed") {
-        console.log("FIne");
         setIsClosed(true);
       }
     }
