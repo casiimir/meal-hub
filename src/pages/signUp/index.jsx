@@ -51,7 +51,7 @@ const SingUp = () => {
 
   // FUNCTIONS ----------------
   const hendleMenuButton = () => {
-    console.log("hendleMenuButton");
+    // console.log("hendleMenuButton");
     setMenuOpen(!isMenuOpen);
   };
   async function onSubmit(e) {
@@ -67,7 +67,7 @@ const SingUp = () => {
         setRegisterError(true);
         return console.log(error);
       }
-      console.log(result);
+      // console.log(result);
       router.push("/");
     }
   }

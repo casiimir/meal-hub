@@ -27,7 +27,7 @@ const ComunityComments = () => {
     onSnapshot(collection(db, "comments"), (docc) => {
       const aux = [];
       docc.forEach((document) => {
-        console.log(document.id, " ----- ", document.data());
+        // console.log(document.id, " ----- ", document.data());
         const obj = {
           idMeal: document.id,
           comments: document.data().comments,

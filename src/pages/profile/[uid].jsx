@@ -78,7 +78,7 @@ const Profile = ({ user, uid, followers, following }) => {
   };
 
   const handleFollowUnfollow = async () => {
-    console.log("handleFollowUnfollow");
+    // console.log("handleFollowUnfollow");
     setFollow(!follow);
     if (follow) {
       //DO UNFOLLOW
@@ -91,7 +91,7 @@ const Profile = ({ user, uid, followers, following }) => {
         body: JSON.stringify(obj),
       }).then(async (res) => {
         const data = await res.json();
-        console.log("handleFollowUnfollow - unfollow - res:", data);
+        // console.log("handleFollowUnfollow - unfollow - res:", data);
       });
       setFollowersLength(followersLength - 1);
     } else {
@@ -105,7 +105,7 @@ const Profile = ({ user, uid, followers, following }) => {
         body: JSON.stringify(obj),
       }).then(async (res) => {
         const data = await res.json();
-        console.log("handleFollowUnfollow - follow - res:", data);
+        // console.log("handleFollowUnfollow - follow - res:", data);
       });
       setFollowersLength(followersLength + 1);
     }
@@ -290,7 +290,7 @@ export async function getServerSideProps(context) {
 
   // USER ---------
   if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
+    // console.log("Document data:", docSnap.data());
     userData = docSnap.data();
   } else {
     console.log("No such document!");
@@ -298,7 +298,7 @@ export async function getServerSideProps(context) {
   }
   // FOLLOWING ---------
   if (docSnapFollowing.exists()) {
-    console.log("Document data:", docSnapFollowing.data().following);
+    // console.log("Document data:", docSnapFollowing.data().following);
     following = docSnapFollowing.data().following;
   } else {
     console.log("No such document!");
@@ -306,7 +306,7 @@ export async function getServerSideProps(context) {
   }
   // FOLLOWERS ---------
   if (docSnapFollowers.exists()) {
-    console.log("Document data:", docSnapFollowers.data().followers);
+    // console.log("Document data:", docSnapFollowers.data().followers);
     followers = docSnapFollowers.data().followers;
   } else {
     console.log("No such document!");

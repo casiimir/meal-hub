@@ -30,7 +30,7 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
       category: lambRecepies,
     },
   ];
-  const currentHours = new Date().getHours()
+  const currentHours = new Date().getHours();
 
   // VARIABLES ----------------
 
@@ -47,7 +47,7 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
       setPageSubtitle("What are you cooking for breakfast?");
     } else if (currentHours >= 12 && currentHours <= 15) {
       setPageSubtitle("What are you cooking for lunch?");
-    } else if (currentHours >=18 && currentHours  <= 22) {
+    } else if (currentHours >= 18 && currentHours <= 22) {
       setPageSubtitle("What are you cooking for dinner?");
     } else {
       setPageSubtitle("What are you cooking?");
@@ -56,15 +56,15 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
 
   // FUNCTIONS ----------------
   const hendleMenuButton = () => {
-    console.log("hendleMenuButton");
+    // console.log("hendleMenuButton");
     setMenuOpen(!isMenuOpen);
   };
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
     if (user) {
       const auxData = localStorageManager.getData("user");
       setUserLogged(auxData);
-      console.log("user local data : ", auxData);
+      // console.log("user local data : ", auxData);
       setPageTitle("Welcome back!");
       setPageSubtitle("Nice to see you again " + auxData.name);
     } else {
@@ -168,7 +168,7 @@ export async function getServerSideProps() {
     console.log("ERROR", error);
   }
 
-  console.log(heroData, categories, area, lambRecepies);
+  // console.log(heroData, categories, area, lambRecepies);
 
   return {
     props: {

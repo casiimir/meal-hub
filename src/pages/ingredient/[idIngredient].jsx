@@ -73,7 +73,7 @@ export default Ingredient;
 
 export async function getServerSideProps(context) {
   const search = context.query.idIngredient;
-  console.log(search);
+  // console.log(search);
 
   let data = await getData.ingridient(search);
   let ingredientName = search;

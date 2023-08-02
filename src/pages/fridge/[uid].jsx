@@ -68,7 +68,7 @@ const Fridge = (props) => {
       const auxData = localStorageManager.getData("user");
       setUserLogged(auxData);
       onSnapshot(doc(db, "usersIngredientsList", props?.uid), (doc) => {
-        console.log("Current data: ", doc.data());
+        // console.log("Current data: ", doc.data());
         setList(doc.data().list.reverse());
       });
       getAllIngredients();
@@ -103,7 +103,7 @@ const Fridge = (props) => {
   };
 
   const handleAddIngredient = async (ingObj) => {
-    console.log("handleAddIngredient : ", user?.uid);
+    // console.log("handleAddIngredient : ", user?.uid);
     const ingrediendsListRef = doc(db, "usersIngredientsList", user?.uid);
     const stringUrl = `https://www.themealdb.com/images/ingredients/${ingObj.strIngredient}.png`;
     ingObj.imgUrl = stringUrl;
@@ -112,13 +112,13 @@ const Fridge = (props) => {
     })
       .catch((err) => console.log("ERR : ", err))
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       });
     setSearchString("");
   };
 
   const handleRemoveThisIngredient = async (ingObj) => {
-    console.log("handleAddIngredient : ", user?.uid);
+    // console.log("handleAddIngredient : ", user?.uid);
     const ingrediendsListRef = doc(db, "usersIngredientsList", user?.uid);
     const stringUrl = `https://www.themealdb.com/images/ingredients/${ingObj.strIngredient}.png`;
     ingObj.imgUrl = stringUrl;
@@ -127,12 +127,12 @@ const Fridge = (props) => {
     })
       .catch((err) => console.log("ERR : ", err))
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       });
   };
 
   const handleOpenIngredientPage = (ingredientName) => {
-    console.log("handleOpenIngredientPage");
+    // console.log("handleOpenIngredientPage");
     router.push("/ingredient/" + ingredientName);
   };
 
@@ -162,7 +162,7 @@ const Fridge = (props) => {
 
   const getCombined = async () => {
     const arrayActual = [];
-    console.log(list);
+    // console.log(list);
     list.forEach((elem) => {
       arrayActual.push(elem.strIngredient);
     });
@@ -174,7 +174,7 @@ const Fridge = (props) => {
     const querySnapshot = await getDocs(q);
     const aux = [];
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
+      // console.log(doc.id, " => ", doc.data());
       aux.push(doc.data());
     });
     setRecipesBasedOnIng(aux);
