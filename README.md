@@ -36,7 +36,7 @@ In addition to the existing technologies, we have integrated Firebase for user a
 <h2>Clone the repository:</h2>
 <p>
 bash
-git clone <a href="https://github.com/your-username/yummy.git"> </a> 
+git clone "https://github.com/your-username/yummy.git"
 cd yummy
 </p>
 
