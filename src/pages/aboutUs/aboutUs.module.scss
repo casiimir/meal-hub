@@ -14,12 +14,19 @@
   font-size: $heading4;
   h1{
      margin-bottom: 20px;
+    
   }
   p {
     width: 100%;
     text-align:justify;
     font-size: $heading4;
   }
+}
+
+.profile__subtitle{
+ font-weight: 400;
+ margin: 10px;
+ color: $color-medium-shade;
 }
 
 .profile__container {
@@ -58,11 +65,10 @@
 
     .profile__title {
       text-align: center;
-      margin-bottom: 5px;
     }
 
     .profile__description {
-      font-size: $paragraph;
+      font-size: $paragraphSmall;
       text-align: justify;
       color: $color-step-100;
     }
