@@ -54,8 +54,10 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
   }, [user]);
 
   const getAllIngredients = async () => {
+    console.log("getAllIngredients");
     const resp = await getData.allIngredients();
     setAllIngredients(resp);
+    console.log("resp");
   };
 
   const handleSearch = async (string) => {
@@ -107,8 +109,9 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
     console.log("handleAddNewIngredient");
   };
 
-  const handleOpenIngredientPage = () => {
+  const handleOpenIngredientPage = (ingredientName) => {
     console.log("handleOpenIngredientPage");
+    router.push("/ingredient/" + ingredientName);
   };
 
   // RETURN -------------------
@@ -170,8 +173,10 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
               >
                 {isSearching ? (
                   <p>Searching ...</p>
-                ) : (
+                ) : user ? (
                   <p>Results from default database : {dataToShow?.length}</p>
+                ) : (
+                  <p>Login to unlock all functionalities!</p>
                 )}
 
                 <div className={styles.results}>
@@ -206,7 +211,9 @@ const IngredientsModal = ({ isOpen, setIsOpen }) => {
                     return (
                       <IngredientSearchedResult
                         key={index + "ingredientsList"}
-                        callback={() => handleOpenIngredientPage(ingredient)}
+                        callback={() =>
+                          handleOpenIngredientPage(ingredient.strIngredient)
+                        }
                         data={ingredient}
                         icon={() => <LuEye size={24} />}
                       />

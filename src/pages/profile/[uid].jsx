@@ -139,11 +139,7 @@ const Profile = ({ user, uid, followers, following }) => {
                 type="text"
                 color="dark"
                 onClick={() => {
-                  if (window.history.state && window.history.state.idx > 0) {
-                    router.back();
-                  } else {
-                    router.push("/");
-                  }
+                  router.back();
                 }}
               />
             }

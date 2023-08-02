@@ -131,8 +131,9 @@ const Fridge = (props) => {
       });
   };
 
-  const handleOpenIngredientPage = () => {
+  const handleOpenIngredientPage = (ingredientName) => {
     console.log("handleOpenIngredientPage");
+    router.push("/ingredient/" + ingredientName);
   };
 
   useEffect(() => {
@@ -178,6 +179,9 @@ const Fridge = (props) => {
     setRecipesBasedOnIng(aux);
   };
 
+  if (!user) {
+    return router.push("/login");
+  }
   // RETURN -------------------
   return (
     <>
@@ -301,7 +305,9 @@ const Fridge = (props) => {
                                 handleRemoveThisIngredient(ingredient);
                               }}
                               callback={() =>
-                                handleOpenIngredientPage(ingredient)
+                                handleOpenIngredientPage(
+                                  ingredient.strIngredient
+                                )
                               }
                               data={ingredient}
                             />

@@ -2,20 +2,59 @@ import Head from "next/head";
 import styles from "./recipe.module.scss";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
-import { LuArrowLeft, LuPlay } from "react-icons/lu";
+import {
+  LuAlertTriangle,
+  LuArrowLeft,
+  LuLogIn,
+  LuMessageCircle,
+  LuPlay,
+} from "react-icons/lu";
 import CardHeroRecipe from "@/components/CardHeroRecipe";
 import { useRouter } from "next/navigation";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "@/firebase/config";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Toast from "@/components/Toast";
+import { useAuthContext } from "@/context/AuthContext";
+import CommentsModal from "@/components/CommentsModal";
+import { getData } from "@/utils/dbManager";
 
 const Recipe = ({ data }) => {
   // VARIABLES ----------------
   const router = useRouter();
+  const { user } = useAuthContext();
 
   // CONDITIONS ---------------
   const [recipe, setRecipe] = useState(data);
+  const [comments, setComments] = useState([]);
+  const [isModalComments, setIsModalComments] = useState(false);
+  const [error, setError] = useState(false);
   // FUNCTIONS ----------------
+  useEffect(() => {
+    if (user) {
+      setError(false);
+      onSnapshot(doc(db, "comments", data?.idMeal), (doc) => {
+        setComments(doc.data()?.comments.reverse());
+      });
+    } else {
+    }
+  }, [user]);
+
+  const handleOpenModalComments = () => {
+    if (user) {
+      setIsModalComments(!isModalComments);
+    } else {
+      setError(true);
+    }
+  };
+
   const onHandlePlay = () => window.open(recipe.strYoutube, "_blank");
 
   const ingredients = Object.entries(recipe)
@@ -57,7 +96,18 @@ const Recipe = ({ data }) => {
             />
           }
           pageTitle={recipe.strMeal}
-          rightButton={null}
+          rightButton={
+            <Button
+              text={user ? comments?.length : "Login"}
+              onClick={() => {
+                handleOpenModalComments();
+              }}
+              icon={() => <LuMessageCircle size={24} />}
+              type="outline"
+              color="primary"
+              size="xs"
+            />
+          }
         />
       </main>
 
@@ -107,6 +157,33 @@ const Recipe = ({ data }) => {
       </div>
 
       {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
+      <CommentsModal
+        comments={comments}
+        recipeId={data?.idMeal}
+        isOpen={isModalComments}
+        setIsOpen={setIsModalComments}
+      />
+      {/* ----- */}
+      {error ? (
+        <Toast
+          color="primary"
+          isOpen={error}
+          setIsClosed={() => setError(false)}
+          text="Login to unlock all the funcionalities"
+          icon={(size) => <LuAlertTriangle size={size} />}
+          button={
+            <Button
+              text={"Login"}
+              onClick={() => {
+                handleOpenModalComments();
+              }}
+              icon={() => <LuLogIn size={24} />}
+              type="fill"
+              color="primary"
+            />
+          }
+        />
+      ) : null}
     </>
   );
 };
@@ -114,15 +191,21 @@ const Recipe = ({ data }) => {
 export default Recipe;
 
 export async function getServerSideProps(context) {
-  const search = context.query.id;
   let data;
-  const recipesRef = collection(db, "recipes");
-  const dataQ = query(recipesRef, where("idMeal", "==", search));
+  if (context.query.id === "random") {
+    let auxdata = await getData.random();
+    data = auxdata[0];
+  } else {
+    const search = context.query.id;
 
-  const querySnapshot = await getDocs(dataQ);
-  querySnapshot.forEach((doc) => {
-    data = doc.data();
-  });
+    const recipesRef = collection(db, "recipes");
+    const dataQ = query(recipesRef, where("idMeal", "==", search));
+
+    const querySnapshot = await getDocs(dataQ);
+    querySnapshot.forEach((doc) => {
+      data = doc.data();
+    });
+  }
 
   return { props: { data } };
 }

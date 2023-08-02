@@ -1,9 +1,8 @@
 import {
-  LuBookmark,
   LuCompass,
   LuHandMetal,
   LuHome,
-  LuSmile,
+  LuMessagesSquare,
 } from "react-icons/lu";
 
 const mainColor = "#129575";
@@ -16,8 +15,16 @@ export const Routes = [
   },
   {
     name: "Discover",
-    path: "/discover",
+    path: "/recipe/random",
     icons: [<LuCompass size={24} />, <LuCompass color={mainColor} size={24} />],
+  },
+  {
+    name: "Comunity Comments",
+    path: "/comunityComments",
+    icons: [
+      <LuMessagesSquare size={24} />,
+      <LuMessagesSquare color={mainColor} size={24} />,
+    ],
   },
   {
     name: "About us",

@@ -72,6 +72,13 @@ export const getData = {
     const resp = await get.json();
     return resp.meals;
   },
+  random: async () => {
+    const get = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/random.php"
+    );
+    const resp = await get.json();
+    return resp.meals;
+  },
 };
 
 export const recipeManager = {
