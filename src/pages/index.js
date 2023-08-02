@@ -44,13 +44,13 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
   const [userLogged, setUserLogged] = useState(null);
   useEffect(() => {
     if (currentHours >= 7 && currentHours < 12) {
-      setPageSubtitle("What are you cooking for breakfast?");
+      setPageSubtitle(" what are you going for breakfast?");
     } else if (currentHours >= 12 && currentHours <= 15) {
-      setPageSubtitle("What are you cooking for lunch?");
+      setPageSubtitle(" what are you going for lunch?");
     } else if (currentHours >= 18 && currentHours <= 22) {
-      setPageSubtitle("What are you cooking for dinner?");
+      setPageSubtitle(" what are you going for dinner?");
     } else {
-      setPageSubtitle("What are you cooking?");
+      setPageSubtitle(" what are you going to cook?");
     }
   }, []);
 
@@ -66,7 +66,7 @@ export default function Home({ area, lambRecepies, categories, heroData }) {
       setUserLogged(auxData);
       // console.log("user local data : ", auxData);
       setPageTitle("Welcome back!");
-      setPageSubtitle("Nice to see you again " + auxData.name);
+      setPageSubtitle(auxData.name + pageSubtitle);
     } else {
       setUserLogged(null);
     }

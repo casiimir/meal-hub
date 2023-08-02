@@ -51,7 +51,7 @@
     max-height: 240px;
     width: calc(100% - ($page-padding * 2));
     position: absolute;
-    z-index: 99;
+    z-index: 9999;
     overflow: scroll;
     margin-top: 10px;
 
