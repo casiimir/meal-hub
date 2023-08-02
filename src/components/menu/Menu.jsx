@@ -1,4 +1,4 @@
-import { Routes } from "@/pages/routes";
+import { Routes } from "@/utils/routes";
 import styles from "./Menu.module.scss";
 import { useRouter } from "next/router";
 import { getAuth, signOut } from "firebase/auth";
