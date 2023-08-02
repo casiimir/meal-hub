@@ -84,6 +84,7 @@ const Recipe = ({ data }) => {
 
       <main>
         {/* ------------ NAVBAR ------------ */}
+
         <Navbar
           leftButton={
             <Button
@@ -97,16 +98,18 @@ const Recipe = ({ data }) => {
           }
           pageTitle={recipe.strMeal}
           rightButton={
-            <Button
-              text={user ? comments?.length : "Login"}
-              onClick={() => {
-                handleOpenModalComments();
-              }}
-              icon={() => <LuMessageCircle size={24} />}
-              type="outline"
-              color="primary"
-              size="xs"
-            />
+            <div className={styles.navBar}>
+              <Button
+                text={user ? comments?.length : "Login"}
+                onClick={() => {
+                  handleOpenModalComments();
+                }}
+                icon={() => <LuMessageCircle size={24} />}
+                type="outline"
+                color="primary"
+                size="xs"
+              />
+            </div>
           }
         />
       </main>
@@ -133,10 +136,18 @@ const Recipe = ({ data }) => {
           )}
         </div>
         <div className={styles.wrapper}>
-          <section className={styles.Instructions}>
-            <h4 className={styles.TitleInstr}>Instruction</h4>
-            <p className={styles.Desc}>{recipe.strInstructions}</p>
-          </section>
+          <div className={styles.instrComments}>
+            <section className={styles.Instructions}>
+              <h4 className={styles.TitleInstr}>Instruction</h4>
+              <p className={styles.Desc}>{recipe.strInstructions}</p>
+            </section>
+            <CommentsModal
+              comments={comments}
+              recipeId={data?.idMeal}
+              isOpen={isModalComments}
+              setIsOpen={setIsModalComments}
+            />
+          </div>
           <section className={styles.Ingredients}>
             <h4 className={styles.TitleIngr}>Ingredients</h4>
             {ingredients?.map((ingredients, index) => (
@@ -157,12 +168,7 @@ const Recipe = ({ data }) => {
       </div>
 
       {/* ------ FINE CONTENUTO PAGINA / ELEMENTI DELLA PAGINA ------ */}
-      <CommentsModal
-        comments={comments}
-        recipeId={data?.idMeal}
-        isOpen={isModalComments}
-        setIsOpen={setIsModalComments}
-      />
+
       {/* ----- */}
       {error ? (
         <Toast
