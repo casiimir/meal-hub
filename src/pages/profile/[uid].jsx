@@ -165,26 +165,25 @@ const Profile = ({ user, uid, followers, following }) => {
                 <div className={styles.avatar}>
                   <img
                     className={styles.avatar__img}
-                    src={userData?.imgUrl || "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png?20170328184010"}
+                    src={
+                      userData?.imgUrl ||
+                      "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png?20170328184010"
+                    }
                     alt="User image profile"
                   />
                 </div>
                 <div className={styles.profile__data}>
-                 
-                    <h2 className={styles.username}>{userData?.name}</h2>
-
+                  <h2 className={styles.username}>{userData?.name}</h2>
 
                   <div className={styles.profile_user}>
-
-
-                  <div className={styles.profile__data__container}>
-                    <b>Followers</b>
-                    <p>{followersLength}</p>
-                  </div>
-                  <div className={styles.profile__data__container}>
-                    <b>Following</b>
-                    <p>{followingLength}</p>
-                  </div>
+                    <div className={styles.profile__data__container}>
+                      <b>Followers</b>
+                      <p>{followersLength}</p>
+                    </div>
+                    <div className={styles.profile__data__container}>
+                      <b>Following</b>
+                      <p>{followingLength}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -209,7 +208,6 @@ const Profile = ({ user, uid, followers, following }) => {
               ) : null}
 
               <div className={styles.description}>
-                
                 <p>{userData?.bio}</p>
               </div>
             </div>
@@ -226,20 +224,19 @@ const Profile = ({ user, uid, followers, following }) => {
                 direction={"right"}
                 icon={() => <LuBookmark size={18} />}
               />
-              <Button
+              {/* <Button
                 text="Watched"
                 size="xs"
                 type={content === "watched" ? "fill" : "outline"}
                 onClick={() => handleSwitchContent("watched")}
                 direction={"right"}
                 icon={() => <LuPlay size={18} />}
-              />
+              /> */}
             </div>
 
             <div className={styles.content__content}>
               {data?.map((recep, index) => {
                 return (
-
                   <CardHero
                     callback={() => handleRemoveSpecificIndex(index)}
                     data={recep}
