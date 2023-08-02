@@ -19,8 +19,8 @@ export const Routes = [
     icons: [<LuCompass size={24} />, <LuCompass color={mainColor} size={24} />],
   },
   {
-    name: "Comunity Comments",
-    path: "/comunityComments",
+    name: "Community Comments",
+    path: "/communityComments",
     icons: [
       <LuMessagesSquare size={24} />,
       <LuMessagesSquare color={mainColor} size={24} />,
