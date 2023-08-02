@@ -3,11 +3,13 @@ import Head from "next/head";
 import styles from "./aboutUs.module.scss";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
-
-import { LuMenu, LuUser } from "react-icons/lu";
+import { useRouter } from "next/navigation";
+import { LuMenu, LuUser, LuArrowLeft } from "react-icons/lu";
 
 const ProfileCard = () => {
   // VARIABLES ----------------
+  const router = useRouter();
+
   // CONDITIONS ---------------
   const [pageTitle, setPageTitle] = useState("About Us");
   const [pageSubtitle, setPageSubtitle] = useState(
@@ -55,20 +57,22 @@ const ProfileCard = () => {
         <Navbar
           leftButton={
             <Button
-              icon={() => <LuMenu size={24} />}
+              onClick={() => {
+                if (window.history.state && window.history.state.idx > 0) {
+                  router.back();
+                } else {
+                  router.push("/");
+                }
+              }}
+              icon={() => <LuArrowLeft size={24} />}
               type="text"
               color="dark"
             />
           }
           pageTitle={pageTitle}
-          rightButton={
-            <Button
-              icon={() => <LuUser size={24} />}
-              type="text"
-              color="dark"
-            />
-          }
+          rightButton={null}
         />
+
         {/* ----------- HEADER ------------- */}
         <main className={styles.main}>
           <div className={styles.title}>
