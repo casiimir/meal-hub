@@ -39,7 +39,7 @@ const ProfileCard = () => {
       src: "https://firebasestorage.googleapis.com/v0/b/meal-hub-3d81b.appspot.com/o/users%2FjCU5w3zFknaxU0i7bYAWWyeX0lj1%2Fimg.jpeg?alt=media&token=f1c3a525-057a-4cd2-89fc-dab1be504436",
       title: "Turcanu Daniel",
       description:
-        "Daniel brings a wealth of knowledge to the team, possessing excellent proficiency in various programming languages such as JS, TypeScript, and a deep understanding of frameworks like React and Next.js. Additionally, he is well-versed in database technologies like MySQL and Firebase. Daniel's broad skillset allows him to tackle a wide range of challenges, and his expertise in different areas makes him a valuable resource for the team.",
+        "Daniel brings a wealth of knowledge to the team, possessing excellent proficiency in various programming languages such as TypeScript and a deep understanding of frameworks like React and Next.js. Additionally, he is well-versed in database technologies like MySQL and Firebase. Daniel's broad skillset allows him to tackle a wide range of challenges, and his expertise in different areas makes him a valuable resource for the team.",
     },
   ];
   // FUNCTIONS ----------------
