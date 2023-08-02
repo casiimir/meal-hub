@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import { LuAlertTriangle, LuPencil, LuUploadCloud, LuX } from "react-icons/lu";
 import Button from "../Button";
 import { useAuthContext } from "@/context/AuthContext";
-import imageCompression from "browser-image-compression";
 import Toast from "../Toast";
 import { UploadSingleImageFirebase } from "@/firebase/imageUpload";
 import { doc, setDoc } from "firebase/firestore";
@@ -49,18 +48,7 @@ const ModifyUser = ({ isModifyOpen, setModifyOpen, userData }) => {
   const compressImage = async (e) => {
     const imageFile = e.target.files[0];
 
-    const options = {
-      maxSizeMB: 0.3,
-      maxWidthOrHeight: 1920,
-      useWebWorker: true,
-    };
-
-    try {
-      const compressFile = await imageCompression(imageFile, options);
-      setCompressedImg(compressFile);
-    } catch (error) {
-      console.log("Compression error:", error);
-    }
+    setCompressedImg(imageFile);
   };
 
   useEffect(() => {
