@@ -2,10 +2,10 @@ import { db } from "@/firebase/config";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 export default async function handler(req, res) {
-  console.log("FOLLOW");
+  // console.log("FOLLOW");
   const dataReq = req.body;
   const data = JSON.parse(dataReq);
-  console.log(data);
+  // console.log(data);
   const followingRef = doc(db, "following", data.currentUid);
   await updateDoc(followingRef, {
     secret: data.currentUid,
