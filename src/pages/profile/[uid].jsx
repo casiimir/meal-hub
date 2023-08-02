@@ -76,7 +76,7 @@ const Profile = ({ user, uid, followers, following }) => {
         uid: uid,
         currentUid: localData?.uid,
       };
-      await fetch("http://localhost:3000/api/unfollow", {
+      await fetch("https://meal-hub-tau.vercel.app/api/unfollow", {
         method: "POST",
         body: JSON.stringify(obj),
       }).then(async (res) => {
@@ -90,7 +90,7 @@ const Profile = ({ user, uid, followers, following }) => {
         uid: uid,
         currentUid: localData?.uid,
       };
-      await fetch("http://localhost:3000/api/follow", {
+      await fetch("https://meal-hub-tau.vercel.app//api/follow", {
         method: "POST",
         body: JSON.stringify(obj),
       }).then(async (res) => {
