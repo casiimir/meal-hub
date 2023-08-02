@@ -5,7 +5,7 @@
   // height: calc($navbar-height - ($page-padding * 2));
   padding: 0 $page-padding 0 $page-padding;
   height: $navbar-height;
-  z-index: 999;
+  z-index: 9999;
   background-color: $color-light;
   display: grid;
   grid-template-columns: 20% 60% 20%;

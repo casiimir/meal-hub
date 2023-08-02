@@ -54,13 +54,18 @@
   }
 }
 
-@media all and (min-width: 641px) {
+@media all and (min-width: 768px) {
+  
+
   .CommentsModal {
     // border: 1px solid green;
     position: static;
+    transform: translateY(0);
+    box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.1);
+
     &.isClosed {
       // border: 1px solid black;
-      width: 93.5%;
+      width: auto;
       max-width: 530px;
       height: fit-content;
     }
